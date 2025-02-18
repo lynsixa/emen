@@ -1,0 +1,122 @@
+/* General */
+#calendar {
+    max-width: 10000px;  /* Ancho máximo del calendario */
+    margin: 0 auto;     /* Centra el calendario en la página */
+    padding: 20px;      /* Espaciado interno */
+    background-color: #f8f9fa; /* Fondo claro para el calendario */
+    border-radius: 10px;  /* Bordes redondeados */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra para darle un efecto flotante */
+}
+
+/* Encabezado del calendario (Mes, Semana, Día) */
+.fc-header-toolbar {
+    background-color: #007bff;  /* Fondo azul para la barra superior */
+    color: #ffffff;  /* Color del texto */
+    padding: 10px;
+    border-radius: 10px;  /* Bordes redondeados */
+}
+
+.fc-header-toolbar .fc-button {
+    background-color: #0056b3;  /* Color de los botones */
+    color: #ffffff;  /* Color de los textos de los botones */
+    border: none;    /* Sin borde */
+    padding: 8px 16px; /* Relleno de los botones */
+    margin: 0 5px;   /* Espaciado entre botones */
+    font-size: 14px;
+    border-radius: 5px;  /* Bordes redondeados en los botones */
+}
+
+.fc-header-toolbar .fc-button:hover {
+    background-color: #004085; /* Color cuando el ratón pasa sobre los botones */
+}
+
+/* Estilos de los días y las celdas de las fechas */
+.fc-daygrid-day {
+    background-color: #ffffff;  /* Fondo blanco para los días */
+    border: 1px solid #e1e1e1;  /* Borde gris claro */
+    box-sizing: border-box;     /* Asegura que el borde no afecte el tamaño */
+}
+
+/* Estilo del título de los días */
+.fc-daygrid-day-number {
+    font-size: 18px;  /* Tamaño de la fuente del número del día */
+    font-weight: bold;
+    color: #333;  /* Color del texto */
+    padding: 10px;
+}
+
+/* Estilo de los eventos */
+.fc-event {
+    background-color: #28a745;  /* Fondo verde para los eventos */
+    color: #ffffff;             /* Texto blanco para los eventos */
+    border-radius: 5px;         /* Bordes redondeados para los eventos */
+    font-size: 14px;            /* Tamaño de la fuente de los eventos */
+    padding: 5px;               /* Relleno interno */
+    text-align: center;         /* Centrado del texto */
+    cursor: pointer;           /* Indicador de que el evento es clickeable */
+}
+
+.fc-event:hover {
+    background-color: #218838;  /* Color de fondo cuando se pasa el ratón por encima */
+}
+
+/* Descripción del evento */
+.fc-event-description {
+    font-size: 12px;      /* Tamaño de fuente de la descripción */
+    color: #555;          /* Color gris para la descripción */
+    margin-top: 5px;      /* Espaciado superior */
+}
+
+/* Estilos para el área de navegación (Mes, Semana, Día) */
+.fc-toolbar-title {
+    font-size: 20px;  /* Tamaño de la fuente del título (Mes actual) */
+    font-weight: bold;
+}
+
+/* Agregar espacio extra en el calendario */
+.fc-daygrid-event {
+    margin-bottom: 5px;  /* Espaciado inferior entre los eventos */
+}
+
+/* Botones adicionales en el calendario */
+.fc-button-prev,
+.fc-button-next,
+.fc-button-today {
+    font-size: 16px;
+    padding: 10px;
+    border-radius: 50%;  /* Hacer los botones redondos */
+}
+
+.fc-button-today {
+    background-color: #17a2b8;  /* Fondo azul para el botón "Hoy" */
+    color: #ffffff;
+}
+
+.fc-button-prev,
+.fc-button-next {
+    background-color: #ffc107;  /* Fondo amarillo para los botones de navegación */
+    color: #ffffff;
+}
+
+/* Fondo de las celdas de los días de la semana */
+.fc-col-header-cell {
+    background-color: #007bff;  /* Fondo azul para las cabeceras de los días */
+    color: white;               /* Color del texto de los días */
+    font-weight: bold;          /* Texto en negrita */
+}
+
+/* Reajustar el tamaño de la fuente en pantallas pequeñas */
+@media (max-width: 768px) {
+    #calendar {
+        max-width: 100%; /* Asegura que el calendario ocupe el 100% del ancho en pantallas pequeñas */
+        padding: 10px;
+    }
+
+    .fc-button {
+        font-size: 12px; /* Reducir el tamaño de los botones */
+    }
+
+    .fc-header-toolbar .fc-button {
+        padding: 5px 10px;  /* Reducir el tamaño de los botones */
+    }
+}

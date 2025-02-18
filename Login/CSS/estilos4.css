@@ -1,0 +1,342 @@
+/* Fondo degradado dorado */
+.bg-dorado {
+    background: linear-gradient(45deg, #bfa85a, #f7d794);
+    color: #333;
+    min-height: 100vh;
+}
+
+/* Reset básico */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    color: #333;
+}
+
+/* Menú lateral */
+aside {
+    width: 250px;
+    background-color: #2c2c2c;
+}
+
+/* Contenido principal */
+main {
+    margin-top: 80px;
+    padding: 20px;
+    width: 100%;
+    color: #fff;
+}
+
+/* Mensaje de bienvenida extendido */
+.mensaje-bienvenida-extendido {
+    max-width: 100%;
+    background: #f8f9fa;
+    color: #333;
+    border-left: 8px solid #bfa85a;
+    border-top: 3px solid #bfa85a;
+    text-align: center;
+    margin: 0 auto;
+}
+
+/* Sección de instrucciones */
+.instrucciones {
+    max-width: 800px;
+    margin: 0 auto;
+    color: #f8f9fa;
+    border-left: 5px solid #ffc107;
+}
+
+/* Lista de instrucciones */
+.instrucciones ul {
+    padding-left: 20px;
+    list-style: none;
+}
+
+.instrucciones li {
+    font-size: 1.1em;
+    margin-bottom: 10px;
+}
+
+.instrucciones i {
+    margin-right: 10px;
+}
+
+/* Botones principales */
+.btn-warning, .btn-secondary {
+    padding: 10px 20px;
+    font-size: 1.2em;
+    border-radius: 8px;
+}
+
+.btn-warning i, .btn-secondary i {
+    margin-right: 5px;
+}
+
+/* Botones hover */
+.btn-warning:hover {
+    background-color: #ebe7d1;
+}
+
+.btn-secondary:hover {
+    background-color: #343a40;
+}
+
+/* Footer */
+.texto-footer {
+    font-size: 0.9em;
+    color: #ff0000;
+}
+
+/* Ajustes de responsividad */
+@media (max-width: 768px) {
+    aside {
+        width: 100%;
+    }
+
+    main {
+        padding: 15px;
+    }
+}
+.buttons a {
+    text-decoration: none;
+    font-size: 28px;
+    width: 60px;
+    height: 60px;
+    line-height: 60px;
+    text-align: center;
+    background: #020303;
+    color: #f1f1f1;
+    border-radius: 50%;
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, .5);
+    transition: all .4s ease-in-out;
+}
+
+/* Css de nis de aqui para abajo*/
+body {
+    font-family: Arial, sans-serif;
+    background: linear-gradient(to bottom, #000, rgb(211, 192, 50)); /* Degradado negro a dorado */
+    color: #fff; /* Texto blanco */
+    margin: 0;
+    padding: 20px;
+}
+
+h1 {
+    color: rgb(211, 192, 50); /* Dorado */
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+form {
+    background: #fff; /* Fondo blanco */
+    border: 2px solid rgb(211, 192, 50); /* Borde dorado */
+    border-radius: 8px;
+    padding: 20px;
+    max-width: 600px;
+    margin: 20px auto;
+    box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.5);
+}
+
+form input, form select, form button {
+    display: block;
+    width: calc(100% - 20px);
+    margin-bottom: 15px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    background: #f9f9f9; /* Gris claro */
+    color: #333; /* Texto oscuro */
+}
+
+form button {
+    background-color: rgb(211, 192, 50); /* Dorado */
+    color: #000; /* Texto negro */
+    font-weight: bold;
+    cursor: pointer;
+    border: none;
+    transition: all 0.3s;
+}
+
+form button:hover {
+    background-color: #e5d873; /* Dorado más claro */
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px auto;
+    background: #fff; /* Fondo blanco */
+    color: #333; /* Texto oscuro */
+    box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.5);
+}
+
+table th, table td {
+    padding: 10px;
+    text-align: left;
+    border: 1px solid rgb(211, 192, 50); /* Borde dorado */
+}
+
+table th {
+    background-color: rgb(211, 192, 50); /* Dorado */
+    color: #000; /* Texto negro */
+}
+
+table tr:nth-child(even) {
+    background-color: #f9f9f9; /* Gris claro */
+}
+
+table tr:nth-child(odd) {
+    background-color: #fff; /* Blanco */
+}
+
+a {
+    color: rgb(211, 192, 50);
+    text-decoration: none;
+    font-weight: bold;
+}
+
+a:hover {
+    text-decoration: underline;
+    color: #e5d873; /* Dorado más claro */
+}
+
+/* Estilo para botones de acciones */
+.actions {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+}
+
+.actions a, .actions button {
+    padding: 8px 12px;
+    border: 1px solid rgb(211, 192, 50); /* Borde dorado */
+    border-radius: 4px;
+    background: #000; /* Fondo negro */
+    color: rgb(211, 192, 50); /* Texto dorado */
+    cursor: pointer;
+    transition: all 0.3s;
+    font-size: 14px;
+}
+
+.actions a:hover, .actions button:hover {
+    background-color: rgb(211, 192, 50); /* Dorado */
+    color: #000; /* Texto negro */
+}
+
+/* Mensajes de error y éxito */
+p {
+    text-align: center;
+    font-size: 16px;
+    margin: 10px 0;
+}
+
+p[style="color:red;"] {
+    color: red; /* Mensaje de error */
+    font-weight: bold;
+}
+
+p[style="color:green;"] {
+    color: green; /* Mensaje de éxito */
+    font-weight: bold;
+}
+
+
+
+/*CSS*
+/* Estilo general */
+body {
+    background-color: #000; /* Fondo negro */
+    color: #fff; /* Texto blanco */
+    font-family: Arial, sans-serif;
+}
+
+/* Contenedor principal */
+.container {
+    background-color: #1a1a1a; /* Gris oscuro */
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* Títulos */
+h2, h3 {
+    color: #FFD700; /* Dorado */
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+/* Formularios */
+form .form-group label {
+    color: #FFD700; /* Etiquetas doradas */
+}
+
+form .form-control {
+    background-color: #333; /* Campo gris oscuro */
+    color: #fff; /* Texto blanco */
+    border: 1px solid #FFD700; /* Borde dorado */
+}
+
+form button {
+    border: none;
+    color: #fff;
+}
+
+form button.btn-primary {
+    background-color: #FFD700; /* Botón agregar dorado */
+}
+
+form button.btn-warning {
+    background-color: #FFA500; /* Botón editar naranja */
+}
+
+/* Tabla */
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+table thead {
+    background-color: #FFD700; /* Encabezado dorado */
+    color: #000; /* Texto negro */
+}
+
+table tbody tr {
+    background-color: #333; /* Filas gris oscuro */
+    color: #fff; /* Texto blanco */
+}
+
+table tbody tr:nth-child(even) {
+    background-color: #444; /* Filas alternas */
+}
+
+table tbody tr:hover {
+    background-color: #555; /* Hover en filas */
+}
+
+table td, table th {
+    padding: 10px;
+    text-align: center;
+    border: 1px solid #FFD700; /* Bordes dorados */
+}
+
+/* Botones de la tabla */
+table .btn-info {
+    background-color: #1E90FF; /* Azul para editar */
+    border: none;
+    color: #fff;
+}
+
+table .btn-danger {
+    background-color: #FF4500; /* Rojo para eliminar */
+    border: none;
+    color: #fff;
+}
+
+/* Botón de tabla hover */
+table .btn:hover {
+    opacity: 0.8;
+}
+

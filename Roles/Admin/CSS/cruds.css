@@ -1,0 +1,126 @@
+/* Estilo general del cuerpo de la página */
+body {
+    background: linear-gradient(to right, rgb(200, 153, 45), rgb(62, 61, 63), rgb(0, 0, 0));
+    color: #fff;
+    font-family: 'Arial', sans-serif;
+    height: 100vh;  /* Altura total de la pantalla */
+    display: flex;  /* Usamos Flexbox para centrar */
+    justify-content: center;  /* Centrado horizontal */
+    align-items: center;  /* Centrado vertical */
+    margin: 0;  /* Eliminar márgenes predeterminados */
+}
+
+/* Contenedor de todo el formulario */
+.container {
+    max-width: 500px;
+    background-color: rgba(0, 0, 0, 0.7);
+    padding: 40px;
+    border-radius: 15px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    width: 100%; /* Asegura que ocupe el ancho completo del contenedor */
+}
+
+/* Títulos */
+h1, h2 {
+    text-align: center;
+    font-size: 28px;
+    margin-bottom: 20px;
+}
+
+/* Estilo de los campos del formulario */
+form {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start; /* Alineamos los elementos a la izquierda */
+    gap: 10px;
+}
+
+/* Estilo de cada input de texto */
+input[type="text"],
+input[type="email"],
+input[type="password"],
+input[type="date"] {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    font-size: 16px;
+}
+
+/* Estilo del botón */
+button, input[type="submit"] {
+    width: 100%;
+    padding: 10px;
+    background-color: rgb(200, 153, 45);
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+/* Efecto hover en los botones */
+button:hover, input[type="submit"]:hover {
+    background-color: rgb(62, 61, 63);
+    transform: scale(1.05);
+}
+
+/* Tabla de clientes */
+table {
+    width: 100%;
+    margin-top: 20px;
+    border-collapse: collapse;
+}
+
+table, th, td {
+    border: 1px solid #ccc;
+}
+
+th, td {
+    padding: 8px;
+    text-align: left;
+}
+
+th {
+    background-color: rgb(200, 153, 45);
+    color: #fff;
+}
+
+/* Responsividad para pantallas más pequeñas */
+@media (max-width: 576px) {
+    .container {
+        padding: 20px;
+        max-width: 100%;
+        margin: 10px;
+    }
+
+    h1, h2 {
+        font-size: 24px;
+    }
+
+    input[type="submit"], input[type="text"], input[type="email"], input[type="password"], input[type="date"] {
+        font-size: 14px;
+        padding: 12px;
+    }
+}
+
+/* Estilo del botón para volver al índice de administración */
+.volver-btn {
+    width: auto;
+    background-color: rgb(200, 153, 45);
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    text-align: center;
+    margin-top: 20px;
+    display: inline-block;
+    text-decoration: none;
+    color: #fff;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.volver-btn:hover {
+    background-color: rgb(62, 61, 63);
+    transform: scale(1.05);
+}

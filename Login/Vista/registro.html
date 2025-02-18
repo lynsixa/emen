@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registro</title>
+    <link rel="stylesheet" href="../CSS/login-registro.css">
+</head>
+<body>
+
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-6 col-lg-4">
+                <div class="form-container">
+                    <center><img class="imagen" src="../Imagenes/log.png" width="80" height="70" alt="Logo"></center>
+                    <h1>Registrarme</h1>
+
+                    <!-- Contenedor para mensajes de error -->
+                    <div id="mensajeError" style="color: red; text-align: center;">
+                        <?php
+                        if (isset($_GET['mensaje'])) {
+                            echo htmlspecialchars($_GET['mensaje']);
+                        }
+                        ?>
+                    </div>
+
+                    <!-- Formulario para registrar usuario -->
+                    <form method="post" action="../Controlador/controladorUsuario.php" id="registroForm">
+                        <input type="hidden" name="accion" value="registrar">
+
+                        <div class="form-group">
+                            <label for="nombre">Ingrese su Nombre:</label>
+                            <input type="text" class="form-control" id="nombre" name="nombre" placeholder="Ingrese su Nombre" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="documento">Número de Documento:</label>
+                            <input type="text" class="form-control" id="documento" name="documento" placeholder="Número de Documento" required>
+                        </div>            
+                        <div class="form-group">
+                            <label for="correo">Ingrese su Correo:</label>
+                            <input type="email" class="form-control" id="correo" name="correo" placeholder="Ingrese su correo" required>
+                        </div>         
+                        <div class="form-group">
+                            <label for="fechadenacimiento">Fecha de Nacimiento:</label>
+                            <input type="date" class="form-control" id="fechadenacimiento" name="fechadenacimiento" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="userPassword">Contraseña:</label>
+                            <input type="password" class="form-control" id="userPassword" name="userPassword" placeholder="Ingrese su contraseña" required>
+                        </div> 
+
+                        <input name="acepto" type="checkbox" class="checkbox-terminos" required> 
+                        <a href="http://localhost/EmenDSRTV/Pdf/terminosYcondiciones.pdf" target="_blank" class="terminos">Términos y Condiciones</a>
+
+                        <button type="submit" class="submit-button">
+                            <img src="../Imagenes/log.png" alt="Logo" class="logo"> Registrarme
+                        </button>
+                        <a href="../Vista/login.html">¿Ya tienes cuenta?</a>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>

@@ -1,6 +1,6 @@
 <?php
 require_once '../Modelo/Conexion.php'; // Archivo de conexión
-require_once '../Modelo/Cliente.php'; // Clase Cliente
+require_once '../Modelo/Cliente.php'; // Cambiar a Usuario en lugar de Cliente
 
 // Establecer la conexión a la base de datos
 $conexionObj = new Conexion();
@@ -11,25 +11,25 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $userEmail = $_POST['userEmail'];
     $userPassword = $_POST['userPassword'];
 
-    // Crear una instancia de la clase Cliente
-    $cliente = new Cliente($conexion);
+    // Crear una instancia de la clase Usuario
+    $usuario = new Usuario($conexion);
 
-    // Intentar autenticar al cliente
-    $idCliente = $cliente->autenticarCliente($userEmail, $userPassword);
+    // Intentar autenticar al usuario
+    $idUsuario = $usuario->autenticarUsuario($userEmail, $userPassword);
 
-    if ($idCliente) {
+    if ($idUsuario) {
         // Modificación: Especificamos solo las columnas necesarias
-        $sql = "SELECT idClientes, Roles_idRoles FROM cliente WHERE idClientes = :idCliente";
+        $sql = "SELECT idUsuario, Roles_idRoles FROM usuario WHERE idUsuario = :idUsuario";
         $stmt = $conexion->prepare($sql);
-        $stmt->bindParam(':idCliente', $idCliente, PDO::PARAM_INT);
+        $stmt->bindParam(':idUsuario', $idUsuario, PDO::PARAM_INT);
         $stmt->execute();
 
-        $clienteLogueado = $stmt->fetch(PDO::FETCH_ASSOC);
+        $usuarioLogueado = $stmt->fetch(PDO::FETCH_ASSOC);
 
         // Verificar si la clave 'Roles_idRoles' existe
-        if (isset($clienteLogueado['Roles_idRoles'])) {
-            // Redireccionar según el rol del cliente
-            switch ($clienteLogueado['Roles_idRoles']) {
+        if (isset($usuarioLogueado['Roles_idRoles'])) {
+            // Redireccionar según el rol del usuario
+            switch ($usuarioLogueado['Roles_idRoles']) {
                 case 1: // Admin
                     header("Location: /Principal/Roles/Admin/indexAdmin.html");
                     break;
@@ -40,14 +40,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     header("Location: ../indexBartender.html");
                     break;
                 case 4: // Cliente
-                    header("Location: /Principal/Roles/Usuariosincrud/indexscannis.php");
+                    header("Location: /proyecto/Roles/Usuariosincrud/indexscannis.php");
                     break;
                 default:
                     echo "Error: Rol no reconocido.";
             }
             exit();
         } else {
-            echo "Error: El cliente no tiene un rol asignado.";
+            echo "Error: El usuario no tiene un rol asignado.";
         }
     } else {
         // Credenciales incorrectas

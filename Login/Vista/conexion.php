@@ -1,16 +1,14 @@
 <?php
-$host = 'localhost';        // Servidor MySQL/MariaDB
-$usuario = 'root';          // Usuario
-$contraseña = '1161';           // Contraseña del usuario (deja vacío si no tienes)
-$baseDeDatos = 'emendsrtv'; // Nombre de la base de datos
+$host = 'localhost'; // o tu host de base de datos
+$usuario = 'root'; // tu usuario de la base de datos
+$password = ''; // tu contraseña de la base de datos
+$nombre_bd = 'emendsrtv'; // nombre de la base de datos
 
-$puerto = 3306;             // Puerto de MariaDB (en lugar de 3306)
+// Crea la conexión
+$mysqli = new mysqli($host, $usuario, $password, $nombre_bd);
 
-// Crear la conexión
-$conn = new mysqli($host, $usuario, $contraseña, $baseDeDatos, $puerto);
-
-// Verificar si la conexión fue exitosa
-if ($conn->connect_error) {
-    die("Conexión fallida: " . $conn->connect_error);
+// Verifica si la conexión fue exitosa
+if ($mysqli->connect_error) {
+    die("Error de conexión: " . $mysqli->connect_error);
 }
 ?>

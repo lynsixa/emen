@@ -20,17 +20,25 @@
 </head>
 
 <body>
+<<<<<<< HEAD
 	<div class="page-loading active">
 		<div class="page-loading-inner">
 			<div class="page-spinner"></div>
 			<span>cargando...</span>
 		</div>
 	</div>
+=======
+	
+>>>>>>> 42cdf60072e4d0e7a8fcbf3a0b8009b206b74467
 
 	<div class="super_container">
 		<?php
 
+<<<<<<< HEAD
 		include('funciones/funciones_tienda.php');
+=======
+		include('../gesProductos/funciones/funciones_tienda.php');
+>>>>>>> 42cdf60072e4d0e7a8fcbf3a0b8009b206b74467
 		$idProd = isset($_POST['idProd']) ? $_POST['idProd'] : $_GET['idProd'];
 		include('header.php');
 		$resultadoDetalleProduct = detalles_producto_seleccionado($con, $idProd);
@@ -74,7 +82,11 @@
 										<i class="fas fa-angle-left" style="color: #666;"></i>
 									</a>
 									&nbsp;
+<<<<<<< HEAD
 									<?php echo $dataProduct['nombreProd']; ?>
+=======
+									<?php echo $dataProduct['nombre']; ?>
+>>>>>>> 42cdf60072e4d0e7a8fcbf3a0b8009b206b74467
 								</h2>
 								<p>
 									<?php echo $dataProduct['descripcion']; ?>

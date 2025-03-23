@@ -1,3 +1,19 @@
+<<<<<<< HEAD
+=======
+<?php
+session_start();
+include('conexion.php'); // Incluye la conexión a la base de datos
+include('modalEliminarProduct.php');
+include('funciones/funciones_tienda.php');
+include('header.php');
+
+$conexion = new Conexion();
+$con = $conexion->getConnection(); // Obtener conexión
+
+$miCarrito = mi_carrito_de_compra($con);
+?>
+
+>>>>>>> 42cdf60072e4d0e7a8fcbf3a0b8009b206b74467
 <!DOCTYPE html>
 <html lang="es">
 
@@ -15,6 +31,7 @@
     <title>Carrito de Compras</title>
 </head>
 
+<<<<<<< HEAD
 <body>
     
 
@@ -123,5 +140,91 @@
     <?php include('includes/js.html'); ?>
 
 </body>
+=======
+<?php
+session_start();
+include('config/config.php');
+
+/**
+ * Función para obtener los productos disponibles
+ */
+function getProductList($con)
+{
+    $sql = "SELECT 
+                p.idProducto AS prodId,
+                c.nombre,
+                p.precio,
+                c.foto1 AS imagen
+            FROM 
+                producto AS p
+            INNER JOIN 
+                categoria AS c
+            ON 
+                c.producto_idProducto = p.idProducto";
+
+    $result = mysqli_query($con, $sql);
+
+    if (!$result) {
+        die("Error en la consulta de productos: " . mysqli_error($con));
+    }
+
+    return $result;
+}
+
+// Obtener productos de la base de datos
+$productos = getProductList($con);
+?>
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Listado de Productos</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css">
+</head>
+<body>
+    <div class="container mt-5 pt-5">
+        <h3 class="text-center mb-4" style="border-bottom: solid 1px #ebebeb;">Lista de Productos</h3>
+        <div class="table-responsive">
+            <table class="table table-striped">
+                <thead id="theadTableSpecial">
+                    <tr>
+                        <th scope="col">Imagen</th>
+                        <th scope="col">Producto</th>
+                        <th scope="col" class="text-center">Precio</th>
+                        <th class="text-right">Acción</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <?php while ($row = mysqli_fetch_assoc($productos)) { ?>
+                        <tr>
+                            <td>
+                                <img src="<?php echo htmlspecialchars($row["imagen"]); ?>" alt="Foto del producto" style="width: 100px;">
+                            </td>
+                            <td><?php echo htmlspecialchars($row["nombre"]); ?></td>
+                            <td class="text-center"><strong>$</strong> <?php echo number_format($row['precio'], 0, '', '.'); ?></td>
+                            <td class="text-right">
+                                <a href="detallesArticulo.php?id=<?php echo $row['prodId']; ?>" class="btn btn-sm btn-primary">
+                                    <i class="bi bi-eye"></i> Ver Detalles
+                                </a>
+                                <a href="agregar_carrito.php?id=<?php echo $row['prodId']; ?>" class="btn btn-sm btn-success">
+                                    <i class="bi bi-cart-plus"></i> Añadir al Carrito
+                                </a>
+                            </td>
+                        </tr>
+                    <?php } ?>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <?php include('includes/footer.html'); ?>
+    <?php include('includes/js.html'); ?>
+</body>
+</html>
+
+>>>>>>> 42cdf60072e4d0e7a8fcbf3a0b8009b206b74467
 
 </html>

@@ -17,6 +17,10 @@
 <body>
 	
 	<?php
+<<<<<<< HEAD
+=======
+	include('../conexion.php');
+>>>>>>> 42cdf60072e4d0e7a8fcbf3a0b8009b206b74467
 	include('funciones/funciones_tienda.php');
 	include('header.php');
 	?>
@@ -41,11 +45,16 @@
 			
 			<?php
 			// Verificar si la conexión a la base de datos es exitosa
+<<<<<<< HEAD
 			if (!$con) {
+=======
+			if (!$conn) {
+>>>>>>> 42cdf60072e4d0e7a8fcbf3a0b8009b206b74467
 				echo "<p>Error al conectar a la base de datos: " . mysqli_connect_error() . "</p>";
 				exit;
 			}
 			
+<<<<<<< HEAD
 			// Obtener productos y fotos desde la base de datos con un JOIN
 			$query = "SELECT p.idProducto, p.precio, p.nombreProd, p.descripcion, f.foto1 
 					  FROM producto p 
@@ -57,6 +66,21 @@
 				echo "<p>Error al ejecutar la consulta: " . mysqli_error($con) . "</p>";
 				exit;
 			}
+=======
+			// Obtener productos con fotos y descripciones desde la base de datos
+			$query = "SELECT p.idProducto, p.precio, c.nombre, c.descripcion, c.foto1 
+			FROM producto p
+			LEFT JOIN categoria c ON c.idCategoria";
+
+			$resultadoProductos = mysqli_query($conn, $query);
+
+			// Verificar si la consulta fue exitosa
+			if (!$resultadoProductos) {
+			echo "<p>Error al ejecutar la consulta: " . mysqli_error($conn) . "</p>";
+			exit;
+			}
+			
+>>>>>>> 42cdf60072e4d0e7a8fcbf3a0b8009b206b74467
 			?>
 
 			<div class="row align-items-center">
@@ -75,10 +99,17 @@
 					<div class="col-6 col-md-3 mt-5 text-center Products">
 						<div class="card" style="max-height: 400px !important; min-height: 400px !important;">
 							<div>
+<<<<<<< HEAD
 								<img class="card-img-top" src="<?php echo $imgSrc; ?>" alt="<?php echo $dataProduct['nombreProd']; ?>" style="max-width: 200px;">
 							</div>
 							<div class="card-body text-center">
 								<h5 class="card-title card_title"><?php echo $dataProduct['nombreProd']; ?></h5>
+=======
+								<img class="card-img-top" src="<?php echo $imgSrc; ?>" alt="<?php echo $dataProduct['nombre']; ?>" style="max-width: 200px;">
+							</div>
+							<div class="card-body text-center">
+								<h5 class="card-title card_title"><?php echo $dataProduct['nombre']; ?></h5>
+>>>>>>> 42cdf60072e4d0e7a8fcbf3a0b8009b206b74467
 								<?php
 								$isEven = $dataProduct["idProducto"] % 2 == 0;
 
@@ -91,7 +122,11 @@
 									$ <?php echo number_format($dataProduct['precio'], 0, '', '.'); ?>
 								</p>
 							</div>
+<<<<<<< HEAD
 							<a href="detallesArticulo.php?idProd=<?php echo $dataProduct["idProducto"]; ?>" class="red_button btn_puntos" title="Ver <?php echo $dataProduct['nombreProd']; ?>">
+=======
+							<a href="detallesArticulo.php?idProd=<?php echo $dataProduct["idProducto"]; ?>" class="red_button btn_puntos" title="Ver <?php echo $dataProduct['nombre']; ?>">
+>>>>>>> 42cdf60072e4d0e7a8fcbf3a0b8009b206b74467
 								Ver Producto
 								<i class="bi bi-arrow-right-circle"></i>
 							</a>

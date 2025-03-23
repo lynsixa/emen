@@ -33,7 +33,11 @@ $roles = $controlador->obtenerRoles();
 <head>
     <meta charset="UTF-8">
     <title>CRUD de Clientes</title>
+<<<<<<< HEAD
     <link rel="stylesheet" href="css/cruds.css">
+=======
+    <link rel="stylesheet" href="../Gerente/CSS/cruds.css">
+>>>>>>> 42cdf60072e4d0e7a8fcbf3a0b8009b206b74467
 </head>
 <body>
     <h1>CRUD de Clientes</h1>

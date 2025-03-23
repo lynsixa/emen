@@ -2,7 +2,11 @@
 class Conexion {
     private $host = "localhost";
     private $username = "root";
+<<<<<<< HEAD
     private $password = "1161";
+=======
+    private $password = "";
+>>>>>>> 42cdf60072e4d0e7a8fcbf3a0b8009b206b74467
     private $dbname = "emendsrtv";
     private $conn;
 

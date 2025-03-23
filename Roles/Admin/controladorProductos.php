@@ -1,5 +1,9 @@
 <?php
+<<<<<<< HEAD
 require_once '../Modelo/Conexion.php';
+=======
+require_once '../Roles/Admin/Conexion.php';
+>>>>>>> 42cdf60072e4d0e7a8fcbf3a0b8009b206b74467
 
 class ControladorProductos {
     private $conexion;

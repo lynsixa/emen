@@ -1,0 +1,173 @@
+
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background: linear-gradient(to bottom, rgb(215, 185, 13), rgb(93, 67, 0), rgb(14, 1, 3));
+
+}
+/*Encabezado de la pag*/
+header { 
+    background-color: black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+   
+}
+
+.logo img {
+    margin-top: 10px;
+    width: 50px;
+    height: 50px;
+    position: left;
+    border-radius: 1000%;
+  }
+
+  /*contenedor de busqueda*/
+.nav {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+}
+/*contenedor de menú*/
+nav ul {
+    display: flex;
+    gap: 12px; /*SEPARADOR DE LAS PALABLAS*/
+}
+
+nav ul a {
+    display: flex;
+    text-decoration: none;
+    justify-content: center;
+    color: rgb(0, 0, 0);
+    background-color: white;
+    margin-top: auto;
+    border: 2px solid goldenrod;
+
+}
+
+/*BARRA de buscador */
+.busqueda input {
+    padding: 3px;
+    border-radius: 10px;
+    height: 16px; /* Altura del botón */
+    width: 154px; /* Ancho del botón */
+    border: 2px solid goldenrod;
+
+}
+
+
+/*titulo grande*/
+.bienvenido {
+    width: 100%;
+   background-color: goldenrod;
+   margin: 0;
+   padding: 0;
+   border-radius: 20px;
+   line-height: 80px;
+}
+.bienvenido h1 {
+    font-family: 'Playfair Display', serif;
+    text-align: center;
+    color: rgb(255, 255, 255);
+}
+.columna {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    padding: 20px;
+    left: auto;
+}
+
+.imagen-zoom {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0;
+}
+
+.imagen-contenedor {
+    position: relative;
+    overflow: hidden;
+    width: 100%;
+    max-width: 300px; /* Tamaño fijo para los contenedores */
+    height: 300px; /* Tamaño fijo para los contenedores */
+    border-radius: 10px;
+}
+
+.imagen-contenedor img {
+    transition: transform 0.5s ease;
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Ajustar la imagen dentro del contenedor */
+}
+
+.imagen-contenedor:hover img {
+    transform: scale(1.);
+}
+
+.columna {
+    display: flex;
+    justify-content:space-between;
+    flex-wrap: wrap;
+    margin: 2em;
+
+}
+
+
+/*contenedor grande nwgro */
+.container {
+    width: 27%;   /*lo ancho de contenedor dorado*/
+    height: max-content; /*lo largo delborde dorado*/
+    border-radius: 58px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 34px;
+    text-align: center;
+    font-size: 15PX;
+    border: 6px solid goldenrod;
+}
+/*contenedor de cervezas
+.container1{
+    width: 394px; /*lo ancho de contenedor dorado
+    border-radius: 128px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 28px;
+    text-align: center;
+    margin-left: 525px;
+    font-size: 25px;
+    margin-top:0PX;
+    border: 6px solid goldenrod;}
+.container2{
+/*lo ancho de contenedor dorado
+    width: 344px;
+    border-radius: 116px;
+    padding: 41px;
+    text-align: center;
+    border: 6px solid goldenrod;
+    margin-left: 487px;
+    font-size: 25px;
+    margin-top: -2253Px; /*lo alto de todo el contenedor */
+
+.box {
+    background-color: #dfdede;
+    border-radius: inherit;
+    border-radius: 20px;
+    transition: 300ms;
+}
+.box:hover {
+    transform: scale(1.02);
+}
+
+/*las IMG*/
+.avatar {
+    width: 180px;
+    height: 180px;
+    border-radius: 50%;
+    margin: 1em;
+    margin-bottom: 20px;
+}
+h4 {
+    margin: 3em;
+}
+

@@ -120,36 +120,37 @@ function registraUsuario($usuario, $pass_hash, $nombre, $email, $activo, $token,
     }       
 }
 function enviarEmail($email, $nombre, $asunto, $cuerpo) {
-    // Crear una instancia de PHPMailer
     $mail = new PHPMailer(true);
 
     try {
         // Configuración del servidor SMTP
-        $mail->isSMTP();                                           // Usar SMTP
-        $mail->Host       = 'smtp.gmail.com';                        // Servidor SMTP de Gmail
-        $mail->SMTPAuth   = true;                                    // Autenticación SMTP
-        $mail->Username   = 'emends1030@gmail.com';                  // Tu correo de Gmail
-        $mail->Password   = 'frfz euzy bpwn ffwx';                   // Contraseña de aplicación generada
-        $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;          // Usar TLS
-        $mail->Port       = 587;                                     // Puerto para TLS (587)
+        $mail->isSMTP();
+        $mail->Host       = 'smtp.gmail.com';
+        $mail->SMTPAuth   = true;
+        $mail->Username   = 'emends1030@gmail.com';
+        $mail->Password   = 'frfz euzy bpwn ffwx';  // ¡Nunca expongas esta contraseña en producción!
+        $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
+        $mail->Port       = 587;
 
-        // Remitente
-        $mail->setFrom('emends1030@gmail.com', 'Tu Nombre o Empresa');  // Correo y nombre del remitente
-        $mail->addAddress($email, $nombre);                            // Correo del destinatario
+        // Remitente y destinatario
+        $mail->setFrom('emends1030@gmail.com', 'Tu Nombre o Empresa');
+        $mail->addAddress($email, $nombre);
 
         // Contenido del correo
-        $mail->isHTML(true);                                          // Indicar que el correo será en formato HTML
-        $mail->Subject = $asunto;                                     // Asunto del correo
-        $mail->Body    = $cuerpo;                                     // Cuerpo del correo
+        $mail->isHTML(true);
+        $mail->Subject = $asunto;
+        $mail->Body    = $cuerpo;
 
         // Intentar enviar el correo
         if ($mail->send()) {
-            echo "Correo enviado exitosamente.";
+            return true;  // Éxito, devuelve true
         } else {
-            echo "Hubo un error al enviar el correo.";
+            error_log("Error al enviar el correo: " . $mail->ErrorInfo);
+            return false; // Fallo, devuelve false
         }
     } catch (Exception $e) {
-        echo "Hubo un error al enviar el correo: {$mail->ErrorInfo}";
+        error_log("Error al enviar el correo: {$mail->ErrorInfo}");
+        return false; // Fallo, devuelve false
     }
 }
 
@@ -259,19 +260,27 @@ function isActivo($usuario) {
         return false;    
     }
 }
-
 function generaTokenPass($user_id) {
     global $mysqli;
-    
-    $token = generateToken();
-    
+
+    $token = md5(uniqid(mt_rand(), false));
+
     $stmt = $mysqli->prepare("UPDATE Usuario SET token_password=?, password_request=1 WHERE idUsuario = ?");
+    if (!$stmt) {
+        die("❌ Error SQL: " . $mysqli->error);
+    }
+
     $stmt->bind_param('si', $token, $user_id);
     $stmt->execute();
-    $stmt->close();
-    
-    return $token;
+
+    if ($stmt->affected_rows > 0) {
+        return $token;
+    } else {
+        return false;
+    }
 }
+
+
 function getValor($campo, $campoWhere, $valor) {
     global $mysqli;
     
@@ -311,29 +320,35 @@ function getPasswordRequest($id) {
     } else {
         return null;    
     }
-}
 
+}
 function verificaTokenPass($user_id, $token) {
     global $mysqli;
-    
-    $stmt = $mysqli->prepare("SELECT activacion FROM Usuario WHERE idUsuario = ? AND token_password = ? AND password_request = 1 LIMIT 1");
-    $stmt->bind_param('is', $user_id, $token);
+
+    $stmt = $mysqli->prepare("SELECT idUsuario, token_password, password_request FROM Usuario WHERE idUsuario = ? LIMIT 1");
+
+    if (!$stmt) {
+        die("Error en la consulta SQL: " . $mysqli->error);
+    }
+
+    $stmt->bind_param('i', $user_id);
     $stmt->execute();
     $stmt->store_result();
     $num = $stmt->num_rows;
-    
+
     if ($num > 0) {
-        $stmt->bind_result($activacion);
+        $stmt->bind_result($db_user_id, $db_token_password, $db_password_request);
         $stmt->fetch();
-        if($activacion == 1) {
+
+        // Validar el token sin imprimir en pantalla
+        if ($db_password_request == 1 && trim($db_token_password) === trim($token)) {
             return true;
-        } else {
-            return false;
         }
-    } else {
-        return false;    
     }
+
+    return false; // Token inválido o no encontrado
 }
+
 
 function cambiaPassword($password, $user_id, $token) {
     global $mysqli;

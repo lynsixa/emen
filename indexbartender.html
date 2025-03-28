@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CRUD Mesero y Bartender - Bar</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        .logo-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px;
+        }
+        .logo {
+            height: 50px;
+        }
+    </style>
+</head>
+<body class="bg-light">
+    <div class="container mt-4">
+        <div class="logo-container">
+            <div class="alert alert-primary" role="alert">
+                ¡Bienvenido, mesero! Gestiona las órdenes del bar.
+            </div>
+            <img src="/Proyecto/Img/log.png" alt="Logo" class="logo">
+        </div>
+        <h1 class="text-center">Órdenes Pendientes</h1>
+        <div id="ordenes" class="row mt-4"></div>
+    </div>
+
+    <div class="container mt-4">
+        <h2 class="text-center">Órdenes para el Bartender</h2>
+        <div id="ordenes-bartender" class="row mt-4"></div>
+    </div>
+
+    <div class="container mt-4">
+        <h2 class="text-center">Órdenes Listas</h2>
+        <div id="ordenes-listas" class="row mt-4"></div>
+    </div>
+
+    <script>
+        let ordenes = [
+            { id: 1, detalles: "Cerveza artesanal", estado: "Pendiente", motivo: "" },
+            { id: 2, detalles: "Mojito clásico", estado: "Pendiente", motivo: "" },
+            { id: 3, detalles: "Tapa de jamón ibérico", estado: "Pendiente", motivo: "" }
+        ];
+
+        let ordenesBartender = [];
+        let ordenesListas = [];
+
+        function renderOrdenes() {
+            const contenedor = document.getElementById("ordenes");
+            contenedor.innerHTML = "";
+            ordenes.forEach((orden, index) => {
+                const div = document.createElement("div");
+                div.className = "col-md-4 mb-3";
+                div.innerHTML = `
+                    <div class="card shadow-sm p-3">
+                        <h5 class="card-title">Pedido</h5>
+                        <p class="card-text">${orden.detalles}</p>
+                        <p><strong>Estado:</strong> <span class="badge bg-warning">${orden.estado}</span></p>
+                        ${orden.estado === "Rechazado" ? `<p><strong>Motivo:</strong> ${orden.motivo}</p>` : ""}
+                        <button class="btn btn-success me-2" onclick="enviarABartender(${index})">Enviar a Bartender</button>
+                        <button class="btn btn-danger" onclick="preguntarMotivo(${index})">Rechazar</button>
+                    </div>
+                `;
+                contenedor.appendChild(div);
+            });
+        }
+
+        function renderOrdenesBartender() {
+            const contenedor = document.getElementById("ordenes-bartender");
+            contenedor.innerHTML = "";
+            ordenesBartender.forEach((orden, index) => {
+                const div = document.createElement("div");
+                div.className = "col-md-4 mb-3";
+                div.innerHTML = `
+                    <div class="card shadow-sm p-3">
+                        <h5 class="card-title">Orden de Bartender</h5>
+                        <p class="card-text">${orden.detalles}</p>
+                        <p><strong>Estado:</strong> <span class="badge bg-info">Preparando</span></p>
+                        <button class="btn btn-success me-2" onclick="marcarComoListo(${index})">Listo</button>
+                        <button class="btn btn-danger" onclick="rechazarOrdenBartender(${index})">Rechazar</button>
+                    </div>
+                `;
+                contenedor.appendChild(div);
+            });
+        }
+
+        function renderOrdenesListas() {
+            const contenedor = document.getElementById("ordenes-listas");
+            contenedor.innerHTML = "";
+            ordenesListas.forEach((orden) => {
+                const div = document.createElement("div");
+                div.className = "col-md-4 mb-3";
+                div.innerHTML = `
+                    <div class="card shadow-sm p-3 bg-success text-white">
+                        <h5 class="card-title">Orden Lista</h5>
+                        <p class="card-text">${orden.detalles}</p>
+                        <p><strong>Estado:</strong> <span class="badge bg-light text-dark">Listo</span></p>
+                    </div>
+                `;
+                contenedor.appendChild(div);
+            });
+        }
+
+        function enviarABartender(index) {
+            let orden = ordenes.splice(index, 1)[0];
+            orden.estado = "En preparación";
+            ordenesBartender.push(orden);
+            renderOrdenes();
+            renderOrdenesBartender();
+        }
+
+        function marcarComoListo(index) {
+            let orden = ordenesBartender.splice(index, 1)[0];
+            orden.estado = "Listo";
+            ordenesListas.push(orden);
+            renderOrdenesBartender();
+            renderOrdenesListas();
+        }
+
+        function rechazarOrdenBartender(index) {
+            const motivo = prompt("Escribe el motivo del rechazo:");
+            if (motivo) {
+                let orden = ordenesBartender.splice(index, 1)[0];
+                orden.estado = "Rechazado";
+                orden.motivo = motivo;
+                ordenes.push(orden);
+                renderOrdenes();
+                renderOrdenesBartender();
+            }
+        }
+
+        function preguntarMotivo(index) {
+            const motivo = prompt("Escribe el motivo del rechazo:");
+            if (motivo) {
+                ordenes[index].estado = "Rechazado";
+                ordenes[index].motivo = motivo;
+                renderOrdenes();
+            }
+        }
+
+        renderOrdenes();
+        renderOrdenesBartender();
+        renderOrdenesListas();
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

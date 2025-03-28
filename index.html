@@ -1,0 +1,67 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CRUD Mesero - Bar</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="../indexmesero/style.css">
+</head>
+<body class="bg-light">
+    <div class="container mt-4">
+        <div class="logo-container">
+            <div class="alert alert-primary" role="alert">
+                ¡Bienvenido, mesero! Gestiona las órdenes del bar.
+            </div>
+            <img src="/Proyecto/Img/log.png" alt="Logo" class="logo">
+        </div>
+        <h1 class="text-center">Órdenes Pendientes</h1>
+        <div id="ordenes" class="row mt-4"></div>
+    </div>
+
+    <script>
+        const ordenes = [
+            { id: 1, detalles: "Cerveza artesanal", estado: "Pendiente", motivo: "" },
+            { id: 2, detalles: "Mojito clásico", estado: "Pendiente", motivo: "" },
+            { id: 3, detalles: "Tapa de jamón ibérico", estado: "Pendiente", motivo: "" }
+        ];
+
+        function renderOrdenes() {
+            const contenedor = document.getElementById("ordenes");
+            contenedor.innerHTML = "";
+            ordenes.forEach((orden, index) => {
+                const div = document.createElement("div");
+                div.className = "col-md-4 mb-3";
+                div.innerHTML = `
+                    <div class="card shadow-sm p-3">
+                        <h5 class="card-title">Pedido</h5>
+                        <p class="card-text">${orden.detalles}</p>
+                        <p><strong>Estado:</strong> <span class="badge bg-warning">${orden.estado}</span></p>
+                        ${orden.estado === "Rechazado" ? `<p><strong>Motivo:</strong> ${orden.motivo}</p>` : ""}
+                        <button class="btn btn-success me-2" onclick="actualizarEstado(${index}, 'Aceptado')">Aceptar</button>
+                        <button class="btn btn-danger" onclick="preguntarMotivo(${index})">Rechazar</button>
+                    </div>
+                `;
+                contenedor.appendChild(div);
+            });
+        }
+
+        function actualizarEstado(index, estado) {
+            ordenes[index].estado = estado;
+            renderOrdenes();
+        }
+
+        function preguntarMotivo(index) {
+            const motivo = prompt("Escribe el motivo del rechazo:");
+            if (motivo) {
+                ordenes[index].estado = "Rechazado";
+                ordenes[index].motivo = motivo;
+                renderOrdenes();
+            }
+        }
+
+        renderOrdenes();
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>

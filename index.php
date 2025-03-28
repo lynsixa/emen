@@ -1,3 +1,10 @@
+<?php
+require_once 'Controlador/sessionHandler.php'; // Incluir el manejador de sesiones
+
+// Verificar si el usuario ya está autenticado y redirigirlo
+manejarSesion();
+?>
+
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -7,37 +14,17 @@
     <title>DisruptivoClub</title>
     <link rel="stylesheet" href="Css/StylePrincipal.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+    
+    <script>
+        // Evitar que el usuario vuelva atrás
+        window.history.pushState(null, "", window.location.href);
+        window.onpopstate = function () {
+            window.history.pushState(null, "", window.location.href);
+        };
+    </script>
 </head>
 <body>
-    <script>
-        document.addEventListener("DOMContentLoaded", () => {
-            const fondoRotativo = document.querySelectorAll('.fondo-rotativo img');
-            let index = 0;
-    
-            // Función para cambiar la imagen activa
-            function cambiarFondo() {
-                fondoRotativo.forEach((img, i) => {
-                    img.classList.toggle('active', i === index);
-                });
-                index = (index + 1) % fondoRotativo.length;
-            }
-    
-            // Cambio automático cada 5 segundos
-            setInterval(cambiarFondo, 5000);
-    
-            // Evento manual con clic
-            fondoRotativo.forEach((img, i) => {
-                img.addEventListener('click', () => {
-                    index = i;
-                    cambiarFondo();
-                });
-            });
-    
-            // Iniciar con la primera imagen
-            cambiarFondo();
-        });
-    </script>
-    
+
     <div class="fondo-rotativo">
         <img src="Img/IMG_5081.JPG" alt="Fondo 1">
         <img src="Img/DSC06494.jpg" alt="Fondo 2">
@@ -54,8 +41,8 @@
             <nav class="menu">
                 <ul>
                     <li><a href="#contacto">Contáctenos</a></li>
-                    <li><a href="..\Principal\Login\vista/login.html">Iniciar Sesión</a></li>
-                    <li><a href="..\Principal\Login\vista\registro.html">Registro</a></li>
+                    <li><a href="..\proyecto\Login\vista/login.php">Iniciar Sesión</a></li>
+                    <li><a href="..\proyecto\Login\vista\registro.php">Registro</a></li>
                 </ul>
             </nav>
         </div>
@@ -64,19 +51,12 @@
     <main id="main-content">
         <section class="bienvenida animate__animated animate__zoomIn">
             <h1>Disruptivo-Club</h1> <br>
-            
-           
-           
-                <video controls width="600">
-                        <source src="Img/Disruptivo.mp4" type="video/mp4">       
-                    </video>
-            
-
+            <video controls width="600">
+                <source src="Img/Disruptivo.mp4" type="video/mp4">       
+            </video>
 
             <section id="contacto">
-                
                 <?php include_once '../principal/Roles/api/index_usuario.php'; ?>
-                
                 
                 <div class="texto">
                     <h3>Carrera 14A # 83-13 | Primer piso</h3>

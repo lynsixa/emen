@@ -9,48 +9,52 @@ class Usuario {
 
     // Método para registrar un nuevo usuario
     public function registrarUsuario($nombre, $correo, $documento, $fechadenacimiento, $password, $rol) {
-        // Hashear la contraseña
-        $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
+        try {
+            // Hashear la contraseña
+            $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
 
-        // Preparar la consulta SQL
-        $sql = "INSERT INTO Usuario (nombre, correo, documento, fechadenacimiento, contraseña, Roles_idRoles) 
-                VALUES (?, ?, ?, ?, ?, ?)";
-        $stmt = $this->conexion->prepare($sql); // Preparar la consulta
+            // Preparar la consulta SQL
+            $sql = "INSERT INTO Usuario (nombre, correo, documento, fechadenacimiento, contraseña, Roles_idRoles) 
+                    VALUES (:nombre, :correo, :documento, :fechadenacimiento, :password, :rol)";
+            $stmt = $this->conexion->prepare($sql); // Preparar la consulta
 
-        // Ejecutar la consulta
-        if ($stmt) {
             // Vincular los parámetros
-            $stmt->bind_param('ssssss', $nombre, $correo, $documento, $fechadenacimiento, $hashedPassword, $rol);
+            $stmt->bindParam(':nombre', $nombre);
+            $stmt->bindParam(':correo', $correo);
+            $stmt->bindParam(':documento', $documento);
+            $stmt->bindParam(':fechadenacimiento', $fechadenacimiento);
+            $stmt->bindParam(':password', $hashedPassword);
+            $stmt->bindParam(':rol', $rol);
+
             return $stmt->execute(); // Retornar el resultado de la ejecución
-        } else {
-            return false; // Retornar falso si la preparación falla
+        } catch (PDOException $e) {
+            echo "Error al registrar usuario: " . $e->getMessage();
+            return false;
         }
     }
 
     // Método para autenticar un usuario
     public function autenticarUsuario($correo, $password) {
-        // Consulta SQL que busca el usuario por su correo
-        $query = "SELECT idUsuario, contraseña 
-                  FROM Usuario 
-                  WHERE correo = ?";
+        try {
+            // Consulta SQL que busca el usuario por su correo
+            $query = "SELECT idUsuario, contraseña 
+                      FROM Usuario 
+                      WHERE correo = :correo";
 
-        $stmt = $this->conexion->prepare($query); // Preparar la consulta
-        $stmt->bind_param('s', $correo); // Vincular el parámetro
-        $stmt->execute(); // Ejecutar la consulta
-        $result = $stmt->get_result(); // Obtener el resultado de la consulta
+            $stmt = $this->conexion->prepare($query); // Preparar la consulta
+            $stmt->bindParam(':correo', $correo);
+            $stmt->execute(); // Ejecutar la consulta
+            $user = $stmt->fetch(PDO::FETCH_ASSOC); // Obtener el registro del usuario
 
-        // Verificar si el usuario existe
-        if ($result->num_rows > 0) {
-            $user = $result->fetch_assoc(); // Obtener el registro del usuario
-
-            // Verificar la contraseña
-            if (password_verify($password, $user['contraseña'])) {
-                return $user['idUsuario']; // Retornar el ID del cliente si la contraseña es correcta
+            // Verificar si el usuario existe y si la contraseña es correcta
+            if ($user && password_verify($password, $user['contraseña'])) {
+                return $user['idUsuario']; // Retornar el ID del usuario si la contraseña es correcta
             } else {
-                return false; // Contraseña incorrecta
+                return false; // Credenciales incorrectas
             }
-        } else {
-            return false; // No se encontró el usuario
+        } catch (PDOException $e) {
+            echo "Error al autenticar usuario: " . $e->getMessage();
+            return false;
         }
     }
 }

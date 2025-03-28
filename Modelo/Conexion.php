@@ -1,44 +1,16 @@
 <?php
-class Conexion {
-    private $host = "localhost";
-<<<<<<< HEAD
-    private $username = "root";
-    private $password = "";
-    private $dbname = "emendsrtv";
-    private $conn;
+$host = 'localhost';        // Servidor MySQL/MariaDB
+$usuario = 'root';          // Usuario
+$contraseña = '';           // Contraseña del usuario (deja vacío si no tienes)
+$baseDeDatos = 'emendsrtv'; // Nombre de la base de datos
 
-    public function __construct() {
-        try {
-            // Establecer conexión utilizando PDO
-            $this->conn = new PDO("mysql:host={$this->host};dbname={$this->dbname}", $this->username, $this->password);
-            // Establecer el modo de error de PDO a excepción
-            $this->conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-        } catch (PDOException $e) {
-            // Manejo de errores
-            die("Conexión fallida: " . $e->getMessage());
-        }
-    }
+$puerto = 3306;             // Puerto de MariaDB (en lugar de 3306)
 
-    // Método para obtener la conexión PDO
-    public function getConnection() {
-=======
-    private $db_name = "emendsrtv";
-    private $username = "root"; // o el usuario que uses
-    private $password = "1161"; // o la contraseña que uses
-    public $conn;
+// Crear la conexión
+$conn = new mysqli($host, $usuario, $contraseña, $baseDeDatos, $puerto);
 
-    public function getConnection() {
-        $this->conn = null;
-
-        try {
-            $this->conn = new PDO("mysql:host=" . $this->host . ";dbname=" . $this->db_name, $this->username, $this->password);
-            $this->conn->exec("set names utf8");
-        } catch (PDOException $exception) {
-            echo "Error de conexión: " . $exception->getMessage();
-        }
-
->>>>>>> 42cdf60072e4d0e7a8fcbf3a0b8009b206b74467
-        return $this->conn;
-    }
+// Verificar si la conexión fue exitosa
+if ($conn->connect_error) {
+    die("Conexión fallida: " . $conn->connect_error);
 }
 ?>

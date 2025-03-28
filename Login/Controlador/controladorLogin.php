@@ -1,45 +1,47 @@
 <?php
-require_once '../Modelo/Conexion.php'; // Archivo de conexión
-require_once '../Modelo/Cliente.php'; // Cambiar a Usuario en lugar de Cliente
+session_start();
+require_once '../Modelo/Conexion.php';
+require_once '../Modelo/Usuario.php';
 
-// Establecer la conexión a la base de datos
+// Establecer conexión a la base de datos
 $conexionObj = new Conexion();
-$conexion = $conexionObj->getConnection(); // Utilizamos PDO en la conexión
+$conexion = $conexionObj->getConnection();
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    // Obtener los datos del formulario
     $userEmail = $_POST['userEmail'];
     $userPassword = $_POST['userPassword'];
 
-    // Crear una instancia de la clase Usuario
     $usuario = new Usuario($conexion);
-
-    // Intentar autenticar al usuario
     $idUsuario = $usuario->autenticarUsuario($userEmail, $userPassword);
 
     if ($idUsuario) {
-        // Modificación: Especificamos solo las columnas necesarias
+        // Obtener información del usuario
         $sql = "SELECT idUsuario, Roles_idRoles FROM usuario WHERE idUsuario = :idUsuario";
         $stmt = $conexion->prepare($sql);
         $stmt->bindParam(':idUsuario', $idUsuario, PDO::PARAM_INT);
         $stmt->execute();
-
         $usuarioLogueado = $stmt->fetch(PDO::FETCH_ASSOC);
 
-        // Verificar si la clave 'Roles_idRoles' existe
         if (isset($usuarioLogueado['Roles_idRoles'])) {
-            // Redireccionar según el rol del usuario
-            switch ($usuarioLogueado['Roles_idRoles']) {
-                case 1: // Admin
+            // Guardar datos en la sesión
+            $_SESSION['idUsuario'] = $usuarioLogueado['idUsuario'];
+            $_SESSION['rol'] = $usuarioLogueado['Roles_idRoles'];
+
+            // Guardar sesión en una cookie (30 días)
+            setcookie("user_session", $idUsuario, time() + (30 * 24 * 60 * 60), "/"); 
+
+            // Redireccionar según el rol
+            switch ($_SESSION['rol']) {
+                case 1:
                     header("Location: /Principal/Roles/Admin/indexAdmin.html");
                     break;
-                case 2: // Gerente
+                case 2:
                     header("Location: ../indexGerente.html");
                     break;
-                case 3: // Bartender
+                case 3:
                     header("Location: ../indexBartender.html");
                     break;
-                case 4: // Cliente
+                case 4:
                     header("Location: /proyecto/Roles/Usuariosincrud/indexscannis.php");
                     break;
                 default:
@@ -50,7 +52,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             echo "Error: El usuario no tiene un rol asignado.";
         }
     } else {
-        // Credenciales incorrectas
         header("Location: ../Vista/login.html?error=" . urlencode("Credenciales incorrectas."));
         exit();
     }

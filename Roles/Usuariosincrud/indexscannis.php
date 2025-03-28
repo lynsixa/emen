@@ -26,22 +26,23 @@ include('../../Controlador/validar_codigo_logic.php');
 
     <!-- Vinculando Bootstrap -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KyZXEJv6p7fEx7gkExO4vbbWro8npAvb7LRAtjzEo9tuJ8U1WVm7l9K7dW4ywlHk" crossorigin="anonymous">
-
     <script>
-    // Evitar que el usuario regrese con la flecha de atrás o el historial
-    history.pushState(null, null, location.href);
-    window.onpopstate = function () {
-        location.reload(); // Recarga la página
-    };
+    (function() {
+        window.history.pushState(null, "", window.location.href);
+        window.addEventListener("popstate", function() {
+            window.history.pushState(null, "", window.location.href);
+        });
 
-    // Evitar atajos de teclado para retroceder (ALT + Flecha Izquierda, Backspace)
-    document.addEventListener("keydown", function (event) {
-        if (event.key === "Backspace" || (event.altKey && event.key === "ArrowLeft")) {
-            event.preventDefault();
-            location.reload(); // Recarga la página al detectar intento de retroceso
-        }
-    });
+        // Bloquear teclas para retroceder
+        document.addEventListener("keydown", function(event) {
+            if (event.key === "Backspace" || (event.altKey && event.key === "ArrowLeft")) {
+                event.preventDefault();
+                alert("No puedes retroceder en esta página.");
+            }
+        });
+    })();
 </script>
+
 
 </head>
 <body>

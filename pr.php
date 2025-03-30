@@ -13,7 +13,7 @@ if (isset($_COOKIE['user_session'])) {
     $_SESSION['idUsuario'] = $_COOKIE['user_session'];
 
     // Redirigir al usuario a principal.php
-    header("Location: principal.php");
+    header("Location: /roles/Usuariosincrud/indexscannis.php");
     exit();
 }
 

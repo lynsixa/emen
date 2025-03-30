@@ -14,13 +14,12 @@ $registroActual = null;
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if (isset($_POST['crear'])) {
         $numeroMesa = $_POST['NumeroMesa'] ?? 0;
-        $cantidadPuestos = $_POST['CantidadPuestos'] ?? 0;
         $numeroPiso = $_POST['Numeropiso'] ?? 0;
         $descripcion = $_POST['Descripcion'] ?? '';
         $menu_id = $_POST['Menu_idMenu'] ?? 0;
 
         // Crear mesa
-        $mesa_id = $controlador->crearMesa($numeroMesa, $cantidadPuestos, $numeroPiso);
+        $mesa_id = $controlador->crearMesa($numeroMesa, $numeroPiso);
         if ($mesa_id) {
             // Crear NIS
             if (!$controlador->crearNIS($descripcion, $mesa_id, $menu_id)) {
@@ -36,12 +35,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if (isset($_POST['editar'])) {
         $idNIS = $_POST['idNIS'] ?? 0;
         $numeroMesa = $_POST['NumeroMesa'] ?? 0;
-        $cantidadPuestos = $_POST['CantidadPuestos'] ?? 0;
         $numeroPiso = $_POST['Numeropiso'] ?? 0;
         $descripcion = $_POST['Descripcion'] ?? '';
         $menu_id = $_POST['Menu_idMenu'] ?? 0;
 
-        if ($controlador->editarNISyMesa($idNIS, $descripcion, $numeroMesa, $cantidadPuestos, $numeroPiso, $menu_id)) {
+        if ($controlador->editarNISyMesa($idNIS, $descripcion, $numeroMesa, $numeroPiso, $menu_id)) {
             $success = "Registro editado exitosamente.";
         } else {
             $error = "Error al editar el registro. Intenta nuevamente.";
@@ -65,8 +63,14 @@ $nisList = $controlador->obtenerNIS();
 // Verificar si se desea editar un registro
 if (isset($_GET['editar'])) {
     $idNIS = $_GET['editar'];
+    // Verificamos que se haya obtenido un registro válido
     $registroActual = $controlador->obtenerNISPorId($idNIS);
-    $editar = true;
+    if (!$registroActual) {
+        // Si no se encuentra el registro, mostramos un mensaje o redirigimos.
+        $error = "No se encontró el registro con el ID proporcionado.";
+    } else {
+        $editar = true;
+    }
 }
 ?>
 
@@ -76,7 +80,6 @@ if (isset($_GET['editar'])) {
     <meta charset="UTF-8">
     <title>Crear y Editar NIS y Mesa</title>
     <link rel="stylesheet" href="css/estilos24.css">
-
 </head>
 <body>
     <h1><?php echo $editar ? "Editar NIS y Mesa" : "Crear NIS y Mesa"; ?></h1>
@@ -90,12 +93,10 @@ if (isset($_GET['editar'])) {
     <?php endif; ?>
 
     <form method="POST" action="">
-        <input type="hidden" name="idNIS" value="<?php echo $editar ? $registroActual['idCodigoNIS'] : ''; ?>">
+        <input type="hidden" name="idNIS" value="<?php echo $editar ? $registroActual['idCodigoNis'] : ''; ?>">
         Número de Mesa: <input type="number" name="NumeroMesa" required value="<?php echo $editar ? $registroActual['NumeroMesa'] : ''; ?>">
         <br>
-        Cantidad de Puestos: <input type="number" name="CantidadPuestos" required value="<?php echo $editar ? $registroActual['CantidadPuestos'] : ''; ?>">
-        <br>
-        Número de Piso: <input type="number" name="Numeropiso" required value="<?php echo $editar ? $registroActual['Numeropiso'] : ''; ?>">
+        Número de Piso: <input type="number" name="Numeropiso" required value="<?php echo $editar ? $registroActual['NumeroPiso'] : ''; ?>">
         <br>
         Código NIS: <input type="text" name="Descripcion" required value="<?php echo $editar ? $registroActual['CodigoNIS'] : ''; ?>">
         <br>
@@ -121,22 +122,20 @@ if (isset($_GET['editar'])) {
             <th>Código NIS</th>
             <th>Número de Mesa</th>
             <th>Número de Piso</th>
-            <th>Cantidad de Puestos</th>
             <th>Menú</th>
             <th>Acciones</th>
         </tr>
         <?php foreach ($nisList as $nis): ?>
             <tr>
-                <td><?php echo $nis['idCodigoNIS']; ?></td>
+                <td><?php echo $nis['idCodigoNis']; ?></td>
                 <td><?php echo $nis['CodigoNIS']; ?></td>
                 <td><?php echo $nis['NumeroMesa']; ?></td>
-                <td><?php echo $nis['Numeropiso']; ?></td>
-                <td><?php echo $nis['CantidadPuestos']; ?></td>
+                <td><?php echo $nis['NumeroPiso']; ?></td>
                 <td><?php echo $nis['MenuDescripcion']; ?></td>
                 <td>
-                    <a href="?editar=<?php echo $nis['idCodigoNIS']; ?>">Editar</a>
+                    <a href="?editar=<?php echo $nis['idCodigoNis']; ?>">Editar</a>
                     <form action="" method="post" style="display:inline;">
-                        <input type="hidden" name="idNIS" value="<?php echo $nis['idCodigoNIS']; ?>">
+                        <input type="hidden" name="idNIS" value="<?php echo $nis['idCodigoNis']; ?>">
                         <button type="submit" name="eliminar" onclick="return confirm('¿Estás seguro de que deseas eliminar este registro?');">Eliminar</button>
                     </form>
                 </td>

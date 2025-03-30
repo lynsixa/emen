@@ -130,10 +130,13 @@ CREATE TABLE IF NOT EXISTS `Orden` (
   `Fecha` DATETIME NOT NULL,
   `Producto_idProducto` INT  NULL,
   `Solicitud_idSolicitud` INT  NULL,
+  `Usuario_idUsuario` INT NULL,  -- Nueva columna para asociar la orden con el usuario que la realizó
   PRIMARY KEY (`idOrden`),
   CONSTRAINT `fk_Orden_Producto1` FOREIGN KEY (`Producto_idProducto`) REFERENCES `Producto` (`idProducto`),
-  CONSTRAINT `fk_Orden_Solicitud1` FOREIGN KEY (`Solicitud_idSolicitud`) REFERENCES `Solicitud` (`idSolicitud`)
+  CONSTRAINT `fk_Orden_Solicitud1` FOREIGN KEY (`Solicitud_idSolicitud`) REFERENCES `Solicitud` (`idSolicitud`),
+  CONSTRAINT `fk_Orden_Usuario` FOREIGN KEY (`Usuario_idUsuario`) REFERENCES `Usuario` (`idUsuario`)  -- Relación con la tabla Usuario
 ) ENGINE = InnoDB;
+
 
 SET SQL_MODE=@OLD_SQL_MODE;
 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;

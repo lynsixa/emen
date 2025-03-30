@@ -1,5 +1,5 @@
 <?php
-require_once 'conexion.php';
+require_once 'Conexion.php';
 
 class ControladorNIS {
     private $conexion;
@@ -8,75 +8,81 @@ class ControladorNIS {
         $this->conexion = (new Conexion())->getConnection();
     }
 
+    // Obtener todos los menús
     public function obtenerMenus() {
-        $sql = "SELECT * FROM menu";
+        $sql = "SELECT * FROM Menu";  // Usamos 'Menu' como la tabla que contiene los menús.
         $stmt = $this->conexion->prepare($sql);
         $stmt->execute();
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 
-    public function crearMesa($numeroMesa, $cantidadPuestos, $numeroPiso) {
-        // Ahora no es necesario especificar idMesa ya que es AUTO_INCREMENT
-        $sql = "INSERT INTO mesa (NumeroMesa, CantidadPuestos, Numeropiso) VALUES (?, ?, ?)";
+    // Crear una nueva mesa
+    public function crearMesa($numeroMesa, $numeroPiso) {
+        // Ahora no es necesario especificar CantidadPuestos
+        $sql = "INSERT INTO Mesa (NumeroMesa, NumeroPiso) VALUES (?, ?)";
         $stmt = $this->conexion->prepare($sql);
-        $stmt->execute([$numeroMesa, $cantidadPuestos, $numeroPiso]);
+        $stmt->execute([$numeroMesa, $numeroPiso]);
         
         // Devuelve el id generado automáticamente para la nueva mesa
         return $this->conexion->lastInsertId();
     }
 
-    // Método actualizado para permitir pasar un valor opcional para Producto_idProducto
-    public function crearNIS($descripcion, $mesa_id, $menu_id, $producto_id = null) {
-        // Insertar en la tabla codigonis sin especificar idCodigoNIS (AUTO_INCREMENT)
-        $sql = "INSERT INTO codigonis (Descripcion, Mesa_idMesa, Menu_idMenu, Producto_idProducto) VALUES (?, ?, ?, ?)";
+    // Crear un nuevo NIS
+    public function crearNIS($descripcion, $mesa_id, $menu_id) {
+        // Insertar en la tabla CodigoNis sin especificar Producto_idProducto
+        $sql = "INSERT INTO CodigoNis (Descripcion, Mesa_idMesa, Menu_idMenu) VALUES (?, ?, ?)";  // Se eliminó Producto_idProducto
         $stmt = $this->conexion->prepare($sql);
-        
-        // Ejecutar la consulta con el valor de producto_id si se proporciona, o NULL si no
-        return $stmt->execute([$descripcion, $mesa_id, $menu_id, $producto_id]);
+        return $stmt->execute([$descripcion, $mesa_id, $menu_id]);
     }
 
+    // Obtener todos los registros de NIS
     public function obtenerNIS() {
-        $sql = "SELECT cn.idCodigoNIS, cn.Descripcion AS CodigoNIS, m.NumeroMesa, m.CantidadPuestos, m.Numeropiso, me.Descripcion AS MenuDescripcion
-                FROM codigonis cn
-                JOIN mesa m ON cn.Mesa_idMesa = m.idMesa
-                JOIN menu me ON cn.Menu_idMenu = me.idMenu
-                ORDER BY cn.idCodigoNIS ASC"; 
+        // Consultamos los registros de NIS sin la columna CantidadPuestos
+        $sql = "SELECT cn.Descripcion AS CodigoNIS, m.NumeroMesa, m.NumeroPiso, me.Descripcion AS MenuDescripcion
+                FROM CodigoNis cn
+                JOIN Mesa m ON cn.Mesa_idMesa = m.idMesa
+                JOIN Menu me ON cn.Menu_idMenu = me.idMenu
+                ORDER BY cn.Descripcion ASC";  // Ordenar por la columna Descripcion
         $stmt = $this->conexion->prepare($sql);
         $stmt->execute();
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
-
+    
+    // Obtener NIS por ID
     public function obtenerNISPorId($id) {
-        $sql = "SELECT cn.idCodigoNIS, cn.Descripcion AS CodigoNIS, m.NumeroMesa, m.CantidadPuestos, m.Numeropiso, cn.Menu_idMenu
-                FROM codigonis cn
-                JOIN mesa m ON cn.Mesa_idMesa = m.idMesa
-                WHERE cn.idCodigoNIS = ?";
+        // Eliminada la columna CantidadPuestos
+        $sql = "SELECT cn.idCodigoNis, cn.Descripcion AS CodigoNIS, m.NumeroMesa, m.NumeroPiso, cn.Menu_idMenu
+                FROM CodigoNis cn
+                JOIN Mesa m ON cn.Mesa_idMesa = m.idMesa
+                WHERE cn.idCodigoNis = ?";
         $stmt = $this->conexion->prepare($sql);
         $stmt->execute([$id]);
         return $stmt->fetch(PDO::FETCH_ASSOC);
     }
 
-    public function editarNISyMesa($idNIS, $descripcion, $numeroMesa, $cantidadPuestos, $numeroPiso, $menu_id) {
-        // Actualizar mesa
-        $sqlMesa = "UPDATE mesa m JOIN codigonis cn ON m.idMesa = cn.Mesa_idMesa 
-                    SET m.NumeroMesa = ?, m.CantidadPuestos = ?, m.Numeropiso = ? 
-                    WHERE cn.idCodigoNIS = ?";
+    // Editar NIS y Mesa
+    public function editarNISyMesa($idNIS, $descripcion, $numeroMesa, $numeroPiso, $menu_id) {
+        // Actualizar mesa, eliminada la columna CantidadPuestos
+        $sqlMesa = "UPDATE Mesa m JOIN CodigoNis cn ON m.idMesa = cn.Mesa_idMesa 
+                    SET m.NumeroMesa = ?, m.NumeroPiso = ? 
+                    WHERE cn.idCodigoNis = ?";
         $stmtMesa = $this->conexion->prepare($sqlMesa);
-        $stmtMesa->execute([$numeroMesa, $cantidadPuestos, $numeroPiso, $idNIS]);
+        $stmtMesa->execute([$numeroMesa, $numeroPiso, $idNIS]);
 
         // Actualizar NIS
-        $sqlNIS = "UPDATE codigonis SET Descripcion = ?, Menu_idMenu = ? WHERE idCodigoNIS = ?";
+        $sqlNIS = "UPDATE CodigoNis SET Descripcion = ?, Menu_idMenu = ? WHERE idCodigoNis = ?";
         $stmtNIS = $this->conexion->prepare($sqlNIS);
         return $stmtNIS->execute([$descripcion, $menu_id, $idNIS]);
     }
 
+    // Eliminar NIS
     public function eliminarNIS($idNIS) {
         // Iniciar transacción
         $this->conexion->beginTransaction();
 
         try {
             // Eliminar el NIS
-            $sqlNIS = "DELETE FROM codigonis WHERE idCodigoNIS = ?";
+            $sqlNIS = "DELETE FROM CodigoNis WHERE idCodigoNis = ?";
             $stmtNIS = $this->conexion->prepare($sqlNIS);
             $stmtNIS->execute([$idNIS]);
 

@@ -8,23 +8,26 @@ $conexionObj = new Conexion();
 $conexion = $conexionObj->getConnection();
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    // Obtener las credenciales del usuario desde el formulario
     $userEmail = $_POST['userEmail'];
     $userPassword = $_POST['userPassword'];
 
+    // Instanciar la clase Usuario para autenticar al usuario
     $usuario = new Usuario($conexion);
     $idUsuario = $usuario->autenticarUsuario($userEmail, $userPassword);
 
     if ($idUsuario) {
-        // Obtener información del usuario
-        $sql = "SELECT idUsuario, Roles_idRoles FROM usuario WHERE idUsuario = :idUsuario";
+        // Obtener información del usuario, incluyendo su nombre y apellidos
+        $sql = "SELECT idUsuario, Nombres, Apellidos, Roles_idRoles FROM Usuario WHERE idUsuario = :idUsuario";
         $stmt = $conexion->prepare($sql);
         $stmt->bindParam(':idUsuario', $idUsuario, PDO::PARAM_INT);
         $stmt->execute();
         $usuarioLogueado = $stmt->fetch(PDO::FETCH_ASSOC);
 
         if (isset($usuarioLogueado['Roles_idRoles'])) {
-            // Guardar datos en la sesión
+            // Guardar datos del usuario en la sesión
             $_SESSION['idUsuario'] = $usuarioLogueado['idUsuario'];
+            $_SESSION['nombreUsuario'] = $usuarioLogueado['Nombres'] . ' ' . $usuarioLogueado['Apellidos']; // Guardamos el nombre completo
             $_SESSION['rol'] = $usuarioLogueado['Roles_idRoles'];
 
             // Guardar sesión en una cookie (30 días)
@@ -52,7 +55,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             echo "Error: El usuario no tiene un rol asignado.";
         }
     } else {
-        header("Location: ../Vista/login.html?error=" . urlencode("Credenciales incorrectas."));
+        header("Location: ../Vista/login.php?error=" . urlencode("Credenciales incorrectas."));
         exit();
     }
 } else {

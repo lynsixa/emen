@@ -1,6 +1,6 @@
 <?php
 session_start();
-require_once '../Modelo/Conexion.php';
+require_once 'Conexion.php';
 
 // Función para manejar la sesión y redirigir según el rol
 function manejarSesion() {

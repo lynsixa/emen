@@ -4,94 +4,81 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Productos</title>
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="assets/css/styleIndex.css">
+</head>
+<body>
+    <div class="container mt-4">
+        <h1 class="text-center text-primary">Bienvenido a Nuestra Tienda</h1>
+
+        <!-- Carrusel de imágenes -->
+        <div id="carouselExample" class="carousel slide mb-4" data-bs-ride="carousel">
+            <div class="carousel-inner">
+                <div class="carousel-item active">
+                    <img src="img/banner1.jpg" class="d-block w-100" alt="Promoción 1">
+                </div>
+                <div class="carousel-item">
+                    <img src="img/banner2.jpg" class="d-block w-100" alt="Promoción 2">
+                </div>
+                <div class="carousel-item">
+                    <img src="img/banner3.jpg" class="d-block w-100" alt="Promoción 3">
+                </div>
+            </div>
+            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Anterior</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#carouselExample" data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Siguiente</span>
+            </button>
+        </div>
+
+        <!-- Contenedor de productos -->
+        <h2 class="text-center text-primary">Productos Disponibles</h2>
+        <div id="productos-container" class="row justify-content-center">
+            <p class="text-center">Cargando productos...</p>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
     <script>
         document.addEventListener("DOMContentLoaded", function() {
-            // Verificar si el parámetro 'orden' en la URL es igual a 'exito'
-            const urlParams = new URLSearchParams(window.location.search);
-            const orden = urlParams.get('orden');
-
-            // Si la orden fue exitosa, mostrar la alerta
-            if (orden === 'exito') {
-                alert("¡Tu orden se ha realizado con éxito!");
-            }
-
-            // Cargar los productos
             fetch("productos.php")
                 .then(response => response.json())
                 .then(data => {
                     let contenedor = document.getElementById("productos-container");
-                    contenedor.innerHTML = ""; // Limpiar antes de agregar productos
-                    
+                    contenedor.innerHTML = ""; 
+
+                    if (data.length === 0) {
+                        contenedor.innerHTML = "<p class='text-center text-danger'>No hay productos disponibles.</p>";
+                        return;
+                    }
+
                     data.forEach(producto => {
                         let productoHTML = `
-                            <div class="producto">
-                                <img src="${producto.Foto1}" alt="${producto.Nombre}">
-                                <h3>${producto.Nombre}</h3>
-                                <p>Precio: $${parseFloat(producto.Precio).toFixed(2)}</p>
-                                <button onclick="window.location.href='detalles_producto.php?idProducto=${producto.idProducto}'">
-                                    Agregar al carrito
-                                </button>
+                            <div class="col-md-4 mb-4">
+                                <div class="card product-card shadow-sm">
+                                    <img src="${producto.Foto1}" class="card-img-top" alt="${producto.Nombre}">
+                                    <div class="card-body text-center">
+                                        <h5 class="card-title">${producto.Nombre}</h5>
+                                        <p class="card-text fw-bold text-success">Precio: $${parseFloat(producto.Precio).toFixed(2)}</p>
+                                        <a href='detalles_producto.php?idProducto=${producto.idProducto}' class="btn btn-primary">Agregar al carrito</a>
+                                    </div>
+                                </div>
                             </div>
                         `;
                         contenedor.innerHTML += productoHTML;
                     });
                 })
-                .catch(error => console.error("Error al cargar productos:", error));
+                .catch(error => {
+                    document.getElementById("productos-container").innerHTML = "<p class='text-danger text-center'>Error al cargar los productos. Inténtalo de nuevo.</p>";
+                });
         });
     </script>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            text-align: center;
-        }
-        .contenedor {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            gap: 20px;
-            margin: 20px;
-        }
-        .producto {
-            width: 250px;
-            border: 1px solid #ddd;
-            border-radius: 10px;
-            padding: 15px;
-            box-shadow: 2px 2px 10px rgba(0,0,0,0.1);
-            text-align: center;
-        }
-        .producto img {
-            width: 100%;
-            height: 200px;
-            object-fit: cover;
-            border-radius: 5px;
-        }
-        .producto h3 {
-            font-size: 18px;
-            margin: 10px 0;
-        }
-        .producto p {
-            font-size: 16px;
-            color: #555;
-        }
-        .producto button {
-            background-color: #28a745;
-            color: white;
-            padding: 10px;
-            border: none;
-            cursor: pointer;
-            border-radius: 5px;
-        }
-        .producto button:hover {
-            background-color: #218838;
-        }
-    </style>
-</head>
-<body>
-
-    <h1>Productos Disponibles</h1>
-    <div id="productos-container" class="contenedor">
-        <p>Cargando productos...</p>
-    </div>
-
 </body>
 </html>

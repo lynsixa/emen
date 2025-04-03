@@ -55,66 +55,61 @@ if (isset($_GET['eliminar'])) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Carrito de Compras</title>
-    <style>
-        table {
-            width: 100%;
-            border-collapse: collapse;
-        }
-        th, td {
-            border: 1px solid black;
-            padding: 10px;
-            text-align: center;
-        }
-        th {
-            background-color: #f2f2f2;
-        }
-        .btn {
-            padding: 5px 10px;
-            text-decoration: none;
-            background-color: #007bff;
-            color: white;
-            border-radius: 5px;
-            margin: 2px;
-        }
-    </style>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../gesProductos/assets/css/styleCarrito.css">
 </head>
 <body>
-    <h2>Carrito de Compras</h2>
-    <table>
-        <tr>
-            <th>ID</th>
-            <th>Nombre</th>
-            <th>Cantidad</th>
-            <th>Precio</th>
-            <th>Total</th>
-            <th>Acciones</th>
-        </tr>
-        <?php
-        $totalGeneral = 0;
-        foreach ($_SESSION['carrito'] as $index => $producto) {
-            $total = $producto['cantidad'] * $producto['precio'];
-            $totalGeneral += $total;
-            echo "<tr>
-                    <td>{$producto['idProducto']}</td>
-                    <td>{$producto['nombre']}</td>
-                    <td>
-                        <a class='btn' href='carrito.php?accion=restar&index={$index}'>-</a>
-                        {$producto['cantidad']}
-                        <a class='btn' href='carrito.php?accion=sumar&index={$index}'>+</a>
-                    </td>
-                    <td>\${$producto['precio']}</td>
-                    <td>\${$total}</td>
-                    <td><a class='btn' href='carrito.php?eliminar={$index}'>Eliminar</a></td>
-                </tr>";
-        }
-        ?>
-        <tr>
-            <td colspan="4"><strong>Total General</strong></td>
-            <td><strong>\$<?php echo $totalGeneral; ?></strong></td>
-            <td><a href="procesar.php" class="btn">Realizar Orden</a></td>
-        </tr>
-    </table>
-    <br>
-    <a href="index.php">Seguir Comprando</a>
+    <div class="container mt-5">
+        <h2 class="text-center">Carrito de Compras</h2>
+        <div class="table-responsive">
+            <table class="table table-bordered text-center">
+                <thead class="table-primary">
+                    <tr>
+                        <th>ID</th>
+                        <th>Nombre</th>
+                        <th>Cantidad</th>
+                        <th>Precio</th>
+                        <th>Total</th>
+                        <th>Acciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <?php
+                    $totalGeneral = 0;
+                    foreach ($_SESSION['carrito'] as $index => $producto):
+                        $total = $producto['cantidad'] * $producto['precio'];
+                        $totalGeneral += $total;
+                    ?>
+                    <tr>
+                        <td><?= htmlspecialchars($producto['idProducto']) ?></td>
+                        <td><?= htmlspecialchars($producto['nombre']) ?></td>
+                        <td>
+                            <a class="btn btn-sm btn-outline-danger" href="carrito.php?accion=restar&index=<?= $index ?>">-</a>
+                            <?= $producto['cantidad'] ?>
+                            <a class="btn btn-sm btn-outline-success" href="carrito.php?accion=sumar&index=<?= $index ?>">+</a>
+                        </td>
+                        <td>$<?= number_format($producto['precio'], 2) ?></td>
+                        <td>$<?= number_format($total, 2) ?></td>
+                        <td>
+                            <a class="btn btn-sm btn-danger" href="carrito.php?eliminar=<?= $index ?>">Eliminar</a>
+                        </td>
+                    </tr>
+                    <?php endforeach; ?>
+                </tbody>
+                <tfoot>
+                    <tr>
+                        <td colspan="4"><strong>Total General</strong></td>
+                        <td><strong>$<?= number_format($totalGeneral, 2) ?></strong></td>
+                        <td>
+                            <a href="procesar.php" class="btn btn-primary">Realizar Orden</a>
+                        </td>
+                    </tr>
+                </tfoot>
+            </table>
+        </div>
+        <div class="text-center mt-3">
+            <a href="index.php" class="btn btn-secondary">Seguir Comprando</a>
+        </div>
+    </div>
 </body>
 </html>

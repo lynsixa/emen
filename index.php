@@ -51,12 +51,13 @@ manejarSesion();
     <main id="main-content">
         <section class="bienvenida animate__animated animate__zoomIn">
             <h1>Disruptivo-Club</h1> <br>
-            <video controls width="600">
-                <source src="Img/Disruptivo.mp4" type="video/mp4">       
-            </video>
+            <video controls width="600" autoplay loop>
+    <source src="Img/Disruptivo.mp4" type="video/mp4">
+</video>
+
 
             <section id="contacto">
-                <?php include_once '../principal/Roles/api/index_usuario.php'; ?>
+                <?php include_once '../Proyecto/Roles/api/index_usuario.php'; ?>
                 
                 <div class="texto">
                     <h3>Carrera 14A # 83-13 | Primer piso</h3>
@@ -74,7 +75,9 @@ manejarSesion();
               </section>
         </section>
     </main>
-
+  <!-- Enlace al archivo JavaScript -->
+  <script src="js/fondo.js"></script>
+  
     <footer class="foter">
         <div class="tex">
             <p>&copy; 2024 Emen. Todos los derechos reservados.</p>

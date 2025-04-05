@@ -263,19 +263,25 @@ function isActivo($usuario) {
 function generaTokenPass($user_id) {
     global $mysqli;
 
+    // Generación de un token aleatorio
     $token = md5(uniqid(mt_rand(), false));
 
-    $stmt = $mysqli->prepare("UPDATE Usuario SET token_password=?, password_request=1 WHERE idUsuario = ?");
+    // Preparar la consulta para actualizar el token y marcar la solicitud de cambio de contraseña
+    $stmt = $mysqli->prepare("UPDATE Usuario SET token_password = ?, password_request = 1 WHERE idUsuario = ?");
     if (!$stmt) {
+        // Si la consulta falla, mostramos un error en el log
         die("❌ Error SQL: " . $mysqli->error);
     }
 
+    // Vincular parámetros
     $stmt->bind_param('si', $token, $user_id);
-    $stmt->execute();
 
-    if ($stmt->affected_rows > 0) {
+    // Ejecutar la consulta
+    if ($stmt->execute()) {
+        // Si la actualización es exitosa, devolver el token generado
         return $token;
     } else {
+        // Si algo falla en la actualización, devolver false
         return false;
     }
 }

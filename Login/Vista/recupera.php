@@ -33,14 +33,14 @@ if (!empty($_POST)) {
                 if (enviarEmail($email, $nombre, $asunto, $cuerpo)) {
                     echo "<script>
                         alert('📩 Hemos enviado un correo electrónico a $email con las instrucciones.');
-                        window.location.href='login.html';
+                        window.location.href='login.php ';
                     </script>";
                     exit();
                 } else {
                     echo "<script>
                         console.log('Error al enviar el correo, pero podría haberse enviado.');
                         alert('⚠️ Hubo un problema, pero verifica tu bandeja de entrada o spam.');
-                        window.location.href='login.html'; // Asegura que regrese al login
+                        window.location.href='login.php'; // Asegura que regrese al login
                     </script>";
                     exit();
                 }

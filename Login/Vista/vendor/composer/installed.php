@@ -1,9 +1,9 @@
 <?php return array(
     'root' => array(
         'name' => 'mi/proyecto',
-        'pretty_version' => '1.0.0+no-version-set',
-        'version' => '1.0.0.0',
-        'reference' => null,
+        'pretty_version' => 'dev-main',
+        'version' => 'dev-main',
+        'reference' => '932f18b01e2c018bf5e780e37781869902a27533',
         'type' => 'library',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
@@ -11,9 +11,9 @@
     ),
     'versions' => array(
         'mi/proyecto' => array(
-            'pretty_version' => '1.0.0+no-version-set',
-            'version' => '1.0.0.0',
-            'reference' => null,
+            'pretty_version' => 'dev-main',
+            'version' => 'dev-main',
+            'reference' => '932f18b01e2c018bf5e780e37781869902a27533',
             'type' => 'library',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),

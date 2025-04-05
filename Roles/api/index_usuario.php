@@ -2,22 +2,18 @@
 // Incluir el archivo de conexión
 include_once 'Conexion.php';
 
-// Crear la instancia de la clase Conexion
-$conexion = new Conexion();
-$conn = $conexion->getConnection(); // Obtener la conexión PDO
-
 // Consultar los eventos de la base de datos
-$query = "SELECT * FROM eventos ORDER BY fecha_evento ASC";
+$query = "SELECT * FROM Eventos ORDER BY Fecha_Evento ASC"; // Asegúrate de que el nombre de la columna sea correcto
 $resultado = $conn->query($query);
 
 $eventos = [];
-while ($evento = $resultado->fetch(PDO::FETCH_ASSOC)) { // Usar fetch(PDO::FETCH_ASSOC) para obtener un array asociativo
+while ($evento = $resultado->fetch_assoc()) { // Usar fetch_assoc() para obtener un array asociativo
     // Formateamos los eventos en el formato que FullCalendar entiende
     $eventos[] = [
-        'id' => $evento['idEvento'],
-        'title' => $evento['titulo'],
-        'start' => $evento['fecha_evento'],
-        'description' => $evento['descripcion']
+        'id' => $evento['idEventos'],  // Corrige el nombre de la columna
+        'title' => $evento['Titulo'],  // Corrige el nombre de la columna
+        'start' => $evento['Fecha_Evento'],  // Corrige el nombre de la columna
+        'description' => $evento['Descripcion']  // Corrige el nombre de la columna
     ];
 }
 ?>
@@ -26,11 +22,10 @@ while ($evento = $resultado->fetch(PDO::FETCH_ASSOC)) { // Usar fetch(PDO::FETCH
 <!DOCTYPE html>
 <html lang="es">
 <head>
-<link rel="stylesheet" href="cale.css">
-
     <meta charset="UTF-8">
-    
-    
+    <title>Calendario de Eventos</title>
+    <link rel="stylesheet" href="cale.css">
+
     <!-- FullCalendar CSS -->
     <link href="https://cdn.jsdelivr.net/npm/fullcalendar@5.11.2/main.min.css" rel="stylesheet">
     
@@ -62,8 +57,6 @@ while ($evento = $resultado->fetch(PDO::FETCH_ASSOC)) { // Usar fetch(PDO::FETCH
     </style>
 </head>
 <body>
-
-
 
 <!-- Mostrar el calendario -->
 <div id="calendar"></div>

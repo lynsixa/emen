@@ -11,30 +11,23 @@
 </head>
 <body>
     <div class="container mt-4">
-        <h1 class="text-center text-primary">Bienvenido a Nuestra Tienda</h1>
+        <h1 class="text-center text-primary">Bienvenido a Emen</h1>
 
-        <!-- Carrusel de imágenes -->
-        <div id="carouselExample" class="carousel slide mb-4" data-bs-ride="carousel">
-            <div class="carousel-inner">
-                <div class="carousel-item active">
-                    <img src="img/banner1.jpg" class="d-block w-100" alt="Promoción 1">
-                </div>
-                <div class="carousel-item">
-                    <img src="img/banner2.jpg" class="d-block w-100" alt="Promoción 2">
-                </div>
-                <div class="carousel-item">
-                    <img src="img/banner3.jpg" class="d-block w-100" alt="Promoción 3">
-                </div>
-            </div>
-            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
-                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                <span class="visually-hidden">Anterior</span>
-            </button>
-            <button class="carousel-control-next" type="button" data-bs-target="#carouselExample" data-bs-slide="next">
-                <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                <span class="visually-hidden">Siguiente</span>
-            </button>
-        </div>
+        <div class="row align-items-center">
+				<div class="col-lg-12 text-center">
+					<div class="section_title">
+						<img class="img-fluid" src="../gesProductos/fotosProductos/gif.gif" alt="gif">
+					</div>
+				</div>
+			</div>
+
+			<div class="row align-items-center">
+				<div class="col-lg-12 text-center mt-5">
+					<div class="section_title">
+						<h2>Noches que brillan, recuerdos que duran siempre.</h2>
+					</div>
+				</div>
+			</div>
 
         <!-- Contenedor de productos -->
         <h2 class="text-center text-primary">Productos Disponibles</h2>

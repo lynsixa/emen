@@ -136,11 +136,16 @@ h2 {
 }
 
 .product-card img {
+    width: 100%;
     height: 200px;
-    object-fit: cover;
+    object-fit: contain;
+    display: block;
     border-top-left-radius: 12px;
     border-top-right-radius: 12px;
+    background-color: #f8f9fa;
 }
+
+
 
 .product-card .card-body {
     text-align: center;

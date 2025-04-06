@@ -36,63 +36,97 @@ $producto = $result->fetch_assoc();
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
 
     <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f8f9fa;
-            padding-top: 20px;
-        }
-        .product-container {
-            background: white;
-            border-radius: 10px;
-            box-shadow: 2px 2px 15px rgba(0,0,0,0.1);
-            padding: 20px;
-        }
-        .thumbnail img {
-            width: 80px;
-            height: 80px;
-            object-fit: cover;
-            cursor: pointer;
-            border-radius: 5px;
-            transition: transform 0.2s ease;
-        }
-        .thumbnail img:hover {
-            transform: scale(1.1);
-            border: 2px solid #007bff;
-        }
+    body {
+        font-family: Arial, sans-serif;
+        background-color: #f8f9fa;
+        padding-top: 20px;
+    }
+
+    .product-container {
+        background: white;
+        border-radius: 10px;
+        box-shadow: 2px 2px 15px rgba(0,0,0,0.1);
+        padding: 20px;
+        margin: 11% auto;
+    max-width: 800px;
+    }
+
+    /* Imagen principal */
+    .main-image img {
+        width: 100%;
+        height: auto;
+        max-height: 400px;
+        object-fit: contain;
+        border-radius: 8px;
+        border: 3px solid #ddd;
+        transition: all 0.3s ease-in-out;
+    }
+
+    /* Miniaturas */
+    .thumbnail {
+        width: 100%;
+        max-width: 100px;
+        aspect-ratio: 1/1;
+        object-fit: cover;
+        border: 2px solid #007bff;
+        border-radius: 8px;
+        cursor: pointer;
+        transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+    }
+
+    .thumbnail:hover {
+        transform: scale(1.05);
+        box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.3);
+    }
+
+    .btn-custom {
+        font-size: 18px;
+        font-weight: bold;
+        padding: 12px;
+        border-radius: 8px;
+        transition: all 0.3s ease;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .btn-cart {
+        background-color: #28a745;
+        color: white;
+    }
+
+    .btn-cart:hover {
+        background-color: #218838;
+        transform: scale(1.05);
+    }
+
+    .btn-back {
+        background-color: #007bff;
+        color: white;
+    }
+
+    .btn-back:hover {
+        background-color: #0056b3;
+        transform: scale(1.05);
+    }
+
+    /* Responsive ajustes */
+    @media (max-width: 768px) {
         .main-image img {
-            width: 100%;
-            max-height: 350px;
-            object-fit: cover;
-            border-radius: 5px;
-            border: 3px solid #ddd;
+            max-height: 250px;
         }
-        .btn-custom {
-            font-size: 18px;
-            font-weight: bold;
-            padding: 12px;
-            border-radius: 8px;
-            transition: all 0.3s ease;
-            display: flex;
-            align-items: center;
-            justify-content: center;
+        .thumbnail {
+            max-width: 80px;
         }
-        .btn-cart {
-            background-color: #28a745;
-            color: white;
+    }
+
+    @media (max-width: 480px) {
+        .thumbnail {
+            max-width: 70px;
         }
-        .btn-cart:hover {
-            background-color: #218838;
-            transform: scale(1.05);
-        }
-        .btn-back {
-            background-color: #007bff;
-            color: white;
-        }
-        .btn-back:hover {
-            background-color: #0056b3;
-            transform: scale(1.05);
-        }
-    </style>
+    }
+</style>
+
 
     <script>
         function cambiarImagen(src) {

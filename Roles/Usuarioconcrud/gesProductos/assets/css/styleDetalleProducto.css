@@ -146,7 +146,6 @@ h2 {
         font-size: 20px;
     }
 }
-
 /* Animaciones */
 @keyframes fadeIn {
     from { opacity: 0; }

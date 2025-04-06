@@ -1,37 +1,15 @@
 <?php
-class Conexion {
-    private $host = "localhost";
-    private $username = "root";
-<<<<<<< HEAD
-    private $password = "1161";
-=======
-    private $password = "";
->>>>>>> 42cdf60072e4d0e7a8fcbf3a0b8009b206b74467
-    private $dbname = "emendsrtv";
-    private $conn;
+$host = 'localhost';        // Servidor MySQL/MariaDB
+$usuario = 'root';          // Usuario
+$contraseña = '';           // Contraseña del usuario (deja vacío si no tienes)
+$baseDeDatos = 'emendsrtv'; // Nombre de la base de datos
+$puerto = 3306;             // Puerto de MariaDB
 
-    // Constructor que establece la conexión a la base de datos utilizando PDO
-    public function __construct() {
-        try {
-            // Establecer conexión utilizando PDO
-            $this->conn = new PDO("mysql:host={$this->host};dbname={$this->dbname}", $this->username, $this->password);
-            // Establecer el modo de error de PDO a excepción
-            $this->conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-        } catch (PDOException $e) {
-            // Manejo de errores
-            die("Conexión fallida: " . $e->getMessage());
-        }
-    }
+// Crear la conexión
+$conn = new mysqli($host, $usuario, $contraseña, $baseDeDatos, $puerto);
 
-    // Método para obtener la conexión PDO
-    public function getConnection() {
-        return $this->conn;
-    }
+// Verificar si la conexión fue exitosa
+if ($conn->connect_error) {
+    die("Conexión fallida: " . $conn->connect_error);
 }
-
-// Crear una nueva instancia de la clase Conexion
-$conexion = new Conexion();
-
-// Obtener la conexión a la base de datos
-$conn = $conexion->getConnection();
 ?>

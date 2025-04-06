@@ -27,7 +27,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             // Verificar si el usuario ya existe
             $usuarioExistente = $usuario->verificarUsuarioExistente($correo);
             if ($usuarioExistente) {
-                header('Location: ../Vista/registro.html?mensaje=' . urlencode('El usuario ya existe.'));
+                header('Location: ../Vista/registro.php?mensaje=' . urlencode('El usuario ya existe.'));
                 exit();
             }
 
@@ -36,11 +36,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
             // Redirigir en función de si se registró correctamente o no
             if ($registrado === true) {
-                header('Location: ../Vista/login.html?registro=exito');
+                header('Location: ../Vista/login.php?registro=exito');
                 exit();
             } else {
                 // En caso de error en el registro, redirigir con el mensaje de error
-                header('Location: ../Vista/registro.html?mensaje=' . urlencode($registrado));
+                header('Location: ../Vista/registro.php?mensaje=' . urlencode($registrado));
                 exit();
             }
         } else {

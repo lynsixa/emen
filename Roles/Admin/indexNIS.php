@@ -1,75 +1,46 @@
 <?php
-// Corrección de la ruta para cargar el archivo 'ControladorNIS.php' desde '../Controlador/ControladorNIS.php'
-require_once 'ControladorNIS.php'; 
+// Incluir los archivos necesarios
+require_once 'ControladorNIS.php';
+require_once 'Conexion.php'; // Si es necesario, incluye el archivo de conexión
 
 // Crear una instancia del controlador
 $controlador = new ControladorNIS();
 
-$error = '';
-$success = '';
-$editar = false;
-$registroActual = null;
-
-// Procesar la creación del registro
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    if (isset($_POST['crear'])) {
-        $numeroMesa = $_POST['NumeroMesa'] ?? 0;
-        $numeroPiso = $_POST['Numeropiso'] ?? 0;
-        $descripcion = $_POST['Descripcion'] ?? '';
-        $menu_id = $_POST['Menu_idMenu'] ?? 0;
-
-        // Crear mesa
-        $mesa_id = $controlador->crearMesa($numeroMesa, $numeroPiso);
-        if ($mesa_id) {
-            // Crear NIS
-            if (!$controlador->crearNIS($descripcion, $mesa_id, $menu_id)) {
-                $error = "Error al crear el NIS. Intenta nuevamente.";
-            } else {
-                $success = "Registro creado exitosamente.";
-            }
-        } else {
-            $error = "Error al crear la mesa. Intenta nuevamente.";
-        }
-    }
-
-    if (isset($_POST['editar'])) {
-        $idNIS = $_POST['idNIS'] ?? 0;
-        $numeroMesa = $_POST['NumeroMesa'] ?? 0;
-        $numeroPiso = $_POST['Numeropiso'] ?? 0;
-        $descripcion = $_POST['Descripcion'] ?? '';
-        $menu_id = $_POST['Menu_idMenu'] ?? 0;
-
-        if ($controlador->editarNISyMesa($idNIS, $descripcion, $numeroMesa, $numeroPiso, $menu_id)) {
-            $success = "Registro editado exitosamente.";
-        } else {
-            $error = "Error al editar el registro. Intenta nuevamente.";
-        }
-    }
-
-    if (isset($_POST['eliminar'])) {
-        $idNIS = $_POST['idNIS'] ?? 0;
-        if ($controlador->eliminarNIS($idNIS)) {
-            $success = "Registro eliminado exitosamente.";
-        } else {
-            $error = "Error al eliminar el NIS. Intenta nuevamente.";
-        }
-    }
-}
-
-// Cargar los registros existentes
+// Obtener todos los menús
 $menus = $controlador->obtenerMenus();
-$nisList = $controlador->obtenerNIS();
 
-// Verificar si se desea editar un registro
-if (isset($_GET['editar'])) {
-    $idNIS = $_GET['editar'];
-    // Verificamos que se haya obtenido un registro válido
-    $registroActual = $controlador->obtenerNISPorId($idNIS);
-    if (!$registroActual) {
-        // Si no se encuentra el registro, mostramos un mensaje o redirigimos.
-        $error = "No se encontró el registro con el ID proporcionado.";
-    } else {
-        $editar = true;
+// Obtener todos los NIS
+$nis = $controlador->obtenerNIS();
+
+// Manejo de acciones (crear, editar, eliminar NIS)
+if (isset($_POST['accion'])) {
+    switch ($_POST['accion']) {
+        case 'crear':
+            // Crear un nuevo NIS
+            if (isset($_POST['descripcion'], $_POST['mesa_id'], $_POST['menu_id'])) {
+                $descripcion = $_POST['descripcion'];
+                $mesa_id = $_POST['mesa_id'];
+                $menu_id = $_POST['menu_id'];
+                $controlador->crearNIS($descripcion, $mesa_id, $menu_id);
+            }
+            break;
+        case 'editar':
+            // Editar un NIS
+            if (isset($_POST['idNIS'], $_POST['descripcion'], $_POST['mesa_id'], $_POST['menu_id'])) {
+                $idNIS = $_POST['idNIS'];
+                $descripcion = $_POST['descripcion'];
+                $mesa_id = $_POST['mesa_id'];
+                $menu_id = $_POST['menu_id'];
+                $controlador->editarNISyMesa($idNIS, $descripcion, $mesa_id, $menu_id);
+            }
+            break;
+        case 'eliminar':
+            // Eliminar un NIS
+            if (isset($_POST['idNIS'])) {
+                $idNIS = $_POST['idNIS'];
+                $controlador->eliminarNIS($idNIS);
+            }
+            break;
     }
 }
 ?>
@@ -78,69 +49,82 @@ if (isset($_GET['editar'])) {
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <title>Crear y Editar NIS y Mesa</title>
-    <link rel="stylesheet" href="css/estilos24.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestión de NIS</title>
 </head>
 <body>
-    <h1><?php echo $editar ? "Editar NIS y Mesa" : "Crear NIS y Mesa"; ?></h1>
+    <h1>Gestión de NIS</h1>
 
-    <?php if ($error): ?>
-        <p style="color:red;"><?php echo $error; ?></p>
-    <?php endif; ?>
-
-    <?php if ($success): ?>
-        <p style="color:green;"><?php echo $success; ?></p>
-    <?php endif; ?>
-
-    <form method="POST" action="">
-        <input type="hidden" name="idNIS" value="<?php echo $editar ? $registroActual['idCodigoNis'] : ''; ?>">
-        Número de Mesa: <input type="number" name="NumeroMesa" required value="<?php echo $editar ? $registroActual['NumeroMesa'] : ''; ?>">
-        <br>
-        Número de Piso: <input type="number" name="Numeropiso" required value="<?php echo $editar ? $registroActual['NumeroPiso'] : ''; ?>">
-        <br>
-        Código NIS: <input type="text" name="Descripcion" required value="<?php echo $editar ? $registroActual['CodigoNIS'] : ''; ?>">
-        <br>
-        Menú:
-        <select name="Menu_idMenu" required>
-            <?php foreach ($menus as $menu): ?>
-                <option value="<?php echo $menu['idMenu']; ?>" <?php echo ($editar && $registroActual['Menu_idMenu'] == $menu['idMenu']) ? 'selected' : ''; ?>>
-                    <?php echo $menu['Descripcion']; ?>
-                </option>
+    <!-- Formulario para agregar nuevo NIS -->
+    <h2>Nuevo NIS</h2>
+    <form method="POST" action="indexNIS.php">
+        <input type="hidden" name="accion" value="crear">
+        <label for="descripcion">Descripción del NIS:</label>
+        <input type="text" name="descripcion" required>
+        <label for="mesa_id">Número de Mesa:</label>
+        <select name="mesa_id" required>
+            <?php foreach ($nis as $row): ?>
+                <option value="<?= $row['idMesa']; ?>">Mesa <?= $row['NumeroMesa']; ?> - Piso <?= $row['NumeroPiso']; ?></option>
             <?php endforeach; ?>
         </select>
-        <br>
-        <button type="submit" name="<?php echo $editar ? 'editar' : 'crear'; ?>">
-            <?php echo $editar ? 'Actualizar Registro' : 'Crear NIS y Mesa'; ?>
-        </button>
-        <a href="indexNIS.php">Volver a Crear NIS</a>
+        <label for="menu_id">Tipo de Menú:</label>
+        <select name="menu_id" required>
+            <?php foreach ($menus as $menu): ?>
+                <option value="<?= $menu['idMenu']; ?>"><?= $menu['Descripcion']; ?></option>
+            <?php endforeach; ?>
+        </select>
+        <button type="submit">Crear NIS</button>
     </form>
 
     <h2>Lista de NIS</h2>
     <table border="1">
-        <tr>
-            <th>ID NIS</th>
-            <th>Código NIS</th>
-            <th>Número de Mesa</th>
-            <th>Número de Piso</th>
-            <th>Menú</th>
-            <th>Acciones</th>
-        </tr>
-        <?php foreach ($nisList as $nis): ?>
+        <thead>
             <tr>
-                <td><?php echo $nis['idCodigoNis']; ?></td>
-                <td><?php echo $nis['CodigoNIS']; ?></td>
-                <td><?php echo $nis['NumeroMesa']; ?></td>
-                <td><?php echo $nis['NumeroPiso']; ?></td>
-                <td><?php echo $nis['MenuDescripcion']; ?></td>
-                <td>
-                    <a href="?editar=<?php echo $nis['idCodigoNis']; ?>">Editar</a>
-                    <form action="" method="post" style="display:inline;">
-                        <input type="hidden" name="idNIS" value="<?php echo $nis['idCodigoNis']; ?>">
-                        <button type="submit" name="eliminar" onclick="return confirm('¿Estás seguro de que deseas eliminar este registro?');">Eliminar</button>
-                    </form>
-                </td>
+                <th>ID</th>
+                <th>Descripción</th>
+                <th>Número de Mesa</th>
+                <th>Número de Piso</th>
+                <th>Menú</th>
+                <th>Acciones</th>
             </tr>
-        <?php endforeach; ?>
+        </thead>
+        <tbody>
+            <?php foreach ($nis as $row): ?>
+                <tr>
+                    <td><?= $row['idCodigoNis']; ?></td>
+                    <td><?= $row['CodigoNIS']; ?></td>
+                    <td><?= $row['NumeroMesa']; ?></td>
+                    <td><?= $row['NumeroPiso']; ?></td>
+                    <td><?= $row['MenuDescripcion']; ?></td>
+                    <td>
+                        <!-- Botón para editar -->
+                        <form method="POST" style="display:inline;">
+                            <input type="hidden" name="accion" value="editar">
+                            <input type="hidden" name="idNIS" value="<?= $row['idCodigoNis']; ?>">
+                            <input type="text" name="descripcion" value="<?= $row['CodigoNIS']; ?>" required>
+                            <select name="mesa_id" required>
+                                <?php foreach ($nis as $mesa): ?>
+                                    <option value="<?= $mesa['idMesa']; ?>" <?= $mesa['idMesa'] == $row['Mesa_idMesa'] ? 'selected' : ''; ?>>Mesa <?= $mesa['NumeroMesa']; ?> - Piso <?= $mesa['NumeroPiso']; ?></option>
+                                <?php endforeach; ?>
+                            </select>
+                            <select name="menu_id" required>
+                                <?php foreach ($menus as $menu): ?>
+                                    <option value="<?= $menu['idMenu']; ?>" <?= $menu['idMenu'] == $row['Menu_idMenu'] ? 'selected' : ''; ?>><?= $menu['Descripcion']; ?></option>
+                                <?php endforeach; ?>
+                            </select>
+                            <button type="submit">Editar</button>
+                        </form>
+
+                        <!-- Botón para eliminar -->
+                        <form method="POST" style="display:inline;">
+                            <input type="hidden" name="accion" value="eliminar">
+                            <input type="hidden" name="idNIS" value="<?= $row['idCodigoNis']; ?>">
+                            <button type="submit">Eliminar</button>
+                        </form>
+                    </td>
+                </tr>
+            <?php endforeach; ?>
+        </tbody>
     </table>
 </body>
 </html>

@@ -4,7 +4,7 @@ require_once 'Modelo/Conexion.php';
 
 // Si hay una sesión activa, redirigir al usuario
 if (isset($_SESSION['idUsuario'])) {
-    header("Location: principal.php");
+    header("Location: ../roles/Usuarioconcrud/index.php");
     exit();
 }
 

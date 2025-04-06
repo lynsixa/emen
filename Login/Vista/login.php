@@ -42,6 +42,7 @@ manejarSesion();
                         <button type="submit" class="submit-button">
                             Ingresar
                         </button>
+                        <a href="recupera.php">¿Has olvidado tu contraseña?</a>
                         <a href="registro.php">¿No tienes cuenta? Registrarse</a>
                     </form>
                 </div>

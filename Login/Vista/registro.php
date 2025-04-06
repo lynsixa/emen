@@ -11,6 +11,18 @@ require_once '../Modelo/Conexion.php';
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Registro</title>
     <link rel="stylesheet" href="../CSS/login-registro.css">
+
+    <script>
+        // Impide que el usuario navegue hacia atrás
+        window.history.forward();
+        function noBack() {
+            window.history.forward();
+        }
+        setTimeout("noBack()", 0);
+        window.onload = noBack;
+        window.onpageshow = function(evt) { if (evt.persisted) noBack() };
+        window.onunload = function() { void(0) };
+    </script>
 </head>
 <body>
 
@@ -86,7 +98,7 @@ require_once '../Modelo/Conexion.php';
                         <button type="submit" class="submit-button">
                             Registrarme
                         </button>
-                        <a href="../Vista/login.html">¿Ya tienes cuenta?</a>
+                        <a href="../Vista/login.php">¿Ya tienes cuenta?</a>
                     </form>
                 </div>
             </div>

@@ -2,7 +2,6 @@
 require 'conexion.php';  // Asegúrate de que este archivo establece $mysqli
 require 'funcs.php';     // Asegúrate de que verificaTokenPass está bien definido
 
-
 $user_id = $_GET['idUsuario'] ?? null;
 $token = $_GET['token'] ?? null;
 
@@ -13,7 +12,6 @@ if ($user_id && $token) {
         echo "Token recibido: " . htmlspecialchars($token) . "<br>";
         exit;
     }
-    
 } else {
     echo "⚠️ Falta el ID de usuario o el token.<br>";
     exit;
@@ -33,16 +31,18 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $stmt->bind_param("is", $user_id, $token);
         $stmt->execute();
         $stmt->store_result();
-        
-        if ($stmt->num_rows > 0) {
-            echo "✅ Usuario y token válidos. Procediendo a actualizar la contraseña.<br>";
 
+        if ($stmt->num_rows > 0) {
             // Si existe, actualizamos la contraseña y limpiamos el token
             $update = $mysqli->prepare("UPDATE Usuario SET Contraseña = ?, token_password = NULL, password_request = 0 WHERE idUsuario = ?");
             $update->bind_param("si", $hashed_password, $user_id);
 
             if ($update->execute()) {
-                echo "✅ Contraseña actualizada con éxito. <a href='login.html'>Iniciar Sesión</a>";
+                // Alerta de éxito y redirección inmediata
+                echo "<script>
+                        alert('✅ Contraseña actualizada con éxito.');
+                        window.location.href = 'login.php'; // Redirige a login.php inmediatamente
+                      </script>";
                 exit;
             } else {
                 echo "❌ Error al actualizar la contraseña: " . $mysqli->error . "<br>";

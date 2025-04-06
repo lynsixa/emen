@@ -40,8 +40,8 @@ if ($data) {
         </div>
         <nav class="menu">
             <a href="#redes">Redes</a>
-            <a href="//menu">Menú</a>
-            <a href="../../index.php">Cerrar sesión</a>
+            <a href="/gesProductos/index.php">Menú</a>
+            <a href="../../Controlador/cerrar_sesion.php">Cerrar sesión</a>
         </nav>
     </header>
 

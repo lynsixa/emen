@@ -24,6 +24,9 @@ if ($data) {
     <title>Detalles de la Mesa</title>
     <link rel="stylesheet" href="Css/StylePrincipall.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
+
 </head>
 <body>
     <div class="fondo-rotativo">
@@ -32,29 +35,83 @@ if ($data) {
         <img src="Img/IMG_5105.JPG" alt="Fondo 3">
     </div>
 
-    <header>
-        <div class="logo">
-            <a href="index.php">
-                <img src="img/log.png" alt="Logo" style="height: 50px;">
-            </a>
-        </div>
-        <nav class="menu">
-            <a href="#redes">Redes</a>
-            <a href="../Usuarioconcrud/gesProductos/Index.php">Menú</a>
-            <a href="../../Controlador/cerrar_sesion.php">Cerrar sesión</a>
-        </nav>
-    </header>
+    <!-- Asegúrate de tener el CSS de Bootstrap en tu <head> -->
 
-    <main id="main-content">
-        <section class="bienvenida animate__animated animate__fadeIn">
-            <h2>Detalles de la Mesa</h2>
-            <div class="mesa-detalles">
-                <p><strong>Número de Mesa:</strong> <?php echo $numeroMesa; ?></p>
-                <p><strong>Número de Piso:</strong> <?php echo $numeroPiso; ?></p>
-                <p><strong>Descripción del Menú:</strong> <?php echo $menuDescripcion; ?></p>
+<header class="bg-dark py-3 shadow-sm">
+    <div class="container d-flex flex-wrap align-items-center justify-content-between">
+        <!-- Logo -->
+        <a href="index.php" class="d-flex align-items-center text-white text-decoration-none">
+            <img src="img/log.png" alt="Logo" style="height: 50px;">
+
+        </a>
+
+        <!-- Navegación -->
+        <nav class="nav">
+            <a class="nav-link text-white" href="../Usuarioconcrud/gesProductos/perfil.php">Perfil</a>
+            <a class="nav-link text-white" href="../Usuarioconcrud/gesProductos/Index.php">Menú</a>
+            <a class="nav-link text-danger" href="../../Controlador/cerrar_sesion.php">Cerrar sesión</a>
+        </nav>
+    </div>
+</header>
+
+<!-- Bootstrap, Animate.css y Bootstrap Icons en el <head> -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
+
+<style>
+    .card-dark-yellow {
+        background-color: #1a1a1a; /* negro elegante */
+        border: 1px solid #ffc107; /* amarillo Bootstrap */
+        color: #fff;
+    }
+
+    .card-dark-yellow .list-group-item {
+        background-color: transparent;
+        border: none;
+        color: #ffc107; /* texto amarillo */
+    }
+
+    .card-dark-yellow .list-group-item strong {
+        color: #fff;
+    }
+
+    .text-yellow {
+        color: #ffc107 !important;
+    }
+</style>
+
+<main id="main-content" class="container py-5">
+    <section class="animate__animated animate__fadeIn">
+        <div class="text-center mb-4">
+            <h2 class="fw-bold text-yellow">
+                <i class="bi bi-info-circle-fill me-2"></i>Detalles de la Mesa
+            </h2>
+        </div>
+
+        <div class="card card-dark-yellow shadow-lg rounded-4 mx-auto" style="max-width: 600px;">
+            <div class="card-body">
+                <ul class="list-group list-group-flush fs-5">
+                    <li class="list-group-item">
+                        <i class="bi bi-hash me-2"></i>
+                        <strong>Número de Mesa:</strong> <?php echo $numeroMesa; ?>
+                    </li>
+                    <li class="list-group-item">
+                        <i class="bi bi-building me-2"></i>
+                        <strong>Número de Piso:</strong> <?php echo $numeroPiso; ?>
+                    </li>
+                    <li class="list-group-item">
+                        <i class="bi bi-card-text me-2"></i>
+                        <strong>Descripción del Menú:</strong> <?php echo $menuDescripcion; ?>
+                    </li>
+                </ul>
             </div>
-        </section>
-    </main>
+        </div>
+    </section>
+</main>
+
+
+
 
     <!-- Enlace al archivo JavaScript -->
     <script src="../../js/fondo.js"></script>

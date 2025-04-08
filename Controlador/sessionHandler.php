@@ -26,7 +26,7 @@ function manejarSesion() {
         $conexionObj = new Conexion();
         $conexion = $conexionObj->getConnection();
 
-        $stmt = $conexion->prepare("SELECT Roles_idRoles, nombre FROM Usuario WHERE idUsuario = ?");
+        $stmt = $conexion->prepare("SELECT Roles_idRoles, nombres FROM Usuario WHERE idUsuario = ?");
         $stmt->execute([$_SESSION['idUsuario']]);
         $usuario = $stmt->fetch(PDO::FETCH_ASSOC);
 

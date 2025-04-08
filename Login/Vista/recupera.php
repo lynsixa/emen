@@ -55,8 +55,10 @@ if (!empty($_POST)) {
     <title>Recuperar Contraseña</title>
     <link rel="stylesheet" href="../CSS/styleRecupera.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    
 </head>
 <body>
+    
     <div class="form-container">
         <h2><i class="fas fa-unlock-alt"></i> Recuperar Contraseña</h2>
         <p class="description">Ingresa tu correo electrónico para enviarte un enlace de recuperación.</p>
@@ -67,6 +69,11 @@ if (!empty($_POST)) {
             </div>
             <button type="submit"><i class="fas fa-paper-plane"></i> Enviar</button>
         </form>
+        <div class="text-end p-3">
+            <a href="/Proyecto/Login/Vista/login.php" class="btn btn-custom">
+                <i class="bi bi-arrow-left-circle"></i> Volver
+            </a>
+        </div>
     </div>
 </body>
 </html>

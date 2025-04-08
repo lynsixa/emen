@@ -23,7 +23,7 @@
                 <i class="bi bi-arrow-left-circle"></i> Volver
             </a>
         </div>
-    <a href="/Controlador/cerrar_sesion.php" class="btn btn-danger">Cerrar Sesión</a>
+    <a href="/Proyecto/Controlador/cerrar_sesion.php" class="btn btn-danger">Cerrar Sesión</a>
 </div>
 
     <div class="container mt-4">

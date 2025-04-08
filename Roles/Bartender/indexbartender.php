@@ -1,5 +1,10 @@
 <?php
-include("conexion.php");
+include("../Usuarioconcrud/gesProductos/conexion.php"); // Asegúrate de que esta ruta sea correcta
+
+if (!isset($conn) || !$conn) {
+    die("Error: No se pudo establecer la conexión a la base de datos.");
+}
+
 $conn->set_charset("utf8");
 
 // Control de acciones
@@ -100,7 +105,6 @@ function rechazarConMotivo(form) {
     return false;
 }
 
-// Mostrar modal si se acaba de despachar
 <?php if ($ordenDespachada): ?>
     window.addEventListener("DOMContentLoaded", () => {
         const modal = new bootstrap.Modal(document.getElementById('modalConfirmacion'));

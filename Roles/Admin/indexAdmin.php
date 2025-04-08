@@ -1,3 +1,5 @@
+
+
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -59,7 +61,7 @@
             </button>
             <header>
                 <h1 class="logo">
-                    <a href="Index.php">
+                    <a href="indexAdmin.php">
                         <img class="dv" src="../Admin/imagenes/log.png" alt="EMEN">
                     </a>
                     EMEN
@@ -68,10 +70,10 @@
             <nav>
                 <ul class="menu">
                     <li>
-                        <a href="indexjv.html" class="boton-menu boton-categoria active"><i class="bi bi-house-door-fill"></i> Inicio</a>
+                        <a href="indexAdmin.php" class="boton-menu boton-categoria active"><i class="bi bi-house-door-fill"></i> Inicio</a>
                     </li>
                     <li>
-                        <a href="/principal/Roles/api/Agregar_eventos.php"   class="boton-menu boton-categoria"><i class="bi bi-list-ul"></i> Eventos</a>
+                        <a href="/principal/Roles/api/Agregar_eventos.php" class="boton-menu boton-categoria"><i class="bi bi-list-ul"></i> Eventos</a>
                     </li>
                     <li>
                         <a href="indexNIS.php" class="boton-menu boton-categoria"><i class="bi bi-tags"></i> NIS</a>
@@ -90,11 +92,10 @@
             <div id="contenedor-productos" class="contenedor-productos">
                 <!-- Agregar los botones con enlaces -->
                 <div class="botones-container">
-                    <button class="btn btn-dorado">Inicio</button>
-                   
-                    <a href="/Proyecto/Roles/api/Agregar_eventos.php"   class="btn">Eventos</a>
+                    <a href="/Proyecto/Roles/api/Agregar_eventos.php" class="btn">Eventos</a>
                     <a href="indexNIS.php" class="btn">NIS</a>
                     <a href="crudUsuarios.php" class="btn">Usuarios</a>
+                    <a href="/Proyecto/index.php" class="btn btn-dorado">Inicio</a> <!-- Enlace para cerrar sesión -->
                 </div>
             </div>
         </main>

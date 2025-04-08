@@ -8,61 +8,52 @@ class ControladorNIS {
         $this->conexion = (new Conexion())->getConnection();
     }
 
+    // Obtener todas las mesas
+    public function obtenerMesas() {
+        try {
+            $sql = "SELECT * FROM Mesa";
+            $result = $this->conexion->query($sql);
+
+            $mesas = [];
+            while ($row = $result->fetch_assoc()) {
+                $mesas[] = $row;
+            }
+            return $mesas;
+        } catch (Exception $e) {
+            error_log("Error al obtener mesas: " . $e->getMessage());
+            return [];
+        }
+    }
+
     // Obtener todos los menús
     public function obtenerMenus() {
         try {
             $sql = "SELECT * FROM Menu";
-            $result = $this->conexion->query($sql);  // Usamos query() para consultas simples
+            $result = $this->conexion->query($sql);
 
             $menus = [];
             while ($row = $result->fetch_assoc()) {
                 $menus[] = $row;
             }
             return $menus;
-
         } catch (Exception $e) {
             error_log("Error al obtener menús: " . $e->getMessage());
             return [];
         }
     }
 
-    // Crear una nueva mesa
-    public function crearMesa($numeroMesa, $numeroPiso) {
-        try {
-            $sql = "INSERT INTO Mesa (NumeroMesa, NumeroPiso) VALUES (?, ?)";
-            $stmt = $this->conexion->prepare($sql);
-            $stmt->bind_param("ii", $numeroMesa, $numeroPiso);
-            $stmt->execute();
-
-            return $this->conexion->insert_id;  // Devuelve el id generado automáticamente
-        } catch (Exception $e) {
-            error_log("Error al crear mesa: " . $e->getMessage());
-            return false;
-        }
-    }
-
-    // Crear un nuevo NIS
-    public function crearNIS($descripcion, $mesa_id, $menu_id) {
-        try {
-            $sql = "INSERT INTO CodigoNis (Descripcion, Mesa_idMesa, Menu_idMenu) VALUES (?, ?, ?)";
-            $stmt = $this->conexion->prepare($sql);
-            $stmt->bind_param("sii", $descripcion, $mesa_id, $menu_id);
-            $stmt->execute();
-            return true;
-        } catch (Exception $e) {
-            error_log("Error al crear NIS: " . $e->getMessage());
-            return false;
-        }
-    }
-
     // Obtener todos los registros de NIS
     public function obtenerNIS() {
         try {
-            $sql = "SELECT cn.idCodigoNis, cn.Descripcion AS CodigoNIS, m.NumeroMesa, m.NumeroPiso, me.Descripcion AS MenuDescripcion
+            $sql = "SELECT cn.idCodigoNis, cn.Descripcion AS CodigoNIS, 
+                           m.NumeroMesa, m.NumeroPiso, 
+                           me.Descripcion AS MenuDescripcion, cn.Disponibilidad,
+                           cn.Mesa_idMesa, cn.Menu_idMenu
                     FROM CodigoNis cn
                     JOIN Mesa m ON cn.Mesa_idMesa = m.idMesa
                     JOIN Menu me ON cn.Menu_idMenu = me.idMenu
                     ORDER BY cn.Descripcion ASC";
+
             $result = $this->conexion->query($sql);
 
             $nis = [];
@@ -75,74 +66,61 @@ class ControladorNIS {
             return [];
         }
     }
-    
-    // Obtener NIS por ID
-    public function obtenerNISPorId($id) {
+
+    // Método para crear el NIS
+    public function crearNIS($descripcion, $mesa_id, $menu_id) {
         try {
-            $sql = "SELECT cn.idCodigoNis, cn.Descripcion AS CodigoNIS, m.NumeroMesa, m.NumeroPiso, cn.Menu_idMenu
-                    FROM CodigoNis cn
-                    JOIN Mesa m ON cn.Mesa_idMesa = m.idMesa
-                    WHERE cn.idCodigoNis = ?";
+            if (empty($descripcion) || empty($mesa_id) || empty($menu_id)) {
+                throw new Exception('Algunos parámetros están vacíos.');
+            }
+
+            $sql = "INSERT INTO CodigoNis (Descripcion, Mesa_idMesa, Menu_idMenu) 
+                    VALUES (?, ?, ?)";
             $stmt = $this->conexion->prepare($sql);
-            $stmt->bind_param("i", $id);
-            $stmt->execute();
-            $result = $stmt->get_result();
-            return $result->fetch_assoc();
+            $stmt->bind_param("sii", $descripcion, $mesa_id, $menu_id);
+
+            if ($stmt->execute()) {
+                return $this->conexion->insert_id;
+            } else {
+                throw new Exception('Error al ejecutar la consulta de inserción.');
+            }
         } catch (Exception $e) {
-            error_log("Error al obtener NIS por ID: " . $e->getMessage());
-            return false;
+            error_log("Error al crear NIS: " . $e->getMessage());
+            return null;
         }
     }
 
-    // Editar NIS y Mesa
-    public function editarNISyMesa($idNIS, $descripcion, $numeroMesa, $numeroPiso, $menu_id) {
+    // Método para editar un NIS
+    public function editarNIS($idNIS, $descripcion, $mesa_id, $menu_id) {
         try {
-            // Iniciar transacción
-            $this->conexion->begin_transaction();
+            if (empty($idNIS) || empty($descripcion) || empty($mesa_id) || empty($menu_id)) {
+                throw new Exception('Algunos parámetros están vacíos.');
+            }
 
-            // Actualizar mesa
-            $sqlMesa = "UPDATE Mesa m JOIN CodigoNis cn ON m.idMesa = cn.Mesa_idMesa 
-                        SET m.NumeroMesa = ?, m.NumeroPiso = ? 
-                        WHERE cn.idCodigoNis = ?";
-            $stmtMesa = $this->conexion->prepare($sqlMesa);
-            $stmtMesa->bind_param("iii", $numeroMesa, $numeroPiso, $idNIS);
-            $stmtMesa->execute();
+            $sql = "UPDATE CodigoNis SET Descripcion = ?, Mesa_idMesa = ?, Menu_idMenu = ? WHERE idCodigoNis = ?";
+            $stmt = $this->conexion->prepare($sql);
+            $stmt->bind_param("siii", $descripcion, $mesa_id, $menu_id, $idNIS);
 
-            // Actualizar NIS
-            $sqlNIS = "UPDATE CodigoNis SET Descripcion = ?, Menu_idMenu = ? WHERE idCodigoNis = ?";
-            $stmtNIS = $this->conexion->prepare($sqlNIS);
-            $stmtNIS->bind_param("sii", $descripcion, $menu_id, $idNIS);
-            $stmtNIS->execute();
-
-            // Confirmar transacción
-            $this->conexion->commit();
-            return true;
+            return $stmt->execute();
         } catch (Exception $e) {
-            // Revertir transacción en caso de error
-            $this->conexion->rollback();
-            error_log("Error al editar NIS y Mesa: " . $e->getMessage());
+            error_log("Error al editar NIS: " . $e->getMessage());
             return false;
         }
     }
 
-    // Eliminar NIS
+    // Método para eliminar un NIS
     public function eliminarNIS($idNIS) {
         try {
-            // Iniciar transacción
-            $this->conexion->begin_transaction();
+            if (empty($idNIS)) {
+                throw new Exception('ID de NIS no proporcionado.');
+            }
 
-            // Eliminar el NIS
-            $sqlNIS = "DELETE FROM CodigoNis WHERE idCodigoNis = ?";
-            $stmtNIS = $this->conexion->prepare($sqlNIS);
-            $stmtNIS->bind_param("i", $idNIS);
-            $stmtNIS->execute();
+            $sql = "DELETE FROM CodigoNis WHERE idCodigoNis = ?";
+            $stmt = $this->conexion->prepare($sql);
+            $stmt->bind_param("i", $idNIS);
 
-            // Confirmar transacción
-            $this->conexion->commit();
-            return true;
+            return $stmt->execute();
         } catch (Exception $e) {
-            // Revertir transacción en caso de error
-            $this->conexion->rollback();
             error_log("Error al eliminar NIS: " . $e->getMessage());
             return false;
         }

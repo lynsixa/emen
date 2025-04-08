@@ -53,12 +53,21 @@ if (!empty($_POST)) {
 <head>
     <meta charset="UTF-8">
     <title>Recuperar Contraseña</title>
+    <link rel="stylesheet" href="../CSS/styleRecupera.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 </head>
 <body>
-    <h2>Recuperar Contraseña</h2>
-    <form method="POST">
-        <input type="email" name="email" placeholder="Correo electrónico" required>
-        <button type="submit">Enviar</button>
-    </form>
+    <div class="form-container">
+        <h2><i class="fas fa-unlock-alt"></i> Recuperar Contraseña</h2>
+        <p class="description">Ingresa tu correo electrónico para enviarte un enlace de recuperación.</p>
+        <form method="POST">
+            <div class="input-group">
+                <i class="fas fa-envelope"></i>
+                <input type="email" name="email" placeholder="Correo electrónico" required>
+            </div>
+            <button type="submit"><i class="fas fa-paper-plane"></i> Enviar</button>
+        </form>
+    </div>
 </body>
 </html>
+

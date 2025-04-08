@@ -1,13 +1,15 @@
 <?php
-ini_set('display_errors', 1);
-ini_set('display_startup_errors', 1);
-error_reporting(E_ALL);
-
 session_start();
 
 // Verificar si el usuario ha iniciado sesión
 if (!isset($_SESSION['idUsuario'])) {
-    header("Location: ../../Login/vista/login.php"); // Corregido
+    header("Location: ../../Login/vista/login.php"); // Redirección si no ha iniciado sesión
+    exit();
+}
+
+// Si ya hay un código NIS registrado, redirigir directamente
+if (isset($_SESSION['codigo'])) {
+    header("Location: /proyecto/Roles/Usuariosincrud/indexscannis.php");
     exit();
 }
 
@@ -21,11 +23,12 @@ include('../../Controlador/validar_codigo_logic.php');
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Validar Código</title>
     
-    <!-- Vinculando el archivo CSS separado -->
+    <!-- CSS personalizado -->
     <link rel="stylesheet" href="cssnis.css">
 
-    <!-- Vinculando Bootstrap -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KyZXEJv6p7fEx7gkExO4vbbWro8npAvb7LRAtjzEo9tuJ8U1WVm7l9K7dW4ywlHk" crossorigin="anonymous">
+    <!-- Bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+
     <script>
     (function() {
         window.history.pushState(null, "", window.location.href);
@@ -41,40 +44,44 @@ include('../../Controlador/validar_codigo_logic.php');
             }
         });
     })();
-</script>
-
-
+    </script>
 </head>
 <body>
-   
-    <div class="container">
-        <h1>Ingrese el Código</h1>
-        
+    <div class="container mt-5">
+        <h1 class="text-white">Ingrese el Código</h1>
+
         <?php
-        // Si hay un mensaje de error, mostrarlo
+        // Mostrar mensaje si existe
         if (!empty($mensaje)) {
-            echo "<p>$mensaje</p>";
+            echo "<div class='alert alert-warning'>$mensaje</div>";
         }
         ?>
-        
-        <form action="" method="POST">
-            <label for="codigo" style="display: none;">Código:</label>  <!-- Ocultamos el texto -->
-            <input type="text" id="codigo" name="codigo" placeholder="Código" required> <!-- Placeholder dentro del cuadro -->
-            <input type="submit" value="Validar"> 
+
+        <!-- Formulario -->
+        <form action="" method="POST" class="mb-4">
+            <input type="text" id="codigo" name="codigo" class="form-control mb-3" placeholder="Código" required>
+            <input type="submit" value="Validar" class="btn btn-primary">
         </form>
 
-        <!-- Enlace de Cerrar sesión debajo del formulario -->
-        <div class="ya">
-            <br>
-            <a href="../../Controlador/cerrar_sesion.php" class="ya" style="color: #fff; text-decoration: none;">Cerrar sesión</a>
+        <!-- Mostrar información de mesa y piso si están disponibles -->
+        <?php if (isset($_SESSION['numeroMesa']) && isset($_SESSION['numeroPiso'])): ?>
+            <div class="alert alert-success">
+                <strong>Mesa:</strong> <?php echo $_SESSION['numeroMesa']; ?><br>
+                <strong>Piso:</strong> <?php echo $_SESSION['numeroPiso']; ?>
+            </div>
+        <?php endif; ?>
+
+        <!-- Cerrar sesión -->
+        <div>
+            <a href="../../Controlador/cerrar_sesion.php" class="btn btn-danger">Cerrar sesión</a>
         </div>
     </div>
 
-    <!-- Vinculando Bootstrap JS -->
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js" integrity="sha384-oBqDVmMz4fnFO9gyb0dQ2Y5O+J2Z0b28wX5ODV40zypYgnT2Nm/MZlA5EXRk9gRs" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.min.js" integrity="sha384-pzjw8f+ua7Kw1TIq0L9gFg3ntb0n4I1FfsHlgPUzYq5STzBxdiyJtHhDsgddNxl9" crossorigin="anonymous"></script>
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.min.js"></script>
 
-    <!-- Script para cambiar el fondo dinámicamente -->
+    <!-- Fondo dinámico -->
     <script>
         let currentIndex = 0; 
         const images = ['1.jpg', '2.jpg', '3.jpg']; 

@@ -1,42 +1,61 @@
 <?php
-// Incluir archivo de conexión a la base de datos
-include('conexion.php');
+// Iniciar la sesión si aún no se ha iniciado
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
 
-// Variable para almacenar el mensaje de error
-$mensaje = '';
+require_once 'conexion.php';
 
-// Comprobar si se ha enviado el formulario
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    // Obtener el código del formulario
-    $codigo = $_POST['codigo'];
+$mensaje = ''; // Variable global para mostrar mensajes de error
+
+// Si ya existe una sesión con el código, redirigir directamente
+if (isset($_SESSION['codigo'])) {
+    header("Location: /proyecto/Roles/Usuarioconcrud/index.php");
+    exit();
+}
+
+// Verificar si el formulario fue enviado por método POST
+if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST['codigo'])) {
+    $codigo = trim($_POST['codigo']); // Limpiar entrada
 
     try {
-        // Crear una instancia de la clase Conexion y obtener la conexión
         $conexion = new Conexion();
         $conn = $conexion->getConnection();
 
-        // Preparar la consulta utilizando PDO
-        $stmt = $conn->prepare("SELECT * FROM codigonis WHERE Descripcion = :codigo");
-        $stmt->bindParam(':codigo', $codigo, PDO::PARAM_STR);  // Enlazar parámetro
-        
-        // Ejecutar la consulta
+        // Consulta SQL para buscar el código NIS y obtener datos de la mesa
+        $stmt = $conn->prepare("
+            SELECT 
+                cn.idCodigoNis,
+                cn.Descripcion,
+                m.idMesa,
+                m.NumeroMesa,
+                m.NumeroPiso
+            FROM CodigoNis cn
+            INNER JOIN Mesa m ON cn.Mesa_idMesa = m.idMesa
+            WHERE cn.Descripcion = :codigo
+        ");
+        $stmt->bindParam(':codigo', $codigo, PDO::PARAM_STR);
         $stmt->execute();
-        
-        // Verificar si se encontró un registro
+
         if ($stmt->rowCount() > 0) {
-            // Redirigir a la página con el código en la URL
-            header("Location: /proyecto/Roles/Usuarioconcrud/index.php?codigo=$codigo");
-            exit(); // Terminar el script después de redirigir
+            // Código válido, guardar datos en sesión
+            $info = $stmt->fetch(PDO::FETCH_ASSOC);
+
+            $_SESSION['codigo'] = $info['Descripcion'];
+            $_SESSION['idCodigoNis'] = $info['idCodigoNis'];
+            $_SESSION['idMesa'] = $info['idMesa'];
+            $_SESSION['numeroMesa'] = $info['NumeroMesa'];
+            $_SESSION['numeroPiso'] = $info['NumeroPiso'];
+            $_SESSION['codigo_inicio'] = time(); // Marca de tiempo
+
+            // Redirigir al index del sistema
+            header("Location: /proyecto/Roles/Usuarioconcrud/index.php");
+            exit(); // Salida inmediata para evitar ejecución adicional
         } else {
-            // Si no se encuentra el código, mostrar el mensaje de error
-            $mensaje = "Código no encontrado.";
+            $mensaje = "⚠️ Código no encontrado. Intenta nuevamente.";
         }
 
-        // Cerrar la consulta
-        $stmt = null;
     } catch (PDOException $e) {
-        // Manejo de excepciones en caso de error en la conexión o consulta
-        $mensaje = "Error en la consulta: " . $e->getMessage();
+        $mensaje = "❌ Error en la base de datos: " . $e->getMessage();
     }
 }
-?>

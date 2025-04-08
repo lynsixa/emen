@@ -1,6 +1,6 @@
 <?php
 header('Content-Type: application/json');
-include 'conexion.php'; // Asegúrate de que la conexión está bien definida
+include '../gesProductos/conexion.php'; // Asegúrate de que la conexión está bien definida
 
 $sql = "SELECT 
             p.idProducto, 

@@ -39,6 +39,9 @@ if ($usuario = $resultado->fetch_assoc()) {
             <p><i class="bi bi-envelope-fill"></i> <strong>Correo:</strong> <?php echo $usuario['Correo']; ?></p>
             <p><i class="bi bi-calendar-heart"></i> <strong>Fecha de Nacimiento:</strong> <?php echo $usuario['FechaDeNacimiento']; ?></p>
         </div>
+        <div>
+            <div 
+        </div>
         <div class="text-end p-3">
             <a href="../index.php" class="btn btn-custom">
                 <i class="bi bi-arrow-left-circle"></i> Volver

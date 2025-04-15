@@ -133,7 +133,7 @@ function enviarEmail($email, $nombre, $asunto, $cuerpo) {
         $mail->Port       = 587;
 
         // Remitente y destinatario
-        $mail->setFrom('emends1030@gmail.com', 'Tu Nombre o Empresa');
+        $mail->setFrom('emends1030@gmail.com', 'disructiveclub');
         $mail->addAddress($email, $nombre);
 
         // Contenido del correo

@@ -73,7 +73,7 @@
                         <a href="indexAdmin.php" class="boton-menu boton-categoria active"><i class="bi bi-house-door-fill"></i> Inicio</a>
                     </li>
                     <li>
-                        <a href="/principal/Roles/api/Agregar_eventos.php" class="boton-menu boton-categoria"><i class="bi bi-list-ul"></i> Eventos</a>
+                        <a href="../api/agregar_eventos.php" class="boton-menu boton-categoria"><i class="bi bi-list-ul"></i> Eventos</a>
                     </li>
                     <li>
                         <a href="indexNIS.php" class="boton-menu boton-categoria"><i class="bi bi-tags"></i> NIS</a>

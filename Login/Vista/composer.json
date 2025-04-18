@@ -1,0 +1,7 @@
+{
+    "name": "mi/proyecto",
+    "description": "Proyecto con PHPMailer",
+    "require": {
+        "phpmailer/phpmailer": "^6.9"
+    }
+}

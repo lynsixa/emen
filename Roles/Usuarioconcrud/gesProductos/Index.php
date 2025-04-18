@@ -7,50 +7,69 @@
 
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css"/>
     <link rel="stylesheet" type="text/css" href="assets/css/styleIndex.css">
+    <script type="text/javascript">
+        // Mostrar alerta si la orden fue realizada con éxito
+        <?php
+        if (isset($_GET['orden']) && $_GET['orden'] == 'exito') {
+            echo "alert('¡Orden realizada con éxito!');";
+        }
+        ?>
+    </script>
 </head>
 <body>
-<div class="d-flex justify-content-end align-items-center gap-2 p-3">
+ <!-- Encabezado -->
+ <div class="d-flex justify-content-end align-items-center gap-2 p-3 bg-white shadow-sm">
     <a href="perfil.php" class="btn btn-outline-secondary" title="Ver perfil">
-        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-person-circle" viewBox="0 0 16 16">
-            <path d="M13.468 12.37C12.758 11.226 11.383 10.5 9.999 10.5h-3.998c-1.384 0-2.759.726-3.469 1.87A6.982 6.982 0 0 0 8 15a6.982 6.982 0 0 0 5.468-2.63z"/>
-            <path fill-rule="evenodd" d="M8 9a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/>
-            <path fill-rule="evenodd" d="M8 1a7 7 0 1 0 0 14A7 7 0 0 0 8 1z"/>
-        </svg>
+      <i class="bi bi-person-circle"></i>
     </a>
-    <div class="text-end p-3">
-            <a href="../index.php" class="btn btn-custom">
-                <i class="bi bi-arrow-left-circle"></i> Volver
-            </a>
-        </div>
-    <a href="/Proyecto/Controlador/cerrar_sesion.php" class="btn btn-danger">Cerrar Sesión</a>
+    <a href="ver_estado_producto.php" class="btn btn-outline-primary" title="Ver estado del producto">
+  <i class="bi bi-eye"></i> Estado del Producto
+</a>
+
+    <a href="../index.php" class="btn btn-custom">
+      <i class="bi bi-arrow-left-circle"></i> Volver
+    </a>
+    <a href="/Proyecto/Controlador/cerrar_sesion.php" class="btn btn-danger">
+      <i class="bi bi-box-arrow-right"></i> Cerrar Sesión
+    </a>
+  </div>
+
+  <div class="container mt-5">
+  <!-- Título Principal -->
+  <h1 class="text-center text-primary fw-bold mb-4">Bienvenidos</h1>
+
+  <!-- Animación para el GIF -->
+  <div class="row justify-content-center">
+    <div class="col-lg-8 text-center mb-4">
+      <div class="section_title">
+        <img class="img-fluid rounded-3 shadow-lg" src="../gesProductos/fotosProductos/gif.gif" alt="gif" style="max-width: 100%; height: auto;">
+      </div>
+    </div>
+  </div>
+
+  <!-- Subtítulo animado -->
+  <div class="row justify-content-center">
+    <div class="col-lg-8 text-center mt-5">
+      <div class="section_title">
+        <h2 class="text-dark font-weight-bold fs-3">Noches que brillan, recuerdos que duran siempre.</h2>
+      </div>
+    </div>
+  </div>
+
+  <!-- Contenedor de productos -->
+  <div class="row justify-content-center mb-4">
+    <h2 class="text-center text-primary fs-4 fw-bold">Productos Disponibles</h2>
+  </div>
+
+  <div id="productos-container" class="row justify-content-center">
+    <div class="col-12 text-center">
+      <p class="text-muted">Cargando productos...</p>
+    </div>
+  </div>
 </div>
 
-    <div class="container mt-4">
-        <h1 class="text-center text-primary">Bienvenido a Emen</h1>
-
-        <div class="row align-items-center">
-				<div class="col-lg-12 text-center">
-					<div class="section_title">
-						<img class="img-fluid" src="../gesProductos/fotosProductos/gif.gif" alt="gif">
-					</div>
-				</div>
-			</div>
-
-			<div class="row align-items-center">
-				<div class="col-lg-12 text-center mt-5">
-					<div class="section_title">
-						<h2>Noches que brillan, recuerdos que duran siempre.</h2>
-					</div>
-				</div>
-			</div>
-
-        <!-- Contenedor de productos -->
-        <h2 class="text-center text-primary">Productos Disponibles</h2>
-        <div id="productos-container" class="row justify-content-center">
-            <p class="text-center">Cargando productos...</p>
-        </div>
-    </div>
 
     <!-- Bootstrap JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>

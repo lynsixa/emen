@@ -1,5 +1,5 @@
 <?php
-include("../Usuarioconcrud/gesProductos/conexion.php"); // Asegúrate de que esta ruta sea correcta
+include_once '../../conexion.php';  // Asegúrate de que esta ruta sea correcta
 
 if (!isset($conn) || !$conn) {
     die("Error: No se pudo establecer la conexión a la base de datos.");
@@ -32,6 +32,10 @@ $resultado = $conn->query("SELECT idEntrega, Descripcion FROM Entrega WHERE Entr
     <meta charset="UTF-8">
     <title>Órdenes Bartender</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="CssBartender.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <link rel="icon" href="Img/log.png" type="image/png">
     <style>
         body {
             background: linear-gradient(to right, #1f1c2c, #928dab);
@@ -46,6 +50,28 @@ $resultado = $conn->query("SELECT idEntrega, Descripcion FROM Entrega WHERE Entr
     </style>
 </head>
 <body>
+<div class="fondo-rotativo">
+    <img src="Img/IMG_5081.JPG" alt="Fondo 1">
+    <img src="Img/DSC06494.JPG" alt="Fondo 2">
+    <img src="Img/IMG_5105.JPG" alt="Fondo 3">
+</div>
+
+<header class="animate__animated animate__fadeInDown">
+        <div class="logo">
+            <a href="index.php">
+                <img src="Img/log.png" alt="Logo">
+            </a>
+        </div>
+        <div class="menu">
+            <nav class="menu">
+                <ul>
+                    <li><a href="../../Controlador/cerrar_sesion.php">Cerrar Sesión</a></li>
+                    
+                </ul>
+            </nav>
+        </div>
+    </header>
+
 <div class="container mt-5">
     <h2 class="text-center mb-4">📦 Órdenes Pendientes (Bartender)</h2>
     <div class="row">
@@ -114,5 +140,22 @@ function rechazarConMotivo(form) {
 </script>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+    document.addEventListener("DOMContentLoaded", () => {
+        const imagenes = document.querySelectorAll('.fondo-rotativo img');
+        let indice = 0;
+
+        if (imagenes.length > 0) {
+            imagenes[indice].classList.add('activo');
+
+            setInterval(() => {
+                imagenes[indice].classList.remove('activo');
+                indice = (indice + 1) % imagenes.length;
+                imagenes[indice].classList.add('activo');
+            }, 5000);
+        }
+    });
+</script>
+
 </body>
 </html>

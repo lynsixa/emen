@@ -1,14 +1,17 @@
 <?php
-// mesero.php
-include './conexion.php';
+// Incluir conexión
+include_once '../../conexion.php'; // Asegúrate que la ruta sea correcta
 ?>
 <!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="UTF-8">
     <title>Órdenes del Mesero 🍽️</title>
+    <link rel="stylesheet" href="CssMesero.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <link rel="icon" href="img/log.png" type="image/png">
+    
     <style>
         body {
             background: #fdf6f0;
@@ -26,14 +29,38 @@ include './conexion.php';
     </style>
 </head>
 <body>
+<div class="fondo-rotativo">
+    <img src="img/IMG_5081.JPG" alt="Fondo 1">
+    <img src="img/DSC06494.JPG" alt="Fondo 2">
+    <img src="img/IMG_5105.JPG" alt="Fondo 3">
+</div>
+
+
+<header class="animate__animated animate__fadeInDown">
+        <div class="logo">
+            <a href="index.php">
+                <img src="img/log.png" alt="Logo">
+            </a>
+        </div>
+        <div class="menu">
+            <nav class="menu">
+                <ul>
+                    
+                    <li><a href="../../Controlador/cerrar_sesion.php">Cerrar Sesión</a></li>
+                 
+                </ul>
+            </nav>
+        </div>
+    </header>
+
     <div class="container">
         <h1 class="mb-4">👨‍🍳 Órdenes listas para entregar</h1>
         <div class="row">
             <?php
-            $sql = "SELECT * FROM entrega WHERE Entregado = 1 AND Entregado = 0";
+            $sql = "SELECT * FROM entrega WHERE Entregado = 0";
             $result = $conn->query($sql);
 
-            if ($result->num_rows > 0) {
+            if ($result && $result->num_rows > 0) {
                 while ($row = $result->fetch_assoc()) {
                     echo "<div class='col-md-4'>
                         <div class='card shadow'>
@@ -70,12 +97,16 @@ include './conexion.php';
                     $sqlEntregadas = "SELECT * FROM entrega WHERE Entregado = 1";
                     $resultEntregadas = $conn->query($sqlEntregadas);
 
-                    while ($row = $resultEntregadas->fetch_assoc()) {
-                        echo "<tr>
-                            <td>{$row['idEntrega']}</td>
-                            <td>" . htmlspecialchars($row['Descripcion']) . "</td>
-                            <td>✅ Entregada</td>
-                        </tr>";
+                    if ($resultEntregadas && $resultEntregadas->num_rows > 0) {
+                        while ($row = $resultEntregadas->fetch_assoc()) {
+                            echo "<tr>
+                                <td>{$row['idEntrega']}</td>
+                                <td>" . htmlspecialchars($row['Descripcion']) . "</td>
+                                <td>✅ Entregada</td>
+                            </tr>";
+                        }
+                    } else {
+                        echo "<tr><td colspan='3'>No hay órdenes entregadas.</td></tr>";
                     }
                     ?>
                 </tbody>
@@ -131,5 +162,22 @@ include './conexion.php';
         }
     }
     ?>
+    
+    <script>
+    document.addEventListener("DOMContentLoaded", () => {
+        const imagenes = document.querySelectorAll('.fondo-rotativo img');
+        let indice = 0;
+
+        if (imagenes.length > 0) {
+            imagenes[indice].classList.add('activo');
+
+            setInterval(() => {
+                imagenes[indice].classList.remove('activo');
+                indice = (indice + 1) % imagenes.length;
+                imagenes[indice].classList.add('activo');
+            }, 5000);
+        }
+    });
+</script>
 </body>
 </html>

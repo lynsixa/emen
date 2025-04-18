@@ -1,18 +1,11 @@
 <?php
-// Incluir el archivo de conexión y el controlador
 require_once 'Conexion.php';
 require_once 'ControladorNIS.php';
 
-// Instanciamos el controlador
 $controladorNIS = new ControladorNIS();
-
-// Obtener los menús
 $menus = $controladorNIS->obtenerMenus();
-
-// Obtener los NIS registrados
 $nis = $controladorNIS->obtenerNIS();
 
-// Manejo de las acciones de formulario (crear, editar, eliminar)
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $accion = $_POST['accion'];
 
@@ -21,10 +14,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $numero_piso = $_POST['numero_piso'];
         $numero_mesa = $_POST['numero_mesa'];
         $menu_id = $_POST['menu_id'];
-
-        // Lógica para obtener el ID de la mesa según el número de piso y número de mesa
         $mesa_id = obtenerIdMesa($numero_piso, $numero_mesa, $controladorNIS);
-
         $controladorNIS->crearNIS($descripcion, $mesa_id, $menu_id);
     }
 
@@ -34,10 +24,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $numero_piso = $_POST['numero_piso'];
         $numero_mesa = $_POST['numero_mesa'];
         $menu_id = $_POST['menu_id'];
-
-        // Lógica para obtener el ID de la mesa según el número de piso y número de mesa
         $mesa_id = obtenerIdMesa($numero_piso, $numero_mesa, $controladorNIS);
-
         $controladorNIS->editarNIS($idNIS, $descripcion, $mesa_id, $menu_id);
     }
 
@@ -46,22 +33,18 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $controladorNIS->eliminarNIS($idNIS);
     }
 
-    // Recargar la página para reflejar cambios
     header('Location: indexNIS.php');
     exit;
 }
 
-// Función para obtener el ID de la mesa
 function obtenerIdMesa($numero_piso, $numero_mesa, $controladorNIS) {
     $mesas = $controladorNIS->obtenerMesas();
-
     foreach ($mesas as $mesa) {
         if ($mesa['NumeroPiso'] == $numero_piso && $mesa['NumeroMesa'] == $numero_mesa) {
             return $mesa['idMesa'];
         }
     }
 
-    // Si no existe la mesa, crearla y devolver el ID de la nueva mesa
     $conexion = (new Conexion())->getConnection();
     $sql = "INSERT INTO Mesa (NumeroPiso, NumeroMesa) VALUES (?, ?)";
     $stmt = $conexion->prepare($sql);
@@ -78,15 +61,43 @@ function obtenerIdMesa($numero_piso, $numero_mesa, $controladorNIS) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Gestión de NIS</title>
+    <link rel="icon" href="imagenes/log.png" type="image/png">
     <link rel="stylesheet" href="../Admin/CSS/CssNis.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
 </head>
 <body>
-    <h1>Gestión de NIS</h1>
 
-    <!-- Formulario para agregar nuevo NIS -->
-    <h2>Nuevo NIS</h2>
+<div class="fondo-rotativo">
+    <img src="imagenes/IMG_5081.JPG" alt="Fondo 1">
+    <img src="imagenes/DSC06494.JPG" alt="Fondo 2">
+    <img src="imagenes/IMG_5105.JPG" alt="Fondo 3">
+</div>
+
+<header class="bg-dark py-3 shadow-sm">
+    <div class="container d-flex flex-wrap align-items-center justify-content-between">
+        <!-- Logo -->
+        <a href="indexNIS.php" class="d-flex align-items-center text-white text-decoration-none">
+            <img src="imagenes/log.png" alt="Logo" style="height: 50px;">
+
+        </a>
+
+        <!-- Navegación -->
+        <nav class="nav">
+ 
+            <a class="nav-link text-danger" href="indexAdmin.php">Volver</a>
+        </nav>
+    </div>
+</header>
+
+<h1>Gestión de NIS</h1>
+
+<h2>Nuevo NIS</h2>
+<div class="formulario-container">
     <form method="POST" action="indexNIS.php">
         <input type="hidden" name="accion" value="crear">
+        
         <label for="descripcion">Descripción del NIS:</label>
         <input type="text" name="descripcion" required>
 
@@ -105,8 +116,11 @@ function obtenerIdMesa($numero_piso, $numero_mesa, $controladorNIS) {
 
         <button type="submit">Crear NIS</button>
     </form>
+</div>
 
-    <h2>Lista de NIS</h2>
+
+<h2>Lista de NIS</h2>
+<div class="tabla-container">
     <table border="1">
         <thead>
             <tr>
@@ -126,8 +140,7 @@ function obtenerIdMesa($numero_piso, $numero_mesa, $controladorNIS) {
                         <td><?= $row['NumeroMesa']; ?></td>
                         <td><?= $row['MenuDescripcion']; ?></td>
                         <td>
-                            <!-- Formulario para editar -->
-                            <form method="POST" style="display:inline;">
+                            <form  method="POST" style="display:inline;">
                                 <input type="hidden" name="accion" value="editar">
                                 <input type="hidden" name="idNIS" value="<?= $row['idCodigoNis']; ?>">
                                 <input type="text" name="descripcion" value="<?= $row['CodigoNIS']; ?>" required>
@@ -141,7 +154,6 @@ function obtenerIdMesa($numero_piso, $numero_mesa, $controladorNIS) {
                                 <button type="submit">Editar</button>
                             </form>
 
-                            <!-- Formulario para eliminar -->
                             <form method="POST" style="display:inline;">
                                 <input type="hidden" name="accion" value="eliminar">
                                 <input type="hidden" name="idNIS" value="<?= $row['idCodigoNis']; ?>">
@@ -157,5 +169,25 @@ function obtenerIdMesa($numero_piso, $numero_mesa, $controladorNIS) {
             <?php endif; ?>
         </tbody>
     </table>
+</div>
+
+
+<!-- Script para rotar el fondo -->
+<script>
+    document.addEventListener("DOMContentLoaded", () => {
+        const imagenes = document.querySelectorAll('.fondo-rotativo img');
+        let indice = 0;
+
+        if (imagenes.length > 0) {
+            imagenes[indice].classList.add('activo');
+
+            setInterval(() => {
+                imagenes[indice].classList.remove('activo');
+                indice = (indice + 1) % imagenes.length;
+                imagenes[indice].classList.add('activo');
+            }, 5000);
+        }
+    });
+</script>
 </body>
 </html>

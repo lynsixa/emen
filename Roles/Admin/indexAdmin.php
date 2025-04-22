@@ -95,7 +95,7 @@
                     <a href="/Proyecto/Roles/api/Agregar_eventos.php" class="btn">Eventos</a>
                     <a href="indexNIS.php" class="btn">NIS</a>
                     <a href="crudUsuarios.php" class="btn">Usuarios</a>
-                    <a href="../../Controlador/cerrar_sesion.php" class="btn btn-dorado">Inicio</a> <!-- Enlace para cerrar sesión -->
+                    <a href="../../Controlador/cerrar_sesion.php" class="btn btn-dorado">Cerrar Sesión</a> <!-- Enlace para cerrar sesión -->
                 </div>
             </div>
         </main>

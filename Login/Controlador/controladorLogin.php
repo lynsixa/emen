@@ -36,13 +36,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             // Redireccionar según el rol
             switch ($_SESSION['rol']) {
                 case 1:
-                    header("Location: /proyecto/Roles/Admin/indexAdmin.html");
+                    header("Location: /proyecto/Roles/Admin/indexAdmin.php");
                     break;
                 case 2:
-                    header("Location: ../indexGerente.html");
+                    header("Location: ../indexGerente.php");
                     break;
                 case 3:
-                    header("Location: ../indexBartender.html");
+                    header("Location: ../indexBartender.php");
                     break;
                 case 4:
                     header("Location: /proyecto/Roles/Usuariosincrud/indexscannis.php");

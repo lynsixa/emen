@@ -18,15 +18,18 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['agregar_evento'])) {
     $descripcion = $_POST['descripcion'];
     $fecha_evento = $_POST['fecha_evento'];
 
-    $query = "SELECT * FROM eventos WHERE DATE(Fecha_Evento) = DATE(?)";
+    // Usar una consulta con el formato DATETIME completo para evitar duplicados por hora y minuto
+    $query = "SELECT * FROM eventos WHERE Fecha_Evento = ?";
     $stmt = $conn->prepare($query);
-    $stmt->bind_param('s', $fecha_evento);
+    $stmt->bind_param('s', $fecha_evento); // 's' indica que es un string
     $stmt->execute();
     $result = $stmt->get_result();
 
     if ($result && $result->num_rows > 0) {
-        echo "<script>alert('Ya existe un evento en esta fecha. No se puede repetir.');</script>";
+        // Si ya existe un evento en esa fecha y hora exacta
+        echo "<script>alert('Ya existe un evento en esta fecha y hora. No se puede repetir.');</script>";
     } else {
+        // Si no existe, procedemos a agregar el nuevo evento
         $query = "INSERT INTO eventos (Titulo, Descripcion, Fecha_Evento) VALUES (?, ?, ?)";
         $stmt = $conn->prepare($query);
         if ($stmt === false) {
@@ -49,6 +52,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['editar_evento'])) {
     $descripcion = $_POST['descripcion'];
     $fecha_evento = $_POST['fecha_evento'];
 
+    // Consulta para actualizar el evento
     $query = "UPDATE eventos SET Titulo = ?, Descripcion = ?, Fecha_Evento = ? WHERE idEventos = ?";
     $stmt = $conn->prepare($query);
     $stmt->bind_param('sssi', $titulo, $descripcion, $fecha_evento, $evento_id);
@@ -75,11 +79,15 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['eliminar_evento'])) {
 }
 
 // Consultar eventos
-$query = "SELECT idEventos, Titulo, Descripcion, Fecha_Evento FROM eventos";
+$query = "SELECT idEventos, Titulo, Descripcion, Fecha_Evento FROM eventos ORDER BY Fecha_Evento ASC"; // Aseguramos que estén ordenados por fecha
 $eventosResult = $conn->query($query);
+
+// Verificamos si la consulta se ejecutó correctamente
 if (!$eventosResult) {
-    die("Error al obtener los eventos: " . $conn->error);
+    die("Error al obtener los eventos: " . $conn->error);  // Si la consulta falla, mostramos el error
 }
+
+// Si la consulta fue exitosa, la variable $eventosResult debería contener el resultado
 ?>
 
 <!DOCTYPE html>
@@ -87,36 +95,17 @@ if (!$eventosResult) {
 <head>
     <meta charset="UTF-8">
     <title>Gestión de Eventos</title>
-<<<<<<< HEAD
+    <link rel="stylesheet" href="StyleApi.css">
     <link rel="icon" type="image/png" href="../Admin/imagenes/log.png">
-    <link rel="stylesheet" href="CssEventos.css">
-
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-    <style>
-        body {
-            background: linear-gradient(to bottom right, #ffeb3b, #000000);
-            min-height: 100vh;
-            background-attachment: fixed;
-            background-repeat: no-repeat;
-            background-size: cover;
-        }
-        .btn-volver {
-            position: fixed;
-            top: 20px;
-            left: 20px;
-            z-index: 999;
-        }
-    </style>
 </head>
+
 <body class="bg-light">
+
 <a href="../Admin/indexAdmin.php" class="btn btn-dark btn-volver">
         <i class="bi bi-arrow-left-circle"></i> Volver
     </a>
-=======
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-</head>
-<body class="bg-light">
->>>>>>> d7ad886f3380c3d4559d10dc883980110ce673e6
+
 <div class="container py-5">
     <div class="card shadow p-4 mb-5 bg-white rounded">
         <h2 class="mb-4 text-primary"><?php echo isset($_POST['editar_evento']) ? 'Editar Evento' : 'Agregar Evento'; ?></h2>

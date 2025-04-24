@@ -16,7 +16,6 @@ body {
         background-position: -200% 50%;
     }
 }
-<<<<<<< HEAD
 .btn-volver {
     background: linear-gradient(135deg, #000000, #2c2c2c); /* Fondo negro degradado */
     color: #FFB800; /* Texto e ícono dorado */
@@ -44,9 +43,6 @@ body {
 .btn-volver i {
     font-size: 1.2rem;
 }
-=======
-
->>>>>>> d7ad886f3380c3d4559d10dc883980110ce673e6
 .form-container {
     background-color: rgb(145, 197, 250);
     padding: 40px;

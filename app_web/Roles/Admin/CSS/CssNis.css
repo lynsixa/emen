@@ -11,11 +11,7 @@ body {
     font-family: Arial, sans-serif;
 }
 header {
-<<<<<<< HEAD
     background-color: rgb(216, 216, 216);
-=======
-    background-color: black;
->>>>>>> d7ad886f3380c3d4559d10dc883980110ce673e6
     padding: 10px 20px;
     display: flex;
     align-items: center;
@@ -51,7 +47,6 @@ h1, h2 {
     text-align: center;
     margin-bottom: 20px;
 }
-<<<<<<< HEAD
 h1 {
     color: #ffffff; /* Color blanco */
     font-size: 2.8rem;
@@ -63,8 +58,6 @@ h1 {
     text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.5); /* Sombra para que resalte sobre cualquier fondo */
 }
 
-=======
->>>>>>> d7ad886f3380c3d4559d10dc883980110ce673e6
 
 /* Estilo para el formulario */
 .formulario-container {
@@ -156,20 +149,12 @@ form button:hover {
     background-color: rgba(255, 255, 255, 0.85);
     border-radius: 10px;
     overflow: hidden;
-<<<<<<< HEAD
     box-shadow: 0 3px 15px rgba(255, 255, 255, 0.2);
-=======
-    box-shadow: 0 3px 15px rgba(0, 0, 0, 0.2);
->>>>>>> d7ad886f3380c3d4559d10dc883980110ce673e6
 }
 
 .tabla-container th, .tabla-container td {
     padding: 30px;
-<<<<<<< HEAD
     border: 1px solid rgba(255, 255, 255, 0.1);
-=======
-    border: 1px solid rgba(0, 0, 0, 0.1);
->>>>>>> d7ad886f3380c3d4559d10dc883980110ce673e6
     text-align: center;
     color: #333;
 }

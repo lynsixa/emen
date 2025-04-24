@@ -6,9 +6,20 @@
 }
 
 /* Títulos */
+h1, h2 {
+    color: #ffffff;
+    text-align: center;
+    margin-bottom: 20px;
+}
 h1 {
-    font-size: 2.5rem;
-    font-weight: bold;
+    color: #ffffff; /* Color blanco */
+    font-size: 2.8rem;
+    font-weight: 700;
+    text-align: center;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    margin-bottom: 30px;
+    text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.5); /* Sombra para que resalte sobre cualquier fondo */
 }
 
 /* Estilos de las tarjetas */

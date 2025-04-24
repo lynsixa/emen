@@ -149,16 +149,11 @@ main {
 }
 
 .titulo-principal {
-<<<<<<< HEAD
     text-align: center;
     width: 100%;
     font-size: 2rem;
     margin-top: 20px;
     color: #333;
-=======
-    color: black;
-    margin-bottom: 2rem;
->>>>>>> d7ad886f3380c3d4559d10dc883980110ce673e6
 }
 
 .contenedor-productos {
@@ -1126,7 +1121,7 @@ input[type="checkbox"] {
     gap: 20px;                  /* Espacio entre los botones */
     justify-items: center;      /* Centrar horizontalmente */
     margin-top: 20px;
-    padding: 20px;
+    padding: 100px;
 }
 /* Contenedor principal que agrupa botones y logo */
 /* Contenedor principal que agrupa botones y logo */
@@ -1148,7 +1143,7 @@ input[type="checkbox"] {
 
 .logo-derecho img {
     max-width: 250px;
-    width: 100%;
+    width: 200%;
     height: auto;
     opacity: 0.85; /* Opacidad suave */
     filter: drop-shadow(0 0 15px rgba(255, 215, 0, 0.6)); /* Sombra dorada */

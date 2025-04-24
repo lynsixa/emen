@@ -18,7 +18,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['crear'])) {
         $mensaje = "⚠️ Debes subir al menos una imagen.";
     } else {
         $imagenes = [];
-        $carpetaDestino = "gesProductos/fotosProductos/";
+        $carpetaDestino = "../Usuarioconcrud/gesProductos/fotosProductos/";
 
         for ($i = 1; $i <= 3; $i++) {
             if (!empty($_FILES["imagen$i"]['name'])) {
@@ -64,7 +64,7 @@ if (isset($_GET['editar']) && $_SERVER['REQUEST_METHOD'] == 'POST') {
         $mensaje = "⚠️ Debes subir al menos una imagen.";
     } else {
         $imagenes = [];
-        $carpetaDestino = "gesProductos/fotosProductos/";
+        $carpetaDestino = "../Usuarioconcrud/gesProductos/fotosProductos/";
 
         for ($i = 1; $i <= 3; $i++) {
             if (!empty($_FILES["imagen$i"]['name'])) {
@@ -117,7 +117,6 @@ $resultado = $conexion->query("SELECT
 <head>
     <meta charset="UTF-8">
     <title>Gestión de Productos</title>
-<<<<<<< HEAD
     <link rel="icon" type="image/png" href="../Admin/imagenes/log.png">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="../Admin/CSS/CssProducto.css">
@@ -128,13 +127,12 @@ $resultado = $conexion->query("SELECT
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
 
     <style>
-        body {
-            background: linear-gradient(to bottom right, #ffeb3b, #000000);
-            min-height: 100vh;
-            background-attachment: fixed;
-            background-repeat: no-repeat;
-            background-size: cover;
-        }
+  body {
+    font-family: Arial, sans-serif;
+    background: linear-gradient(to right, rgb(200, 153, 45), rgb(62, 61, 63), rgb(0, 0, 0));
+    margin: 0;
+    padding: 0;
+       }
         .btn-volver {
             position: fixed;
             top: 20px;
@@ -150,12 +148,7 @@ $resultado = $conexion->query("SELECT
     </a>
 
 
-=======
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-</head>
-<body class="container py-5">
->>>>>>> d7ad886f3380c3d4559d10dc883980110ce673e6
-    <h2 class="mb-4">📦 Subir Nuevo Producto</h2>
+    <h2 class="text-center text-white mb-4">📦 Subir Nuevo Producto</h2>
     
     <?php if ($mensaje): ?>
         <div class="alert alert-info"><?= $mensaje ?></div>
@@ -196,7 +189,8 @@ $resultado = $conexion->query("SELECT
 
     <hr class="my-5">
 
-    <h3>📋 Lista de Productos</h3>
+    <h3 class="text-center text-white mb-4">📋 Lista de Productos</h3>
+    
     <table class="table table-bordered">
         <thead class="table-dark">
             <tr>

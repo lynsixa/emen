@@ -36,13 +36,10 @@ require_once '../Modelo/Conexion.php';
 </head>
 <body>
 
-<<<<<<< HEAD
 <a href="../../../index.php" class="btn btn-dark btn-volver">
         <i class="bi bi-arrow-left-circle"></i> Volver
     </a>
     
-=======
->>>>>>> d7ad886f3380c3d4559d10dc883980110ce673e6
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-md-6 col-lg-4">

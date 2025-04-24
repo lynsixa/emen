@@ -33,24 +33,23 @@ if (!isset($_SESSION['idUsuario']) || $_SESSION['rol'] != 1) {
 
 <!-- Menú de navegación -->
 <header>
+
     <div class="container d-flex justify-content-between align-items-center">
         <a href="indexAdmin.php" class="text-white">
             <i class="bi bi-arrow-left-circle"></i> Volver
         </a>
-        <nav>
-            <a href="indexAdmin.php" class="text-white">Inicio</a>
-        </nav>
+       
     </div>
 </header>
 
-<!-- Título principal -->
-<header class="header-informes">
-    <h1>Generar Informes</h1>
-</header>
+
+
+    <h1 class="text-center text-white mb-4">Generar Informes</h1>
+
 
 <!-- Contenedor de los formularios de descarga -->
 <div class="container-informes">
-    <h2>Elige el Informe que deseas descargar</h2>
+    <h2 class="text-center text-white mb-4"></h2class>Elige el Informe que deseas descargar</h2>
 
     <!-- Formulario para Descargar Informe de Usuarios -->
     <form method="POST" action="../../Controlador/descarga_excel/descargar_informe.php" class="form-informes">

@@ -23,7 +23,7 @@ h2, h3 {
 
 /* Estilos del formulario */
 form {
-    background: linear-gradient(145deg, rgba(255, 215, 0, 0.15), rgba(0, 0, 0, 0.3)); /* Gradiente dorado a negro */
+    background: linear-gradient(145deg, rgb(182, 115, 0), rgb(0, 0, 0)); /* Gradiente dorado a negro */
     padding: 30px;
     border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
@@ -41,21 +41,21 @@ form label {
 
 /* Estilo para los campos de entrada */
 form .form-control {
-    background-color: rgba(255, 215, 0, 0.1); /* Fondo dorado suave */
+    background-color: rgb(147, 147, 147); /* Fondo dorado suave */
     color: white;
-    border: 1px solid rgba(255, 215, 0, 0.5); /* Borde dorado suave */
+    border: 1px solid rgb(0, 0, 0); /* Borde dorado suave */
     border-radius: 5px;
     padding: 12px;
 }
 
 form .form-control:focus {
-    border-color: rgba(255, 215, 0, 0.8); /* Borde dorado intenso al enfocarse */
-    box-shadow: 0 0 5px rgba(255, 215, 0, 0.8); /* Resplandor dorado */
+    border-color: rgba(121, 103, 2, 0.8); /* Borde dorado intenso al enfocarse */
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.8); /* Resplandor dorado */
 }
 
 /* Estilo para los botones */
 button[type="submit"] {
-    background-color: #FFB800; /* Dorado */
+    background-color: #000000; /* Dorado */
     color: white;
     font-weight: bold;
     padding: 10px 20px;
@@ -83,7 +83,7 @@ button[type="submit"]:hover {
 
 .table-dark {
     background-color: rgba(0, 0, 0, 0.7); /* Fondo oscuro para el encabezado */
-    color: white;
+    color: rgb(237, 237, 237);
 }
 
 .table-hover tbody tr:hover {
@@ -108,8 +108,8 @@ table img {
 }
 
 .btn-warning {
-    background-color: #ffc107; /* Color amarillo para editar */
-    border-color: #ffc107;
+    background-color: #000000; /* Color amarillo para editar */
+    border-color: #000000;
 }
 
 .btn-danger {

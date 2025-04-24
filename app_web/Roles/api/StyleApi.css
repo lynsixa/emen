@@ -149,3 +149,9 @@ body {
         padding: 12px;
     }
 }
+.btn-volver {
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    z-index: 999;
+}

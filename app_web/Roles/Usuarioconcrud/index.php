@@ -22,7 +22,6 @@ if ($data) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" href="img/log.png" type="image/png">
     <title>Detalles de la Mesa</title>
-<<<<<<< HEAD
     <link rel="stylesheet" href="Css/CssUsuarioCrud.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -33,12 +32,6 @@ if ($data) {
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
     
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
-=======
-    <link rel="stylesheet" href="Css/StylePrincipall.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
->>>>>>> d7ad886f3380c3d4559d10dc883980110ce673e6
 
     <script>
         // Bloquear el retroceso en el navegador
@@ -90,24 +83,24 @@ if ($data) {
             </h2>
         </div>
 
-        <div class="card card-dark-yellow shadow-lg rounded-4 mx-auto" style="max-width: 600px;">
-            <div class="card-body">
-                <ul class="list-group list-group-flush fs-5">
-                    <li class="list-group-item">
-                        <i class="bi bi-hash me-2"></i>
-                        <strong>Número de Mesa:</strong> <?php echo $numeroMesa; ?>
-                    </li>
-                    <li class="list-group-item">
-                        <i class="bi bi-building me-2"></i>
-                        <strong>Número de Piso:</strong> <?php echo $numeroPiso; ?>
-                    </li>
-                    <li class="list-group-item">
-                        <i class="bi bi-card-text me-2"></i>
-                        <strong>Descripción del Menú:</strong> <?php echo $menuDescripcion; ?>
-                    </li>
-                </ul>
+            <div class="card card-dark-yellow shadow-lg rounded-4 mx-auto" style="max-width: 600px;">
+                <div class="card-body">
+                    <ul class="list-group list-group-flush fs-5">
+                        <li class="list-group-item">
+                            <i class="bi bi-hash me-2"></i>
+                            <strong>Número de Mesa:</strong> <?php echo $numeroMesa; ?>
+                        </li>
+                        <li class="list-group-item">
+                            <i class="bi bi-building me-2"></i>
+                            <strong>Número de Piso:</strong> <?php echo $numeroPiso; ?>
+                        </li>
+                        <li class="list-group-item">
+                            <i class="bi bi-card-text me-2"></i>
+                            <strong>Descripción del Menú:</strong> <?php echo $menuDescripcion; ?>
+                        </li>
+                    </ul>
+                </div>
             </div>
-        </div>
     </section>
 </main>
 

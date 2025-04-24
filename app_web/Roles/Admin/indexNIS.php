@@ -88,14 +88,15 @@ function obtenerIdMesa($numero_piso, $numero_mesa, $controladorNIS) {
         <!-- Navegación -->
         <nav class="nav">
  
-            <a class="nav-link text-danger" href="indexAdmin.php">Volver</a>
+            <a  href="indexAdmin.php" class="btn btn-dark btn-volver">
+            <i class="bi bi-arrow-left-circle">  Volver</a>
         </nav>
     </div>
 </header>
 
-<h1>Gestión de NIS</h1>
+<h1 class="text-center text-white mb-4">Gestión de NIS</h1>
 
-<h2>Nuevo NIS</h2>
+<h2 class="text-center text-white mb-4">Nuevo NIS</h2>
 <div class="formulario-container">
     <form method="POST" action="indexNIS.php">
         <input type="hidden" name="accion" value="crear">
@@ -121,7 +122,7 @@ function obtenerIdMesa($numero_piso, $numero_mesa, $controladorNIS) {
 </div>
 
 
-<h2>Lista de NIS</h2>
+<h2 class="text-center text-white mb-4">Lista de NIS</h2>
 <div class="tabla-container">
     <table border="1">
         <thead>

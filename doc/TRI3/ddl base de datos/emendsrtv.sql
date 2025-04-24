@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 23-04-2025 a las 00:30:57
+-- Tiempo de generación: 24-04-2025 a las 00:17:41
 -- Versión del servidor: 10.4.32-MariaDB
 -- Versión de PHP: 8.2.12
 
@@ -129,7 +129,10 @@ INSERT INTO `entrega` (`idEntrega`, `Descripcion`, `Entregado`) VALUES
 (23, 'Entrega de los productos en proceso. Usuario: Andres Silva', 0),
 (24, 'Entrega de los productos en proceso. Usuario: Sandra Peñaranda', 0),
 (25, 'Entrega de los productos en proceso. Usuario: Juan Rayz', 0),
-(26, 'Entrega de los productos en proceso. Usuario: Juan Rayz', 0);
+(26, 'Entrega de los productos en proceso. Usuario: Juan Rayz', 1),
+(27, 'Entrega de los productos en proceso. Usuario: Juan Rayz', 0),
+(28, 'Entrega de los productos en proceso. Usuario: Juan Rayz', 0),
+(29, 'Entrega de los productos en proceso. Usuario: Juan Rayz', 0);
 
 -- --------------------------------------------------------
 
@@ -244,7 +247,13 @@ INSERT INTO `orden` (`idOrden`, `TokenCliente`, `Descripcion`, `PrecioFinal`, `F
 (29, '5facbf55d3f1805d5f0193216f4a91dd', 'Jack Daniel\'s N7 (Cantidad: 1) - Precio: $300000.000 | Total: $300000 | Código Nis: No disponible | Mesa: N/A | Piso: N/A\nMoet Ice (Cantidad: 1) - Precio: $930000.000 | Total: $930000 | Código Nis: No disponible | Mesa: N/A | Piso: N/A\n', 1230000, '0000-00-00 00:00:00', 44, 25, 1, 9),
 (30, '5facbf55d3f1805d5f0193216f4a91dd', 'Jack Daniel\'s N7 (Cantidad: 1) - Precio: $300000.000 | Total: $300000 | Código Nis: No disponible | Mesa: N/A | Piso: N/A\nMoet Ice (Cantidad: 1) - Precio: $930000.000 | Total: $930000 | Código Nis: No disponible | Mesa: N/A | Piso: N/A\n', 1230000, '0000-00-00 00:00:00', 33, 25, 1, 9),
 (31, 'fe2d0406b10c9a8761dcd5629ea27989', 'Vueve Clicquot (Cantidad: 1) - Precio: $930000.000 | Total: $930000 | Código Nis: No disponible | Mesa: N/A | Piso: N/A\nDon Perignon (Cantidad: 1) - Precio: $2500000.000 | Total: $2500000 | Código Nis: No disponible | Mesa: N/A | Piso: N/A\n', 3430000, '0000-00-00 00:00:00', 34, 26, 1, 9),
-(32, 'fe2d0406b10c9a8761dcd5629ea27989', 'Vueve Clicquot (Cantidad: 1) - Precio: $930000.000 | Total: $930000 | Código Nis: No disponible | Mesa: N/A | Piso: N/A\nDon Perignon (Cantidad: 1) - Precio: $2500000.000 | Total: $2500000 | Código Nis: No disponible | Mesa: N/A | Piso: N/A\n', 3430000, '0000-00-00 00:00:00', 32, 26, 1, 9);
+(32, 'fe2d0406b10c9a8761dcd5629ea27989', 'Vueve Clicquot (Cantidad: 1) - Precio: $930000.000 | Total: $930000 | Código Nis: No disponible | Mesa: N/A | Piso: N/A\nDon Perignon (Cantidad: 1) - Precio: $2500000.000 | Total: $2500000 | Código Nis: No disponible | Mesa: N/A | Piso: N/A\n', 3430000, '0000-00-00 00:00:00', 32, 26, 1, 9),
+(33, '74c89cb3a788d2fc40d3136315f3cc7c', 'Vueve Clicquot (Cantidad: 1) - Precio: $930000.000 | Total: $930000 | Código Nis: 1234 | Mesa: 2 | Piso: 1\n', 930000, '0000-00-00 00:00:00', 34, 27, 1, 9),
+(34, '6977d6bb42c236192e6c900cd566e3eb', 'Chandon Rose (Cantidad: 1) - Precio: $330000.000 | Total: $330000 | Código Nis: 1234 | Mesa: 2 | Piso: 1\nMoet Ice (Cantidad: 1) - Precio: $930000.000 | Total: $930000 | Código Nis: 1234 | Mesa: 2 | Piso: 1\n', 1260000, '0000-00-00 00:00:00', 35, 28, 1, 9),
+(35, '6977d6bb42c236192e6c900cd566e3eb', 'Chandon Rose (Cantidad: 1) - Precio: $330000.000 | Total: $330000 | Código Nis: 1234 | Mesa: 2 | Piso: 1\nMoet Ice (Cantidad: 1) - Precio: $930000.000 | Total: $930000 | Código Nis: 1234 | Mesa: 2 | Piso: 1\n', 1260000, '0000-00-00 00:00:00', 33, 28, 1, 9),
+(36, '769118f802f6d2d15315cc14993426b6', 'Chandon Rose (Cantidad: 1) - Precio: $330000.000 | Total: $330000 | Código Nis: 1234 | Mesa: 2 | Piso: 1\nBuchanan\'s Master (Cantidad: 1) - Precio: $460000.000 | Total: $460000 | Código Nis: 1234 | Mesa: 2 | Piso: 1\nBuchanan\'s 12 años (Cantidad: 1) - Precio: $400000.000 | Total: $400000 | Código Nis: 1234 | Mesa: 2 | Piso: 1\n', 1190000, '0000-00-00 00:00:00', 35, 29, 1, 9),
+(37, '769118f802f6d2d15315cc14993426b6', 'Chandon Rose (Cantidad: 1) - Precio: $330000.000 | Total: $330000 | Código Nis: 1234 | Mesa: 2 | Piso: 1\nBuchanan\'s Master (Cantidad: 1) - Precio: $460000.000 | Total: $460000 | Código Nis: 1234 | Mesa: 2 | Piso: 1\nBuchanan\'s 12 años (Cantidad: 1) - Precio: $400000.000 | Total: $400000 | Código Nis: 1234 | Mesa: 2 | Piso: 1\n', 1190000, '0000-00-00 00:00:00', 40, 29, 1, 9),
+(38, '769118f802f6d2d15315cc14993426b6', 'Chandon Rose (Cantidad: 1) - Precio: $330000.000 | Total: $330000 | Código Nis: 1234 | Mesa: 2 | Piso: 1\nBuchanan\'s Master (Cantidad: 1) - Precio: $460000.000 | Total: $460000 | Código Nis: 1234 | Mesa: 2 | Piso: 1\nBuchanan\'s 12 años (Cantidad: 1) - Precio: $400000.000 | Total: $400000 | Código Nis: 1234 | Mesa: 2 | Piso: 1\n', 1190000, '0000-00-00 00:00:00', 39, 29, 1, 9);
 
 -- --------------------------------------------------------
 
@@ -267,14 +276,14 @@ CREATE TABLE `producto` (
 
 INSERT INTO `producto` (`idProducto`, `Precio`, `Disponibilidad`, `Cantidad`, `CodigoNis_idCodigoNis`, `Categoria_idCategoria`) VALUES
 (32, 2500000.000, 0, 50, NULL, NULL),
-(33, 930000.000, 1, 10, NULL, NULL),
-(34, 930000.000, 1, 100, NULL, NULL),
-(35, 330000.000, 1, 30, NULL, NULL),
+(33, 930000.000, 1, 9, NULL, NULL),
+(34, 930000.000, 1, 99, NULL, NULL),
+(35, 330000.000, 1, 28, NULL, NULL),
 (36, 260000.000, 1, 15, NULL, NULL),
 (37, 250000.000, 1, 50, NULL, NULL),
 (38, 660000.000, 1, 20, NULL, NULL),
-(39, 400000.000, 1, 100, NULL, NULL),
-(40, 460000.000, 1, 30, NULL, NULL),
+(39, 400000.000, 1, 99, NULL, NULL),
+(40, 460000.000, 1, 29, NULL, NULL),
 (41, 380000.000, 1, 26, NULL, NULL),
 (42, 340000.000, 1, 50, NULL, NULL),
 (43, 320000.000, 1, 32, NULL, NULL),
@@ -351,7 +360,10 @@ INSERT INTO `solicitud` (`idSolicitud`, `Descripcion`, `Informe`, `Despachado`, 
 (23, 'Solicitud de productos: Moet Ice (Cantidad: 1) - Precio: $930000.000 | Total: $930000 | Código Nis: No disponible | Mesa: N/A | Piso: N/A\n | Nombre usuario: Andres Silva', NULL, 0, 23),
 (24, 'Solicitud de productos: Moet Ice (Cantidad: 4) - Precio: $930000.000 | Total: $3720000 | Código Nis: No disponible | Mesa: N/A | Piso: N/A\n | Nombre usuario: Sandra Peñaranda', NULL, 0, 24),
 (25, 'Solicitud de productos:\nJack Daniel\'s N7 (Cantidad: 1) - Precio: $300000.000 | Total: $300000 | Código Nis: No disponible | Mesa: N/A | Piso: N/A\nMoet Ice (Cantidad: 1) - Precio: $930000.000 | Total: $930000 | Código Nis: No disponible | Mesa: N/A | Piso: N/A\n\nUsuario: Juan Rayz', NULL, 0, 25),
-(26, 'Solicitud de productos:\nVueve Clicquot (Cantidad: 1) - Precio: $930000.000 | Total: $930000 | Código Nis: No disponible | Mesa: N/A | Piso: N/A\nDon Perignon (Cantidad: 1) - Precio: $2500000.000 | Total: $2500000 | Código Nis: No disponible | Mesa: N/A | Piso: N/A\n\nUsuario: Juan Rayz', NULL, 0, 26);
+(26, 'Solicitud de productos:\nVueve Clicquot (Cantidad: 1) - Precio: $930000.000 | Total: $930000 | Código Nis: No disponible | Mesa: N/A | Piso: N/A\nDon Perignon (Cantidad: 1) - Precio: $2500000.000 | Total: $2500000 | Código Nis: No disponible | Mesa: N/A | Piso: N/A\n\nUsuario: Juan Rayz', NULL, 1, 26),
+(27, 'Solicitud de productos:\nVueve Clicquot (Cantidad: 1) - Precio: $930000.000 | Total: $930000 | Código Nis: 1234 | Mesa: 2 | Piso: 1\n\nUsuario: Juan Rayz', NULL, 0, 27),
+(28, 'Solicitud de productos:\nChandon Rose (Cantidad: 1) - Precio: $330000.000 | Total: $330000 | Código Nis: 1234 | Mesa: 2 | Piso: 1\nMoet Ice (Cantidad: 1) - Precio: $930000.000 | Total: $930000 | Código Nis: 1234 | Mesa: 2 | Piso: 1\n\nUsuario: Juan Rayz', NULL, 0, 28),
+(29, 'Solicitud de productos:\nChandon Rose (Cantidad: 1) - Precio: $330000.000 | Total: $330000 | Código Nis: 1234 | Mesa: 2 | Piso: 1\nBuchanan\'s Master (Cantidad: 1) - Precio: $460000.000 | Total: $460000 | Código Nis: 1234 | Mesa: 2 | Piso: 1\nBuchanan\'s 12 años (Cantidad: 1) - Precio: $400000.000 | Total: $400000 | Código Nis: 1234 | Mesa: 2 | Piso: 1\n\nUsuario: Juan Rayz', NULL, 0, 29);
 
 -- --------------------------------------------------------
 
@@ -409,7 +421,7 @@ INSERT INTO `usuario` (`idUsuario`, `Nombres`, `Apellidos`, `Documento`, `Correo
 (6, 'Andres', 'Silva', '1140917400', 'andres.silva310230@gmail.com', 0x243279243130246872677449716a563531756c6b6b334854305949612e7a4f615144584156736f4276486d7a77714c4e586b65705133376f724f4a6d, '2000-10-16', '654a807a7ab8e062d6a31cad11afa477', '81bcb0d3e15e83b9ce933a1d10665b7b', 1, 1, 1, NULL),
 (7, 'Johana', 'Milena', '1234567890', 'joana@gmail.com', 0x243279243130244e4937634d51456139747475372f714f6864613666754745377556425756765a44542e43443449667036697556474d74667a4e4c71, '2000-10-17', '3ae59a4e2c1bdc01d1c61a2fb5cf3c0b', NULL, 0, 1, 4, NULL),
 (8, 'Sandra', 'Peñaranda', '2345690845', 'sandra@gmail.com', 0x2432792431302442385a30737a55494f66463951397738544944316d4f574b2f637957524a51504d6f42332e4f655a3074474d77386b52636244534b, '2000-02-10', 'a6d9236653df7e6af782befce2812046', NULL, 0, 1, 5, NULL),
-(9, 'Juan', 'Rayz', '1021670419', 'estebantellez0515@outlook.com', 0x243279243130244d516b334f5a42596d33727965444e5163725861672e30625074704d61764277545a5164546b4e53623552583633662e4b54634c65, '2000-02-12', 'fc8c6dbe7dcc761c652f113255e2606b', NULL, 0, 1, 4, NULL);
+(9, 'Juan', 'Rayz', '1021670419', 'estebantellez0515@outlook.com', 0x24327924313024517970623338336131635534425170476c436b617175626b6e36457766614e4444456c504e59383656316f685a4a435a534d423547, '2000-02-12', 'fc8c6dbe7dcc761c652f113255e2606b', NULL, 0, 1, 4, NULL);
 
 --
 -- Índices para tablas volcadas
@@ -520,7 +532,7 @@ ALTER TABLE `codigonis`
 -- AUTO_INCREMENT de la tabla `entrega`
 --
 ALTER TABLE `entrega`
-  MODIFY `idEntrega` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
+  MODIFY `idEntrega` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;
 
 --
 -- AUTO_INCREMENT de la tabla `eventos`
@@ -544,7 +556,7 @@ ALTER TABLE `mesa`
 -- AUTO_INCREMENT de la tabla `orden`
 --
 ALTER TABLE `orden`
-  MODIFY `idOrden` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=33;
+  MODIFY `idOrden` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=39;
 
 --
 -- AUTO_INCREMENT de la tabla `producto`
@@ -562,7 +574,7 @@ ALTER TABLE `roles`
 -- AUTO_INCREMENT de la tabla `solicitud`
 --
 ALTER TABLE `solicitud`
-  MODIFY `idSolicitud` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
+  MODIFY `idSolicitud` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;
 
 --
 -- AUTO_INCREMENT de la tabla `tipo de documento`

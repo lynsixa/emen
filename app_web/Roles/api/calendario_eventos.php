@@ -1,6 +1,6 @@
 <?php
 // Incluir el archivo de conexión
-include_once 'Conexion.php';
+include_once 'conexion.php';
 
 // Consultar los eventos de la base de datos
 $query = "SELECT * FROM Eventos ORDER BY Fecha_Evento ASC"; // Asegúrate de que el nombre de la columna sea correcto
@@ -16,8 +16,15 @@ while ($evento = $resultado->fetch_assoc()) { // Usar fetch_assoc() para obtener
         'description' => $evento['Descripcion']  // Corrige el nombre de la columna
     ];
 }
-?>
 
+// Comprobar si la solicitud es de tipo API (por ejemplo, se hace desde Postman)
+if ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET['api'])) {
+    // Si la solicitud es de tipo GET con el parámetro 'api', devolvemos los eventos en formato JSON
+    header('Content-Type: application/json');
+    echo json_encode($eventos);
+    exit; // Finalizamos la ejecución del script, ya que solo queremos devolver los datos JSON
+}
+?>
 
 <!DOCTYPE html>
 <html lang="es">
@@ -25,7 +32,7 @@ while ($evento = $resultado->fetch_assoc()) { // Usar fetch_assoc() para obtener
     <meta charset="UTF-8">
     <title>Calendario de Eventos</title>
     <link rel="stylesheet" href="cale.css">
-
+    <link rel="icon" type="image/png" href="../Admin/imagenes/log.png">
     <!-- FullCalendar CSS -->
     <link href="https://cdn.jsdelivr.net/npm/fullcalendar@5.11.2/main.min.css" rel="stylesheet">
     
@@ -54,9 +61,16 @@ while ($evento = $resultado->fetch_assoc()) { // Usar fetch_assoc() para obtener
             font-size: 12px;
             color: #555;
         }
+        .btn-volver {
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    z-index: 999;
+   }
     </style>
 </head>
 <body>
+
 
 <!-- Mostrar el calendario -->
 <div id="calendar"></div>

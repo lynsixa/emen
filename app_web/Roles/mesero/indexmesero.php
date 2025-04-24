@@ -51,7 +51,7 @@ include_once '../../Modelo/conexion.php'; // Asegúrate que la ruta sea correcta
 </header>
 
 <div class="container">
-    <h1 class="mb-4">👨‍🍳 Órdenes listas para entregar</h1>
+    <h1 class= "text-center text-white mb-4">👨‍🍳 Órdenes listas para entregar</h1>
     <div class="row">
         <?php
         // Consulta para obtener las órdenes de entrega y las descripciones de las solicitudes, excluyendo las rechazadas y las no despachadas (Despachado = 0)
@@ -72,7 +72,7 @@ include_once '../../Modelo/conexion.php'; // Asegúrate que la ruta sea correcta
                             <form method='POST'>
                                 <input type='hidden' name='idEntrega' value='{$row['idEntrega']}'>
                                 <button type='submit' name='entregar' class='btn btn-success w-100'>✅ Entregar</button>
-                                <button type='button' onclick='rechazarOrden({$row['idEntrega']})' class='btn btn-danger w-100 mt-2'>❌ Rechazar</button>
+                               
                             </form>
                         </div>
                     </div>

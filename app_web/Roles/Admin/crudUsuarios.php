@@ -22,21 +22,18 @@ $usuarioEditar = isset($_GET['editar']) ? $controlador->obtenerUsuarioPorId($_GE
 <head>
     <meta charset="UTF-8">
     <title>Gestión de Usuarios</title>
-<<<<<<< HEAD
     <link rel="icon" type="image/png" href="../Admin/imagenes/log.png">
     <link rel="stylesheet" href="../Admin/CSS/CssUsuario.css">
-=======
->>>>>>> d7ad886f3380c3d4559d10dc883980110ce673e6
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
     <style>
-        body {
-            background: linear-gradient(to bottom right, #ffeb3b, #000000);
-            min-height: 100vh;
-            background-attachment: fixed;
-            background-repeat: no-repeat;
-            background-size: cover;
-        }
+         body {
+    font-family: Arial, sans-serif;
+    background: linear-gradient(to right, rgb(200, 153, 45), rgb(62, 61, 63), rgb(0, 0, 0));
+    margin: 0;
+    padding: 0;
+       }
+
         .btn-volver {
             position: fixed;
             top: 20px;
@@ -54,7 +51,7 @@ $usuarioEditar = isset($_GET['editar']) ? $controlador->obtenerUsuarioPorId($_GE
 
 
     <div class="container py-5">
-        <h1 class="text-center text-primary mb-4"><i class="bi bi-people-fill"></i> Gestión de Usuarios</h1>
+        <h1 class= "text-center text-white mb-4"><i class="bi bi-people-fill"></i> Gestión de Usuarios</h1>
 
         <!-- FORMULARIO -->
         <div class="card shadow-sm mb-4">

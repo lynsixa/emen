@@ -39,26 +39,65 @@
 
 /* ====== TEXTO Y COLORES ====== */
 body {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    color: #fff;
-    background-color: #000; /* fallback en caso de que no carguen las imágenes */
+    background: linear-gradient(to right, #2c3e50, #4ca1af); /* fondo atractivo */
+    min-height: 100vh;
+    margin: 0;
+    padding: 0;
 }
 
 .text-yellow {
-    color: #FFD700;
+    color: #ffffff;
 }
 
 .card-dark-yellow {
-    background-color: rgba(255, 215, 0, 0.1); /* dorado claro con transparencia */
-    border: 2px solid #FFD700;
-    backdrop-filter: blur(8px);
-    color: #fff;
+    background: rgba(30, 30, 30, 0.6); /* gris oscuro con transparencia */
+    border: 2px solid rgba(255, 255, 255, 0.2); /* borde suave */
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4); /* sombra envolvente */
+    backdrop-filter: blur(10px); /* efecto glassmorphism */
+    -webkit-backdrop-filter: blur(10px);
+    border-radius: 20px;
+    padding: 25px;
+}
+
+.card-dark-yellow .list-group-item {
+    background-color: transparent;
+    color: #1a1a1a; /* letras gris oscuro casi negro */
+    border: none;
+    font-weight: 500;
+}
+
+.card-dark-yellow:hover {
+    transform: scale(1.02);
+}
+
+.card-dark-yellow .card-body {
+    background-color: rgba(255, 255, 255, 0.2); /* Relleno interno más opaco */
+    border-radius: 15px;
+    padding: 20px;
+}
+
+.card-dark-yellow .list-group-item {
+    background-color: transparent;
+    border: none;
+    padding: 12px 0;
+    font-weight: 500;
+    color: #333333; /* Letra medio negra (gris oscuro) */
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.card-dark-yellow .list-group-item:last-child {
+    border-bottom: none;
+}
+
+.card-dark-yellow i {
+    color: #888; /* Íconos gris oscuro */
+    font-size: 1.4rem;
 }
 
 /* ====== HOVERS Y EFECTOS ====== */
 .list-group-item {
     background-color: transparent;
-    color: #fff;
+    color: #000000;
     border: none;
 }
 

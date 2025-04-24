@@ -30,7 +30,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             // Redireccionar según el rol del cliente
             switch ($clienteLogueado['Roles_idRoles']) {
                 case 1: // Admin
-<<<<<<< HEAD
                     header("Location: ../Vista/indexAdmin.php");
                     break;
                 case 2: // Gerente
@@ -41,18 +40,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     break;
                 case 4: // Cliente
                     header("Location: ..\Principal\roles/Admin/indexAdmin.php");
-=======
-                    header("Location: ../Vista/indexAdmin.html");
-                    break;
-                case 2: // Gerente
-                    header("Location: ../indexGerente.html");
-                    break;
-                case 3: // Bartender
-                    header("Location: ../indexBartender.html");
-                    break;
-                case 4: // Cliente
-                    header("Location: ..\Principal\roles/Admin/indexAdmin.html");
->>>>>>> d7ad886f3380c3d4559d10dc883980110ce673e6
                     break;
                 default:
                     echo "Error: Rol no reconocido.";

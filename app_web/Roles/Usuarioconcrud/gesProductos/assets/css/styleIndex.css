@@ -1,0 +1,263 @@
+/* Importar Bootstrap */
+@import url('https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css');
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background-color: #f8f8f8;
+    padding: 20px;
+    animation: fadeIn 1s ease-in-out;
+}
+.header-transparente {
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 16px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25);
+    margin: 20px auto;
+    max-width: 95%;
+    width: 100%;
+  }
+  
+  /* Imagen del loco */
+  .loco-img img {
+    height: 60px;
+    width: auto;
+    border-radius: 12px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  }
+  
+  
+h2 {
+    text-align: center;
+    color: #333;
+    margin-bottom: 20px;
+    font-size: 28px;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    animation: fadeIn 1.2s ease-in-out;
+}
+
+.table {
+    background-color: white;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    animation: slideUp 0.8s ease-in-out;
+    border-collapse: separate;
+    border-spacing: 0 10px;
+}
+
+.table th {
+    background: linear-gradient(135deg, #007bff, #0056b3);
+    color: white;
+    text-align: center;
+    font-size: 18px;
+    padding: 12px;
+    letter-spacing: 1px;
+}
+
+.table td {
+    vertical-align: middle;
+    text-align: center;
+    font-size: 16px;
+    padding: 15px;
+    transition: background-color 0.3s ease;
+}
+
+.table tbody tr:hover {
+    background-color: rgba(0, 123, 255, 0.1);
+    transform: scale(1.02);
+    transition: all 0.3s ease-in-out;
+}
+
+.btn {
+    transition: all 0.3s ease;
+    font-weight: bold;
+    border-radius: 8px;
+    padding: 8px 12px;
+}
+
+.btn-primary {
+    background: linear-gradient(135deg, #007bff, #0056b3);
+    border: none;
+    color: white;
+}
+
+.btn-primary:hover {
+    background: linear-gradient(135deg, #0056b3, #003d82);
+    transform: scale(1.12);
+    box-shadow: 0 0 15px rgba(0, 91, 187, 0.7);
+}
+
+.btn-danger {
+    background: linear-gradient(135deg, #dc3545, #b02a37);
+    border: none;
+    color: white;
+}
+
+.btn-danger:hover {
+    transform: scale(1.12);
+    background: linear-gradient(135deg, #b02a37, #8a1e2b);
+    box-shadow: 0 0 15px rgba(187, 0, 0, 0.7);
+}
+
+.total-general {
+    font-size: 22px;
+    font-weight: bold;
+    color: #007bff;
+    text-shadow: 1px 1px 5px rgba(0, 91, 187, 0.3);
+    padding: 10px;
+    text-align: right;
+}
+
+.container {
+  max-width: 1000px;
+  margin: auto;
+  padding: 20px;
+  animation: fadeIn 1s ease-in-out;
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.05); /* Fondo transparente muy sutil */
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(10px); /* Difumina el fondo detrás */
+  -webkit-backdrop-filter: blur(10px); /* Compatibilidad Safari */
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+}
+
+.quantity-controls {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+}
+
+.quantity-controls button {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 6px 10px;
+    font-size: 16px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.quantity-controls button:hover {
+    background-color: #0056b3;
+}
+
+/* Estilos para tarjetas de productos */
+.product-card {
+    background-color: #e0e0e0; /* Gris claro opaco */
+    border-radius: 16px;
+    border: 1px solid #cccccc;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    overflow: hidden;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  
+  .product-card:hover {
+    transform: scale(1.03);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+  }
+  
+.product-card img {
+    width: 100%;
+    height: 200px;
+    object-fit: contain;
+    display: block;
+    border-top-left-radius: 12px;
+    border-top-right-radius: 12px;
+    background-color: #a4a6a9;
+}
+
+
+
+.product-card .card-body {
+    text-align: center;
+    padding: 15px;
+}
+
+@media (max-width: 768px) {
+    .table {
+        font-size: 14px;
+    }
+    .btn-sm {
+        font-size: 12px;
+    }
+    .container {
+        padding: 15px;
+    }
+}
+
+/* Animaciones */
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@keyframes slideUp {
+    from { transform: translateY(30px); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
+}
+.section_title {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+  }
+  
+  .custom-video {
+    width: 80%;     /* Más ancho */
+    height: 300px;  /* Más bajo */
+    border-radius: 12px;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
+  }
+  .quote-highlight {
+    background: linear-gradient(135deg, #000000, #a87c03); /* Degradado suave */
+    padding: 40px;
+    border-radius: 15px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+    text-align: center;
+    margin: 30px auto;
+    max-width: 800px;
+  }
+  
+  .quote-highlight h2 {
+    font-family: 'Georgia', serif;
+    font-size: 1.8rem;
+    color: #ffffff;
+    font-weight: 700;
+    line-height: 1.5;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.6);
+  }
+  .fondo-rotativo {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    overflow: hidden;
+  }
+  
+  .fondo-rotativo img {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0;
+    transition: opacity 1s ease-in-out;
+  }
+  
+  .fondo-rotativo img.active {
+    opacity: 1;
+  }
+  
+  .titulo-blanco {
+    color: #ffffff;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.3); /* Sombra sutil para mejor visibilidad */
+  }
+  

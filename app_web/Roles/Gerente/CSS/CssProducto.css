@@ -1,0 +1,127 @@
+/* Estilos generales para el contenedor */
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+/* Títulos */
+h2, h3 {
+    font-size: 2rem;
+    font-weight: bold;
+    color: #000000; /* Dorado */
+}
+
+/* Estilo de la alerta */
+.alert {
+    font-size: 1rem;
+    padding: 15px;
+    background-color: rgba(0, 0, 0, 0.6); /* Fondo oscuro con opacidad */
+    color: white;
+    border-radius: 10px;
+}
+
+/* Estilos del formulario */
+form {
+    background: linear-gradient(145deg, rgb(182, 115, 0), rgb(0, 0, 0)); /* Gradiente dorado a negro */
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    margin-bottom: 30px;
+}
+
+form .mb-3 {
+    margin-bottom: 20px;
+}
+
+form label {
+    font-weight: bold;
+    color: white;
+}
+
+/* Estilo para los campos de entrada */
+form .form-control {
+    background-color: rgb(147, 147, 147); /* Fondo dorado suave */
+    color: white;
+    border: 1px solid rgb(0, 0, 0); /* Borde dorado suave */
+    border-radius: 5px;
+    padding: 12px;
+}
+
+form .form-control:focus {
+    border-color: rgba(121, 103, 2, 0.8); /* Borde dorado intenso al enfocarse */
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.8); /* Resplandor dorado */
+}
+
+/* Estilo para los botones */
+button[type="submit"] {
+    background-color: #000000; /* Dorado */
+    color: white;
+    font-weight: bold;
+    padding: 10px 20px;
+    border-radius: 5px;
+    border: none;
+    transition: background-color 0.3s ease;
+}
+
+button[type="submit"]:hover {
+    background-color: #ffffff; /* Cambio de color al hacer hover */
+}
+
+/* Estilo de la tabla */
+.table {
+    background-color: rgba(255, 215, 0, 0.1); /* Fondo dorado suave */
+    color: white;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+}
+
+.table-bordered th, .table-bordered td {
+    padding: 12px;
+    text-align: center;
+}
+
+.table-dark {
+    background-color: rgba(0, 0, 0, 0.7); /* Fondo oscuro para el encabezado */
+    color: rgb(237, 237, 237);
+}
+
+.table-hover tbody tr:hover {
+    background-color: rgba(255, 215, 0, 0.3); /* Resaltado en dorado suave al pasar el mouse */
+}
+
+.table-light {
+    background-color: rgba(255, 215, 0, 0.2); /* Fondo dorado suave */
+}
+
+/* Estilo para las imágenes en la tabla */
+table img {
+    height: 60px;
+    border-radius: 5px;
+}
+
+/* Estilo de los botones en la tabla */
+.btn-sm {
+    font-size: 0.875rem;
+    padding: 0.25rem 0.5rem;
+    border-radius: 5px;
+}
+
+.btn-warning {
+    background-color: #000000; /* Color amarillo para editar */
+    border-color: #000000;
+}
+
+.btn-danger {
+    background-color: #dc3545; /* Color rojo para eliminar */
+    border-color: #dc3545;
+}
+
+/* Efecto de hover en los botones de la tabla */
+.btn-warning:hover {
+    background-color: #e0a800;
+}
+
+.btn-danger:hover {
+    background-color: #c82333;
+}

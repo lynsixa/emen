@@ -1,26 +1,30 @@
 <?php
 class Conexion {
-    private $host = "localhost";
-    private $username = "root";
-    private $password = "";
-    private $dbname = "emendsrtv";
-    private $conn;
+    private $host = 'localhost';        // Servidor MySQL/MariaDB
+    private $usuario = 'root';          // Usuario
+    private $contraseña = '';           // Contraseña del usuario (deja vacío si no tienes)
+    private $baseDeDatos = 'emendsrtv'; // Nombre de la base de datos
+    private $puerto = 3306;             // Puerto de MariaDB
+    private $conn;                      // La conexión MySQLi
 
     public function __construct() {
-        try {
-            // Establecer conexión utilizando PDO
-            $this->conn = new PDO("mysql:host={$this->host};dbname={$this->dbname}", $this->username, $this->password);
-            // Establecer el modo de error de PDO a excepción
-            $this->conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-        } catch (PDOException $e) {
-            // Manejo de errores
-            die("Conexión fallida: " . $e->getMessage());
+        // Crear la conexión
+        $this->conn = new mysqli($this->host, $this->usuario, $this->contraseña, $this->baseDeDatos, $this->puerto);
+
+        // Verificar si la conexión fue exitosa
+        if ($this->conn->connect_error) {
+            die("Conexión fallida: " . $this->conn->connect_error);
         }
     }
 
-    // Método para obtener la conexión PDO
+    // Método para obtener la conexión
     public function getConnection() {
         return $this->conn;
+    }
+
+    // Cerrar la conexión
+    public function cerrarConexion() {
+        $this->conn->close();
     }
 }
 ?>

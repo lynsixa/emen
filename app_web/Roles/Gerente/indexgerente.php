@@ -1,3 +1,15 @@
+<?php
+session_start();
+require_once 'Conexion.php';  // Asegúrate de que la clase de conexión esté correctamente incluida
+
+// Verificar si el usuario está autenticado
+if (!isset($_SESSION['idUsuario']) || $_SESSION['rol'] != 2) {
+    header("Location: /proyecto/app_web/Roles/Login/vista/login.php");
+    exit();
+}
+
+?>
+
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -9,6 +21,11 @@
     <link rel="stylesheet" href="../Admin/CSS/estilos4.css">
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
     <link rel="icon" type="image/png" href="../Admin/imagenes/log.png">
+      <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
 
     <style>
         /* Estilo general para los botones */
@@ -59,8 +76,8 @@
             </button>
             <header>
                 <h1 class="logo">
-                    <a href="Index.php">
-                        <img class="dv" src="../Admin/imagenes/log.png" alt="EMEN">
+                    <a href="indexAdmin.php">
+                        <img class="dv" src="../Gerente/imagenes/log.png" alt="EMEN">
                     </a>
                     EMEN
                 </h1>
@@ -68,7 +85,7 @@
             <nav>
                 <ul class="menu">
                     <li>
-                        <a href="../../Controlador/cerrar_sesion.php" class="boton-menu boton-categoria active"><i class="bi bi-house-door-fill"></i> Inicio</a>
+                        <a href="indexAdmin.php" class="boton-menu boton-categoria active"><i class="bi bi-house-door-fill"></i> Inicio</a>
                     </li>
                     <li>
                         <a href="../api/agregar_eventos.php" class="boton-menu boton-categoria"><i class="bi bi-list-ul"></i> Eventos</a>
@@ -76,7 +93,16 @@
                     <li>
                         <a href="indexNIS.php" class="boton-menu boton-categoria"><i class="bi bi-tags"></i> NIS</a>
                     </li>
-                 
+                   
+                    <li>
+                        <a href="informe.php" class="boton-menu boton-categoria"><i class="bi bi-archive"></i> Informe</a>
+                    </li>
+                    <li>
+                        <a href="subir_producto.php" class="boton-menu boton-categoria"><i class="bi bi-bag-plus"></i> Subir producto</a>
+                    </li>
+                    <li>
+                        <a href="../../Controlador/cerrar_sesion.php" class="boton-menu boton-categoria"><i class="bi bi-exclamation-circle"></i> Cerrar Sesión</a>
+                    </li>
                 </ul>
             </nav>
             <footer>
@@ -86,15 +112,24 @@
         <main>
             <h2 class="titulo-principal" id="titulo-principal">Bienvenido Administrador</h2>
             <div id="contenedor-productos" class="contenedor-productos">
-                <!-- Agregar los botones con enlaces -->
-                <div class="botones-container">
-                <a href="../../Controlador/cerrar_sesion.php" class="btn">Cerrar Sesión</a>
-                   
-                    <a href="../api/agregar_eventos.php"   class="btn">Eventos</a>
-                    <a href="indexNIS.php" class="btn">NIS</a>
-                    
-                </div>
-            </div>
+            <!-- Logo grande al lado derecho -->
+
+
+    <!-- Agregar los botones con enlaces -->
+    <div class="botones-container">
+        <a href="/Proyecto/app_web\Roles/api/calendario_Eventos.php" class="btn btn-cuadro">Calendario</a>
+        <a href="/Proyecto/app_web\Roles/api/Agregar_eventos.php" class="btn btn-cuadro">Eventos</a>
+        <a href="indexNIS.php" class="btn btn-cuadro">NIS</a>
+
+        <a href="informe.php" class="btn btn-cuadro">Informe</a>
+        <a href="subir_producto.php" class="btn btn-cuadro">Subir Producto</a>
+        <a href="../../Controlador/cerrar_sesion.php" class="btn btn-cuadro btn-dorado">Cerrar Sesión</a>
+    </div>
+    <div class="logo-derecho">
+    <img src="../Admin/imagenes/log.png" alt="Logo grande EMEN">
+</div>
+</div>
+
         </main>
     </div>
     

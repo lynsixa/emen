@@ -16,7 +16,6 @@ $resultado = $conexion->query("SELECT
     <meta charset="UTF-8">
     <title>Lista de Productos</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
-<<<<<<< HEAD
     
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     
@@ -24,8 +23,6 @@ $resultado = $conexion->query("SELECT
     
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
 
-=======
->>>>>>> d7ad886f3380c3d4559d10dc883980110ce673e6
 </head>
 <body class="container py-5">
     <h2 class="mb-4">📋 Lista de Productos</h2>

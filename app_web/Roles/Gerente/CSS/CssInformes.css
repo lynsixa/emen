@@ -1,0 +1,105 @@
+/* Estilo base del fondo rotativo */
+.fondo-rotativo {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    z-index: -1; /* Asegura que el fondo esté detrás del contenido */
+}
+
+.fondo-rotativo img {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0;
+    animation: rotarFondo 15s infinite;
+}
+
+.fondo-rotativo img.activo {
+    opacity: 1;
+    animation: rotarFondo 15s infinite;
+}
+
+@keyframes rotarFondo {
+    0% { opacity: 0; }
+    33% { opacity: 1; }
+    66% { opacity: 0; }
+    100% { opacity: 0; }
+}
+
+/* Estilo para el header */
+.header-informes {
+    text-align: center;
+    margin-top: 20px;
+    font-family: Arial, sans-serif;
+    color: #fff;
+}
+
+/* Estilos para el contenedor de formularios */
+.container-informes {
+    text-align: center;
+    margin-top: 30px;
+    font-family: Arial, sans-serif;
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 30px;
+    background: rgba(0, 0, 0, 0.6); /* Fondo opaco con un color oscuro */
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2); /* Sombra para dar profundidad */
+    backdrop-filter: blur(10px); /* Difuminado para mayor elegancia */
+}
+
+/* Estilo para los botones */
+.btn-informe {
+    background-color: #007bff;
+    color: white;
+    font-size: 16px;
+    padding: 12px 25px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    margin: 10px 0;
+}
+
+.btn-informe:hover {
+    background-color: #0056b3;
+}
+
+/* Estilo de los formularios */
+.form-informes {
+    margin-bottom: 20px;
+}
+
+/* Título secundario */
+h2 {
+    color: #fff;
+    font-family: Arial, sans-serif;
+    margin-bottom: 20px;
+}
+
+/* Estilo para la cabecera del menú */
+header {
+    background-color: #343a40;
+    color: white;
+    padding: 10px 0;
+}
+
+header nav a {
+    color: white;
+    text-decoration: none;
+    margin: 0 10px;
+}
+
+header nav a:hover {
+    text-decoration: underline;
+}
+.btn-volver {
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    z-index: 999;
+}

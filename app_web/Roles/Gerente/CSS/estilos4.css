@@ -149,8 +149,11 @@ main {
 }
 
 .titulo-principal {
-    color: black;
-    margin-bottom: 2rem;
+    text-align: center;
+    width: 100%;
+    font-size: 2rem;
+    margin-top: 20px;
+    color: #333;
 }
 
 .contenedor-productos {
@@ -1083,3 +1086,91 @@ input[type="checkbox"] {
 }
 
 /*FIN USUARIO*/
+/* Estilo general para los botones */
+.btn {
+    background-color: #FFD700;  /* Color dorado */
+    color: #111;                /* Texto en color oscuro */
+    padding: 12px 24px;         /* Relleno de los botones */
+    border: none;               /* Eliminar borde */
+    border-radius: 5px;         /* Bordes redondeados */
+    font-size: 16px;            /* Tamaño de la fuente */
+    cursor: pointer;           /* Cursor en forma de mano */
+    transition: transform 0.3s ease, background-color 0.3s ease;
+    text-align: center;        /* Centra el texto en el botón */
+    text-decoration: none;     /* Quita el subrayado del enlace */
+    width: 150%;               /* Ocupa todo el ancho disponible */
+    max-width: 300px;          /* Ancho máximo opcional */
+    box-sizing: border-box;    /* Asegura que el padding no sume al ancho */
+}
+
+/* Efecto al pasar el cursor */
+.btn:hover {
+    background-color: #FFB600;
+    transform: scale(1.05);
+}
+
+/* Estilo opcional si usas la clase btn-cuadro */
+.btn-cuadro {
+    width: 100%;
+}
+
+/* Contenedor de los botones en columna */
+.botones-container {
+    display: grid;
+    grid-template-columns: 1fr; /* Una columna */
+    gap: 20px;                  /* Espacio entre los botones */
+    justify-items: center;      /* Centrar horizontalmente */
+    margin-top: 20px;
+    padding: 100px;
+}
+/* Contenedor principal que agrupa botones y logo */
+/* Contenedor principal que agrupa botones y logo */
+#contenedor-productos {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+/* Logo grande con opacidad y sombra */
+.logo-derecho {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.logo-derecho img {
+    max-width: 250px;
+    width: 200%;
+    height: auto;
+    opacity: 0.85; /* Opacidad suave */
+    filter: drop-shadow(0 0 15px rgba(255, 215, 0, 0.6)); /* Sombra dorada */
+    transition: transform 0.3s ease, opacity 0.3s ease;
+    animation: resaltarLogo 1s ease-in-out;
+}
+
+/* Animación sutil */
+@keyframes resaltarLogo {
+    from {
+        opacity: 0;
+        transform: scale(0.95);
+    }
+    to {
+        opacity: 0.85;
+        transform: scale(1);
+    }
+}
+
+/* Responsive: logo se centra debajo */
+@media (max-width: 768px) {
+    #contenedor-productos {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .logo-derecho {
+        margin-top: 20px;
+    }
+}

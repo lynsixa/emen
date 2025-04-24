@@ -1,104 +1,175 @@
 <?php
-require_once 'ControladorClientes.php';
-$controlador = new ControladorClientes();
+require_once '../Admin/Controlador/ControladorCrudUsuarios.php';
 
-$cliente = null;
 
-// Si se está editando un cliente
-if (isset($_GET['editar_id'])) {
-    $cliente = $controlador->obtenerClientePorId($_GET['editar_id']);
+session_start();
+require_once 'Conexion.php';  // Asegúrate de que la clase de conexión esté correctamente incluida
+
+// Verificar si el usuario está autenticado
+if (!isset($_SESSION['idUsuario']) || $_SESSION['rol'] != 1) {
+    header("Location: /proyecto/app_web/Roles/Login/vista/login.php");
+    exit();
 }
 
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    if (isset($_POST['crear'])) {
-        $controlador->crearCliente($_POST['Nombre'], $_POST['Documento'], $_POST['Correo'], $_POST['Fechadenacimiento'], $_POST['Roles_idRoles'], $_POST['Contrasena']);
-    } elseif (isset($_POST['editar'])) {
-        // Aquí, verificar que el valor de 'Roles_idRoles' existe en $_POST
-        if (isset($_POST['Roles_idRoles'])) {
-            $controlador->editarCliente($_POST['id'], $_POST['Nombre'], $_POST['Documento'], $_POST['Correo'], $_POST['Fechadenacimiento'], $_POST['Roles_idRoles']);
-        } else {
-            echo "Error: No se seleccionó un rol.";
-        }
-    } elseif (isset($_POST['eliminar'])) {
-        $controlador->eliminarCliente($_POST['id']);
-    }
-}
 
-$clientes = $controlador->obtenerClientes();
+$usuarios = $controlador->obtenerUsuarios();
 $roles = $controlador->obtenerRoles();
+$usuarioEditar = isset($_GET['editar']) ? $controlador->obtenerUsuarioPorId($_GET['editar']) : null;
 ?>
 
 <!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <title>CRUD de Clientes</title>
-<<<<<<< HEAD
-    <link rel="stylesheet" href="css/cruds.css">
-=======
-    <link rel="stylesheet" href="../Gerente/CSS/cruds.css">
->>>>>>> 42cdf60072e4d0e7a8fcbf3a0b8009b206b74467
+    <title>Gestión de Usuarios</title>
+    <link rel="icon" type="image/png" href="../Admin/imagenes/log.png">
+    <link rel="stylesheet" href="../Admin/CSS/CssUsuario.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
+    <style>
+         body {
+    font-family: Arial, sans-serif;
+    background: linear-gradient(to right, rgb(200, 153, 45), rgb(62, 61, 63), rgb(0, 0, 0));
+    margin: 0;
+    padding: 0;
+       }
+
+        .btn-volver {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            z-index: 999;
+        }
+    </style>
 </head>
-<body>
-    <h1>CRUD de Clientes</h1>
+<body class="bg-light">
 
-    <h2>Crear/Editar Cliente</h2>
-    <form method="POST" action="">
-        <input type="hidden" name="id" value="<?php echo $cliente ? $cliente['idClientes'] : ''; ?>">
-        Nombre: <input type="text" name="Nombre" value="<?php echo $cliente ? $cliente['Nombre'] : ''; ?>" required><br>
-        Documento: <input type="text" name="Documento" value="<?php echo $cliente ? $cliente['Documento'] : ''; ?>" required><br>
-        Correo: <input type="email" name="Correo" value="<?php echo $cliente ? $cliente['Correo'] : ''; ?>" required><br>
-        Fecha de Nacimiento: <input type="date" name="Fechadenacimiento" value="<?php echo $cliente ? date('Y-m-d', strtotime($cliente['Fechadenacimiento'])) : ''; ?>" required><br>
-        Roles:
-        <select name="Roles_idRoles" required>
-            <?php foreach ($roles as $rol): ?>
-                <option value="<?php echo $rol['idRoles']; ?>" 
-                    <?php echo ($cliente && $cliente['Roles_idRoles'] == $rol['idRoles']) ? 'selected' : ''; ?>>
-                    <?php echo $rol['Descripcion']; ?>
-                </option>
-            <?php endforeach; ?>
-        </select><br>
+    <!-- BOTÓN VOLVER -->
+    <a href="indexAdmin.php" class="btn btn-dark btn-volver">
+        <i class="bi bi-arrow-left-circle"></i> Volver
+    </a>
 
-        <?php if (!$cliente): ?>
-            Contraseña: <input type="password" name="Contrasena" required><br>
-        <?php endif; ?>
 
-        <button type="submit" name="<?php echo $cliente ? 'editar' : 'crear'; ?>"><?php echo $cliente ? 'Editar' : 'Crear'; ?></button><br>
-    </form>
+    <div class="container py-5">
+        <h1 class= "text-center text-white mb-4"><i class="bi bi-people-fill"></i> Gestión de Usuarios</h1>
 
-    <!-- Botón para volver a crear -->
-    <form method="GET" action="">
-        <button type="submit" name="crear_nuevo">Volver a Crear</button><br>
-    </form>
+        <!-- FORMULARIO -->
+        <div class="card shadow-sm mb-4">
+            <div class="card-header bg-primary text-white">
+                <i class="bi bi-person-plus-fill"></i> <?= $usuarioEditar ? 'Editar Usuario' : 'Nuevo Usuario' ?>
+            </div>
+            <div class="card-body">
+                <form method="POST">
+                    <input type="hidden" name="accion" value="<?= $usuarioEditar ? 'editar' : 'crear' ?>">
+                    <?php if ($usuarioEditar): ?>
+                        <input type="hidden" name="id" value="<?= $usuarioEditar['idUsuario'] ?>">
+                    <?php endif; ?>
 
-    <h2>Lista de Clientes</h2>
-    <table border="1">
-        <tr>
-            <th>ID</th>
-            <th>Nombre</th>
-            <th>Documento</th>
-            <th>Correo</th>
-            <th>Fecha de Nacimiento</th>
-            <th>Rol</th>
-            <th>Acciones</th>
-        </tr>
-        <?php foreach ($clientes as $cliente): ?>
-            <tr>
-                <td><?php echo $cliente['idClientes']; ?></td>
-                <td><?php echo $cliente['Nombre']; ?></td>
-                <td><?php echo $cliente['Documento']; ?></td>
-                <td><?php echo $cliente['Correo']; ?></td>
-                <td><?php echo date('Y-m-d', strtotime($cliente['Fechadenacimiento'])); ?></td>
-                <td><?php echo $cliente['RolDescripcion']; ?></td>
-                <td>
-                    <form method="POST" action="">
-                        <input type="hidden" name="id" value="<?php echo $cliente['idClientes']; ?>">
-                        <a href="?editar_id=<?php echo $cliente['idClientes']; ?>">Editar</a><br>
-                        <button type="submit" name="eliminar">Eliminar</button><br>
-                    </form>
-                </td>
-            </tr>
-        <?php endforeach; ?>
-    </table>
+                    <div class="row g-3">
+                        <div class="col-md-6">
+                            <label class="form-label">Nombres</label>
+                            <input type="text" name="nombres" class="form-control" required value="<?= $usuarioEditar['Nombres'] ?? '' ?>">
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label">Apellidos</label>
+                            <input type="text" name="apellidos" class="form-control" required value="<?= $usuarioEditar['Apellidos'] ?? '' ?>">
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label">Documento</label>
+                            <input type="text" name="documento" class="form-control" required value="<?= $usuarioEditar['Documento'] ?? '' ?>">
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label">Correo</label>
+                            <input type="email" name="correo" class="form-control" required value="<?= $usuarioEditar['Correo'] ?? '' ?>">
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label">Fecha de Nacimiento</label>
+                            <input type="date" name="fecha" class="form-control" required value="<?= $usuarioEditar['FechaDeNacimiento'] ?? '' ?>">
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label">Rol</label>
+                            <select name="rol" class="form-select" required>
+                                <option value="">Seleccione un rol</option>
+                                <?php foreach ($roles as $rol): ?>
+                                    <option value="<?= $rol['idRoles'] ?>" <?= ($usuarioEditar && $usuarioEditar['Roles_idRoles'] == $rol['idRoles']) ? 'selected' : '' ?>>
+                                        <?= $rol['Descripcion'] ?>
+                                    </option>
+                                <?php endforeach; ?>
+                            </select>
+                        </div>
+                        <?php if (!$usuarioEditar): ?>
+                        <div class="col-md-6">
+                            <label class="form-label">Contraseña</label>
+                            <input type="password" name="contrasena" class="form-control" required>
+                        </div>
+                        <?php endif; ?>
+                    </div>
+
+                    <div class="mt-4">
+                        <button type="submit" class="btn btn-success">
+                            <i class="bi bi-check-circle-fill"></i> Guardar
+                        </button>
+                        <?php if ($usuarioEditar): ?>
+                        <a href="crudUsuarios.php" class="btn btn-secondary">
+                            <i class="bi bi-x-circle"></i> Cancelar
+                        </a>
+                        <?php endif; ?>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <!-- TABLA DE USUARIOS -->
+        <div class="card shadow-sm">
+            <div class="card-header bg-dark text-white">
+                <i class="bi bi-table"></i> Lista de Usuarios
+            </div>
+            <div class="card-body table-responsive">
+                <table class="table table-hover align-middle">
+                    <thead class="table-light">
+                        <tr>
+                            <th>#</th>
+                            <th>Nombres</th>
+                            <th>Apellidos</th>
+                            <th>Documento</th>
+                            <th>Correo</th>
+                            <th>Fecha Nacimiento</th>
+                            <th>Rol</th>
+                            <th>Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <?php foreach ($usuarios as $index => $usuario): ?>
+                            <tr>
+                                <td><?= $index + 1 ?></td>
+                                <td><?= $usuario['Nombres'] ?></td>
+                                <td><?= $usuario['Apellidos'] ?></td>
+                                <td><?= $usuario['Documento'] ?></td>
+                                <td><?= $usuario['Correo'] ?></td>
+                                <td><?= $usuario['FechaDeNacimiento'] ?></td>
+                                <td><?= $usuario['Rol'] ?></td>
+                                <td>
+                                    <a href="?editar=<?= $usuario['idUsuario'] ?>" class="btn btn-sm btn-primary">
+                                        <i class="bi bi-pencil-square"></i>
+                                    </a>
+                                    <a href="?eliminar=<?= $usuario['idUsuario'] ?>" class="btn btn-sm btn-danger" onclick="return confirm('¿Seguro que deseas eliminar este usuario?')">
+                                        <i class="bi bi-trash-fill"></i>
+                                    </a>
+                                </td>
+                            </tr>
+                        <?php endforeach ?>
+                        <?php if (empty($usuarios)): ?>
+                            <tr>
+                                <td colspan="8" class="text-center text-muted">No hay usuarios registrados.</td>
+                            </tr>
+                        <?php endif; ?>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS (opcional) -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

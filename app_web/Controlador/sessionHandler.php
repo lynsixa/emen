@@ -56,7 +56,7 @@ function manejarSesion() {
 function redirigirPorRol($rol) {
     switch ($rol) {
         case 1: header("Location: /proyecto/app_web/roles/Admin/indexAdmin.php"); break;
-        case 2: header("Location: /proyecto/app_web/roles/indexGerente.html"); break;
+        case 2: header("Location: /proyecto/app_web/roles/Gerente/indexGerente.php"); break;
         case 3: header("Location: /proyecto/app_web/roles/mesero/indexmesero.php"); break;
         case 4: header("Location: /proyecto/app_web/roles/Usuariosincrud/indexscannis.php"); break;
         case 5: header("Location: /proyecto/app_web/roles/Bartender/indexBartender.php"); break;

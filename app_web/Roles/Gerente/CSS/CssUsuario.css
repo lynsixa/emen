@@ -1,0 +1,114 @@
+/* Estilos generales para el contenedor */
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+/* Títulos */
+h1, h2 {
+    color: #ffffff;
+    text-align: center;
+    margin-bottom: 20px;
+}
+h1 {
+    color: #ffffff; /* Color blanco */
+    font-size: 2.8rem;
+    font-weight: 700;
+    text-align: center;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    margin-bottom: 30px;
+    text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.5); /* Sombra para que resalte sobre cualquier fondo */
+}
+
+/* Estilos de las tarjetas */
+.card {
+    background: rgba(0, 0, 0, 0.7); /* Fondo negro con opacidad */
+    color: white; /* Texto en blanco */
+    border-radius: 15px;
+    border: 1px solid rgba(255, 215, 0, 0.5); /* Borde dorado con opacidad */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s ease-in-out;
+}
+
+/* Efecto de hover para las tarjetas */
+.card:hover {
+    transform: translateY(-5px);
+}
+
+/* Gradiente de fondo dorado a negro */
+.card-body {
+    background: linear-gradient(145deg, rgba(255, 215, 0, 0.3), rgba(0, 0, 0, 0.7)); /* Gradiente */
+    border-radius: 10px;
+    padding: 20px;
+}
+
+/* Estilo de los encabezados de las tarjetas */
+.card-header {
+    background: #007bff; /* Azul */
+    color: white;
+    font-size: 1.25rem;
+    padding: 10px;
+    font-weight: bold;
+}
+
+/* Estilo para el formulario */
+.form-label {
+    font-weight: bold;
+}
+
+.form-control, .form-select {
+    background-color: rgba(255, 215, 0, 0.1); /* Fondo suave dorado */
+    color: white;
+    border-radius: 5px;
+    border: 1px solid rgba(255, 215, 0, 0.5); /* Borde dorado suave */
+}
+
+.form-control:focus, .form-select:focus {
+    border-color: rgba(255, 215, 0, 0.8); /* Cambio de color de borde al enfocar */
+    box-shadow: 0 0 5px rgba(255, 215, 0, 0.8); /* Efecto de resplandor */
+}
+
+/* Botones */
+.btn-success {
+    background-color: #28a745;
+    border-color: #28a745;
+}
+
+.btn-secondary {
+    background-color: #6c757d;
+    border-color: #6c757d;
+}
+
+.btn-sm {
+    font-size: 0.875rem;
+    padding: 0.25rem 0.5rem;
+    border-radius: 5px;
+}
+
+/* Estilo de la tabla */
+.table {
+    background-color: rgba(255, 215, 0, 0.1); /* Fondo dorado suave */
+    color: white;
+    border-radius: 10px;
+}
+
+.table-hover tbody tr:hover {
+    background-color: rgba(255, 215, 0, 0.3); /* Resaltado en dorado suave */
+}
+
+.table-light {
+    background-color: rgba(255, 215, 0, 0.15); /* Fondo claro dorado */
+}
+
+/* Estilo de las celdas de la tabla */
+th, td {
+    padding: 15px;
+    text-align: center;
+}
+
+/* Estilo para la fila de la tabla cuando no hay datos */
+.text-muted {
+    color: rgba(255, 255, 255, 0.5);
+}

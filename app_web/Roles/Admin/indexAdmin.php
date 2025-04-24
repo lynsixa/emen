@@ -21,11 +21,14 @@ if (!isset($_SESSION['idUsuario']) || $_SESSION['rol'] != 1) {
     <link rel="stylesheet" href="../Admin/CSS/estilos4.css">
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
     <link rel="icon" type="image/png" href="../Admin/imagenes/log.png">
+<<<<<<< HEAD
       <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
     
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+=======
+>>>>>>> d7ad886f3380c3d4559d10dc883980110ce673e6
 
     <style>
         /* Estilo general para los botones */
@@ -97,6 +100,7 @@ if (!isset($_SESSION['idUsuario']) || $_SESSION['rol'] != 1) {
                         <a href="crudUsuarios.php" class="boton-menu boton-categoria"><i class="bi bi-person-fill"></i> Usuarios</a>
                     </li>
                     <li>
+<<<<<<< HEAD
                         <a href="informe.php" class="boton-menu boton-categoria"><i class="bi bi-archive"></i> Informe</a>
                     </li>
                     <li>
@@ -104,6 +108,15 @@ if (!isset($_SESSION['idUsuario']) || $_SESSION['rol'] != 1) {
                     </li>
                     <li>
                         <a href="../../Controlador/cerrar_sesion.php" class="boton-menu boton-categoria"><i class="bi bi-exclamation-circle"></i> Cerrar Sesión</a>
+=======
+                        <a href="informe.php" class="boton-menu boton-categoria"><i class="bi bi-person-fill"></i> Informe</a>
+                    </li>
+                    <li>
+                        <a href="subir_producto.php" class="boton-menu boton-categoria"><i class="bi bi-person-fill"></i> Subir producto</a>
+                    </li>
+                    <li>
+                        <a href="../../Controlador/cerrar_sesion.php" class="boton-menu boton-categoria"><i class="bi bi-person-fill"></i> Cerrar Sesión</a>
+>>>>>>> d7ad886f3380c3d4559d10dc883980110ce673e6
                     </li>
                 </ul>
             </nav>
@@ -114,6 +127,7 @@ if (!isset($_SESSION['idUsuario']) || $_SESSION['rol'] != 1) {
         <main>
             <h2 class="titulo-principal" id="titulo-principal">Bienvenido Administrador</h2>
             <div id="contenedor-productos" class="contenedor-productos">
+<<<<<<< HEAD
             <!-- Logo grande al lado derecho -->
 
 
@@ -131,6 +145,18 @@ if (!isset($_SESSION['idUsuario']) || $_SESSION['rol'] != 1) {
 </div>
 </div>
 
+=======
+                <!-- Agregar los botones con enlaces -->
+                <div class="botones-container">
+                    <a href="/Proyecto/app_web\Roles/api/Agregar_eventos.php" class="btn">Eventos</a>
+                    <a href="indexNIS.php" class="btn">NIS</a>
+                    <a href="crudUsuarios.php" class="btn">Usuarios</a>
+                    <a href="informe.php" class="btn">Informe</a>
+                    <a href="subir_producto.php" class="btn">subir producto</a>
+                    <a href="../../Controlador/cerrar_sesion.php" class="btn btn-dorado">Cerrar Sesión</a> <!-- Enlace para cerrar sesión -->
+                </div>
+            </div>
+>>>>>>> d7ad886f3380c3d4559d10dc883980110ce673e6
         </main>
     </div>
     

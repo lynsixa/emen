@@ -1,4 +1,7 @@
+<<<<<<< HEAD
 /* Body */
+=======
+>>>>>>> d7ad886f3380c3d4559d10dc883980110ce673e6
 body {
     background-color: #000;
     background-size: cover;
@@ -7,20 +10,31 @@ body {
     font-family: 'Arial', sans-serif;
     height: 100vh;  /* Altura total de la pantalla */
     display: flex;
+<<<<<<< HEAD
     justify-content: center;  /* Centra horizontalmente */
     align-items: center;      /* Centra verticalmente */
+=======
+    justify-content: center;
+    align-items: center;
+>>>>>>> d7ad886f3380c3d4559d10dc883980110ce673e6
     margin: 0;
     transition: background-image 1.2s ease-in-out, opacity 1.2s ease-in-out;
     opacity: 1;
 }
 
+<<<<<<< HEAD
 /* Contenedor */
 .container {
     max-width: 300px;          /* Ancho máximo reducido */
+=======
+.container {
+    max-width: 500px;
+>>>>>>> d7ad886f3380c3d4559d10dc883980110ce673e6
     background-color: rgba(0, 0, 0, 0.7);
     padding: 40px;
     border-radius: 15px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+<<<<<<< HEAD
     width: 100%;               /* Se adapta al contenedor, pero respetando el max-width */
     display: flex;             /* Asegura que los elementos dentro de container estén centrados */
     flex-direction: column;    /* Alinea los elementos verticalmente */
@@ -28,13 +42,21 @@ body {
 }
 
 /* Título */
+=======
+    width: 90%; /* Se adapta mejor en pantallas grandes */
+}
+
+>>>>>>> d7ad886f3380c3d4559d10dc883980110ce673e6
 h1 {
     font-size: 28px;
     text-align: center;
     margin-bottom: 30px;
 }
 
+<<<<<<< HEAD
 /* Input de texto */
+=======
+>>>>>>> d7ad886f3380c3d4559d10dc883980110ce673e6
 input[type="text"] {
     width: 100%;
     max-width: 450px; /* Evita que el input se haga demasiado grande */
@@ -43,10 +65,15 @@ input[type="text"] {
     border-radius: 5px;
     border: 1px solid #ccc;
     font-size: 16px;
+<<<<<<< HEAD
     background-position: center;
 }
 
 /* Botón de submit */
+=======
+}
+
+>>>>>>> d7ad886f3380c3d4559d10dc883980110ce673e6
 input[type="submit"] {
     width: 100%;
     max-width: 450px; /* Evita que el botón se haga demasiado grande */
@@ -57,21 +84,33 @@ input[type="submit"] {
     font-size: 16px;
     cursor: pointer;
     transition: background-color 0.3s ease;
+<<<<<<< HEAD
     background-position: center;
+=======
+>>>>>>> d7ad886f3380c3d4559d10dc883980110ce673e6
 }
 
 input[type="submit"]:hover {
     background-color: rgb(62, 61, 63);
+<<<<<<< HEAD
     background-position: center;
 }
 
 /* Mensajes */
+=======
+}
+
+>>>>>>> d7ad886f3380c3d4559d10dc883980110ce673e6
 p {
     color: red;
     text-align: center;
 }
 
+<<<<<<< HEAD
 /* Estilo para el enlace de cerrar sesión */
+=======
+/* Arreglar la clase para cerrar sesión */
+>>>>>>> d7ad886f3380c3d4559d10dc883980110ce673e6
 .ya {
     color: #ffffff;
     text-decoration: none;
@@ -97,6 +136,7 @@ p {
         padding: 12px;
     }
 }
+<<<<<<< HEAD
 
 /* Formulario */
 .formu {
@@ -105,3 +145,5 @@ p {
     align-items: center;       /* Centra el formulario verticalmente */
     width: 100%;               /* Asegura que el formulario ocupe el 100% del contenedor */
 }
+=======
+>>>>>>> d7ad886f3380c3d4559d10dc883980110ce673e6

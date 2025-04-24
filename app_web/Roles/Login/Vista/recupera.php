@@ -22,7 +22,11 @@ if (!empty($_POST)) {
 
         if ($token) {
             $url = 'http://' . $_SERVER["SERVER_NAME"] . 
+<<<<<<< HEAD
                 '/Proyecto/app_web/Roles/login/vista/cambia_pass.php?idUsuario=' . $user_id . '&token=' . $token;
+=======
+                '/Proyecto/login/vista/cambia_pass.php?idUsuario=' . $user_id . '&token=' . $token;
+>>>>>>> d7ad886f3380c3d4559d10dc883980110ce673e6
 
             $asunto = 'Recuperar contraseña';
             $cuerpo = "Hola $nombre,<br/><br/>

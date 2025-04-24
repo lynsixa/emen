@@ -22,8 +22,11 @@ $usuarioEditar = isset($_GET['editar']) ? $controlador->obtenerUsuarioPorId($_GE
 <head>
     <meta charset="UTF-8">
     <title>Gestión de Usuarios</title>
+<<<<<<< HEAD
     <link rel="icon" type="image/png" href="../Admin/imagenes/log.png">
     <link rel="stylesheet" href="../Admin/CSS/CssUsuario.css">
+=======
+>>>>>>> d7ad886f3380c3d4559d10dc883980110ce673e6
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
     <style>

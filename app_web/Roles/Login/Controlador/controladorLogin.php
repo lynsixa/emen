@@ -39,7 +39,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     header("Location: /proyecto/app_web/roles/Admin/indexAdmin.php");
                     break;
                 case 2:
+<<<<<<< HEAD
                     header("Location: /proyecto/app_web/roles/Gerente/indexGerente.php");
+=======
+                    header("Location: /proyecto/app_web/roles/indexGerente.html");
+>>>>>>> d7ad886f3380c3d4559d10dc883980110ce673e6
                     break;
                 case 3:
                     header("Location: /proyecto/app_web/roles/mesero/indexmesero.php");

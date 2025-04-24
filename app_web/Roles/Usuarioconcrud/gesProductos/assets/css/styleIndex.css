@@ -3,6 +3,7 @@
 
 body {
     font-family: 'Poppins', sans-serif;
+<<<<<<< HEAD
     background-color: #f8f8f8;
     padding: 20px;
     animation: fadeIn 1s ease-in-out;
@@ -28,6 +29,13 @@ body {
   }
   
   
+=======
+    background-color: #f8f9fa;
+    padding: 20px;
+    animation: fadeIn 1s ease-in-out;
+}
+
+>>>>>>> d7ad886f3380c3d4559d10dc883980110ce673e6
 h2 {
     text-align: center;
     color: #333;
@@ -113,6 +121,7 @@ h2 {
 }
 
 .container {
+<<<<<<< HEAD
   max-width: 1000px;
   margin: auto;
   padding: 20px;
@@ -123,6 +132,15 @@ h2 {
   backdrop-filter: blur(10px); /* Difumina el fondo detrás */
   -webkit-backdrop-filter: blur(10px); /* Compatibilidad Safari */
   box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+=======
+    max-width: 1000px;
+    margin: auto;
+    padding: 20px;
+    animation: fadeIn 1s ease-in-out;
+    border-radius: 12px;
+    background-color: white;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.2);
+>>>>>>> d7ad886f3380c3d4559d10dc883980110ce673e6
 }
 
 .quantity-controls {
@@ -148,6 +166,7 @@ h2 {
 
 /* Estilos para tarjetas de productos */
 .product-card {
+<<<<<<< HEAD
     background-color: #e0e0e0; /* Gris claro opaco */
     border-radius: 16px;
     border: 1px solid #cccccc;
@@ -161,6 +180,18 @@ h2 {
     box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
   }
   
+=======
+    border-radius: 12px;
+    overflow: hidden;
+    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+}
+
+.product-card:hover {
+    transform: scale(1.05);
+    box-shadow: 0px 5px 20px rgba(0,0,0,0.2);
+}
+
+>>>>>>> d7ad886f3380c3d4559d10dc883980110ce673e6
 .product-card img {
     width: 100%;
     height: 200px;
@@ -168,7 +199,11 @@ h2 {
     display: block;
     border-top-left-radius: 12px;
     border-top-right-radius: 12px;
+<<<<<<< HEAD
     background-color: #a4a6a9;
+=======
+    background-color: #f8f9fa;
+>>>>>>> d7ad886f3380c3d4559d10dc883980110ce673e6
 }
 
 
@@ -200,6 +235,7 @@ h2 {
     from { transform: translateY(30px); opacity: 0; }
     to { transform: translateY(0); opacity: 1; }
 }
+<<<<<<< HEAD
 .section_title {
     display: flex;
     justify-content: center;
@@ -261,3 +297,5 @@ h2 {
     text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.3); /* Sombra sutil para mejor visibilidad */
   }
   
+=======
+>>>>>>> d7ad886f3380c3d4559d10dc883980110ce673e6

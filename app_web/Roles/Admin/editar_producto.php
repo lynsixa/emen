@@ -37,9 +37,12 @@ $producto = $conexion->query("SELECT p.*, c.Nombre, c.Descripcion FROM producto 
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
 </head>
 <body class="container py-5">
+<<<<<<< HEAD
 <a href="subir_producto" class="btn btn-dark btn-volver">
         <i class="bi bi-arrow-left-circle"></i> Volver
     </a>
+=======
+>>>>>>> d7ad886f3380c3d4559d10dc883980110ce673e6
     <h2>✏️ Editar Producto</h2>
     <form method="POST" class="border p-4 bg-light rounded">
         <input type="hidden" name="id" value="<?= $producto['idProducto'] ?>">

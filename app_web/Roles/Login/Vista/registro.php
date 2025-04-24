@@ -10,6 +10,7 @@ require_once '../Modelo/Conexion.php';
     <meta http-equiv='X-UA-Compatible' content='IE=edge'>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Registro</title>
+<<<<<<< HEAD
     
     <link rel="stylesheet" href="../CSS/login-registro.css">
     <link rel="icon" href="img/log.png" type="image/png">
@@ -21,6 +22,9 @@ require_once '../Modelo/Conexion.php';
             z-index: 999;
         }
     </style>
+=======
+    <link rel="stylesheet" href="../CSS/login-registro.css">
+>>>>>>> d7ad886f3380c3d4559d10dc883980110ce673e6
 
     <script>
         // Impide que el usuario navegue hacia atrás
@@ -36,10 +40,13 @@ require_once '../Modelo/Conexion.php';
 </head>
 <body>
 
+<<<<<<< HEAD
 <a href="../../../index.php" class="btn btn-dark btn-volver">
         <i class="bi bi-arrow-left-circle"></i> Volver
     </a>
     
+=======
+>>>>>>> d7ad886f3380c3d4559d10dc883980110ce673e6
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-md-6 col-lg-4">

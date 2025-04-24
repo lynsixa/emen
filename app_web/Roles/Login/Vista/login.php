@@ -13,6 +13,7 @@ manejarSesion();
     <link rel="icon" type="image/png" href="Imagenes/log.png">
     <title>Login</title>
     <link rel="stylesheet" href="../CSS/login-registro.css">
+<<<<<<< HEAD
     <link rel="icon" href="img/log.png" type="image/png">
     <style>
         .btn-volver {
@@ -32,6 +33,12 @@ manejarSesion();
         <i class="bi bi-arrow-left-circle"></i> Volver
     </a>
     
+=======
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" 
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+</head>
+<body>
+>>>>>>> d7ad886f3380c3d4559d10dc883980110ce673e6
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-md-6 col-lg-4">

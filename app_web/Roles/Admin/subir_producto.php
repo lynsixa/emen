@@ -117,6 +117,7 @@ $resultado = $conexion->query("SELECT
 <head>
     <meta charset="UTF-8">
     <title>Gestión de Productos</title>
+<<<<<<< HEAD
     <link rel="icon" type="image/png" href="../Admin/imagenes/log.png">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="../Admin/CSS/CssProducto.css">
@@ -149,6 +150,11 @@ $resultado = $conexion->query("SELECT
     </a>
 
 
+=======
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body class="container py-5">
+>>>>>>> d7ad886f3380c3d4559d10dc883980110ce673e6
     <h2 class="mb-4">📦 Subir Nuevo Producto</h2>
     
     <?php if ($mensaje): ?>

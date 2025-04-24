@@ -58,12 +58,19 @@ include('../../Controlador/validar_codigo_logic.php');
         ?>
 
         <!-- Formulario -->
+<<<<<<< HEAD
         <div class="formu">
+=======
+>>>>>>> d7ad886f3380c3d4559d10dc883980110ce673e6
         <form action="" method="POST" class="mb-4">
             <input type="text" id="codigo" name="codigo" class="form-control mb-3" placeholder="Código" required>
             <input type="submit" value="Validar" class="btn btn-primary">
         </form>
+<<<<<<< HEAD
         </div>
+=======
+
+>>>>>>> d7ad886f3380c3d4559d10dc883980110ce673e6
         <!-- Mostrar información de mesa y piso si están disponibles -->
         <?php if (isset($_SESSION['numeroMesa']) && isset($_SESSION['numeroPiso'])): ?>
             <div class="alert alert-success">

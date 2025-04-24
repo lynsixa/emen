@@ -87,6 +87,7 @@ if (!$eventosResult) {
 <head>
     <meta charset="UTF-8">
     <title>Gestión de Eventos</title>
+<<<<<<< HEAD
     <link rel="icon" type="image/png" href="../Admin/imagenes/log.png">
     <link rel="stylesheet" href="CssEventos.css">
 
@@ -111,6 +112,11 @@ if (!$eventosResult) {
 <a href="../Admin/indexAdmin.php" class="btn btn-dark btn-volver">
         <i class="bi bi-arrow-left-circle"></i> Volver
     </a>
+=======
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body class="bg-light">
+>>>>>>> d7ad886f3380c3d4559d10dc883980110ce673e6
 <div class="container py-5">
     <div class="card shadow p-4 mb-5 bg-white rounded">
         <h2 class="mb-4 text-primary"><?php echo isset($_POST['editar_evento']) ? 'Editar Evento' : 'Agregar Evento'; ?></h2>

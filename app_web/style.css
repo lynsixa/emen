@@ -1,0 +1,450 @@
+
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f9;
+}
+header {
+    background-color: #4CAF50;
+    color: white;
+    padding: 10px 20px;
+    text-align: center;
+}
+.container {
+    padding: 20px;
+}
+.status-buttons {
+    display: flex;
+    justify-content: space-around;
+    margin-top: 20px;
+}
+.status-buttons button {
+    padding: 15px 30px;
+    font-size: 16px;
+    cursor: pointer;
+    border: none;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+.status-buttons button:hover {
+    opacity: 0.8;
+}
+.pedido-entregado {
+    background-color: #4CAF50;
+    color: white;
+}
+.pedido-no-disponible {
+    background-color: #f44336;
+    color: white;
+}
+.pedido-no-entregado {
+    background-color: #ff9800;
+    color: white;
+}
+footer {
+    text-align: center;
+    padding: 10px;
+    background-color: #333;
+    color: white;
+}
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f9;
+}
+header {
+    background-color: #4CAF50;
+    color: white;
+    padding: 10px 20px;
+    text-align: center;
+}
+.container {
+    padding: 20px;
+}
+.section {
+    margin-bottom: 40px;
+}
+.status-buttons {
+    display: flex;
+    justify-content: space-around;
+    margin-top: 20px;
+}
+.status-buttons button {
+    padding: 15px 30px;
+    font-size: 16px;
+    cursor: pointer;
+    border: none;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+.status-buttons button:hover {
+    opacity: 0.8;
+}
+.pedido-entregado {
+    background-color: #4CAF50;
+    color: white;
+}
+.pedido-no-disponible {
+    background-color: #f44336;
+    color: white;
+}
+.pedido-no-entregado {
+    background-color: #ff9800;
+    color: white;
+}
+.pedido-en-proceso {
+    background-color: #2196F3;
+    color: white;
+}
+footer {
+    text-align: center;
+    padding: 10px;
+    background-color: #333;
+    color: white;
+}
+.login-container {
+    text-align: center;
+    margin-top: 50px;
+}
+.login-container input {
+    padding: 10px;
+    margin: 10px;
+    width: 200px;
+    font-size: 16px;
+}
+.login-container button {
+    padding: 10px 20px;
+    font-size: 16px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+.login-container button:hover {
+    opacity: 0.8;
+}
+.hidden {
+    display: none;
+}
+
+ /* Css de bartender*/
+ body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f9;
+}
+header {
+    background-color: #5f7022;
+    color: white;
+    padding: 10px 20px;
+    text-align: center;
+}
+.container {
+    padding: 20px;
+}
+.section {
+    margin-bottom: 40px;
+}
+.status-buttons {
+    display: flex;
+    justify-content: space-around;
+    margin-top: 20px;
+}
+.status-buttons button {
+    padding: 15px 30px;
+    font-size: 16px;
+    cursor: pointer;
+    border: none;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+.status-buttons button:hover {
+    opacity: 0.8;
+}
+.pedido-entregado {
+    background-color: #4CAF50;
+    color: white;
+}
+.pedido-no-disponible {
+    background-color: #f44336;
+    color: white;
+}
+.pedido-no-entregado {
+    background-color: #ff9800;
+    color: white;
+}
+.pedido-en-proceso {
+    background-color: #2196F3;
+    color: white;
+}
+footer {
+    text-align: center;
+    padding: 10px;
+    background-color: #333;
+    color: white;
+}
+
+
+ /* Css de mesero*/
+body {
+    font-family: Arial, sans-serif;
+    margin: 20px;
+}
+.card {
+    border: 1px solid #ccc;
+    padding: 15px;
+    margin: 10px 0;
+    border-radius: 5px;
+}
+.btn {
+    padding: 8px 12px;
+    margin: 5px;
+    border: none;
+    cursor: pointer;
+}
+.btn-accept {
+    background-color: green;
+    color: white;
+}
+.btn-reject {
+    background-color: red;
+    color: white;
+}
+.logo-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+}
+.logo {
+    height: 50px;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f9;
+}
+header {
+    background-color: #4CAF50;
+    color: white;
+    padding: 10px 20px;
+    text-align: center;
+}
+.container {
+    padding: 20px;
+}
+.status-buttons {
+    display: flex;
+    justify-content: space-around;
+    margin-top: 20px;
+}
+.status-buttons button {
+    padding: 15px 30px;
+    font-size: 16px;
+    cursor: pointer;
+    border: none;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+.status-buttons button:hover {
+    opacity: 0.8;
+}
+.pedido-entregado {
+    background-color: #4CAF50;
+    color: white;
+}
+.pedido-no-disponible {
+    background-color: #f44336;
+    color: white;
+}
+.pedido-no-entregado {
+    background-color: #ff9800;
+    color: white;
+}
+footer {
+    text-align: center;
+    padding: 10px;
+    background-color: #333;
+    color: white;
+}
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f9;
+}
+header {
+    background-color: #4CAF50;
+    color: white;
+    padding: 10px 20px;
+    text-align: center;
+}
+.container {
+    padding: 20px;
+}
+.section {
+    margin-bottom: 40px;
+}
+.status-buttons {
+    display: flex;
+    justify-content: space-around;
+    margin-top: 20px;
+}
+.status-buttons button {
+    padding: 15px 30px;
+    font-size: 16px;
+    cursor: pointer;
+    border: none;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+.status-buttons button:hover {
+    opacity: 0.8;
+}
+.pedido-entregado {
+    background-color: #4CAF50;
+    color: white;
+}
+.pedido-no-disponible {
+    background-color: #f44336;
+    color: white;
+}
+.pedido-no-entregado {
+    background-color: #ff9800;
+    color: white;
+}
+.pedido-en-proceso {
+    background-color: #2196F3;
+    color: white;
+}
+footer {
+    text-align: center;
+    padding: 10px;
+    background-color: #333;
+    color: white;
+}
+.login-container {
+    text-align: center;
+    margin-top: 50px;
+}
+.login-container input {
+    padding: 10px;
+    margin: 10px;
+    width: 200px;
+    font-size: 16px;
+}
+.login-container button {
+    padding: 10px 20px;
+    font-size: 16px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+.login-container button:hover {
+    opacity: 0.8;
+}
+.hidden {
+    display: none;
+}
+
+ /* Css de bartender*/
+ body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f9;
+}
+header {
+    background-color: #5f7022;
+    color: white;
+    padding: 10px 20px;
+    text-align: center;
+}
+.container {
+    padding: 20px;
+}
+.section {
+    margin-bottom: 40px;
+}
+.status-buttons {
+    display: flex;
+    justify-content: space-around;
+    margin-top: 20px;
+}
+.status-buttons button {
+    padding: 15px 30px;
+    font-size: 16px;
+    cursor: pointer;
+    border: none;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+.status-buttons button:hover {
+    opacity: 0.8;
+}
+.pedido-entregado {
+    background-color: #4CAF50;
+    color: white;
+}
+.pedido-no-disponible {
+    background-color: #f44336;
+    color: white;
+}
+.pedido-no-entregado {
+    background-color: #ff9800;
+    color: white;
+}
+.pedido-en-proceso {
+    background-color: #2196F3;
+    color: white;
+}
+footer {
+    text-align: center;
+    padding: 10px;
+    background-color: #333;
+    color: white;
+}
+
+
+ /* Css de mesero*/
+body {
+    font-family: Arial, sans-serif;
+    margin: 20px;
+}
+.card {
+    border: 1px solid #ccc;
+    padding: 15px;
+    margin: 10px 0;
+    border-radius: 5px;
+}
+.btn {
+    padding: 8px 12px;
+    margin: 5px;
+    border: none;
+    cursor: pointer;
+}
+.btn-accept {
+    background-color: green;
+    color: white;
+}
+.btn-reject {
+    background-color: red;
+    color: white;
+}
+.logo-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+}
+.logo {
+    height: 50px;
+}

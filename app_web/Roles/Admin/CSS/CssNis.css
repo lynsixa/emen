@@ -1,0 +1,220 @@
+/* Reset de márgenes y padding para todos los elementos */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Estilo para el cuerpo y fondo de la página */
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+}
+header {
+    background-color: rgb(216, 216, 216);
+    padding: 10px 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+/* Fondo rotativo */
+.fondo-rotativo {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    overflow: hidden;
+}
+
+.fondo-rotativo img {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0;
+    transition: opacity 1.5s ease-in-out;
+}
+
+.fondo-rotativo img.activo {
+    opacity: 1;
+}
+/* Títulos principales */
+h1, h2 {
+    color: #ffffff;
+    text-align: center;
+    margin-bottom: 20px;
+}
+h1 {
+    color: #ffffff; /* Color blanco */
+    font-size: 2.8rem;
+    font-weight: 700;
+    text-align: center;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    margin-bottom: 30px;
+    text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.5); /* Sombra para que resalte sobre cualquier fondo */
+}
+
+
+/* Estilo para el formulario */
+.formulario-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 80vh;
+}
+
+form {
+   
+    padding: 30px 40px;
+    border-radius: 10px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+    backdrop-filter: blur(4px);
+    color: #fff;
+    width: 90%;
+    max-width: 600px;
+}
+
+form label {
+    font-weight: bold;
+    display: block;
+    margin-bottom: 8px;
+}
+
+form input[type="text"],
+form input[type="number"],
+form select {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 20px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    background-color: #f9f9f9;
+    color: #000;
+}
+
+form button {
+    padding: 10px 20px;
+    background-color: #2196F3;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+}
+
+form button:hover {
+    background-color: #1976D2;
+}
+
+form button {
+    background-color: #4CAF50;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+form button:hover {
+    background-color: #45a049;
+}
+
+/* Contenedor para centrar y dar fondo translúcido a la tabla */
+.tabla-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 10px;
+    padding: 50px;
+    background-color: rgba(34, 34, 34, 0.6);
+    border-radius: 10px;
+    width: 100%;
+    max-width: 1000px;
+    margin-left: auto;
+    margin-right: auto;
+    backdrop-filter: blur(3px);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.tabla-container table {
+    width: 100%;
+    border-collapse: collapse;
+    background-color: rgba(255, 255, 255, 0.85);
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 3px 15px rgba(255, 255, 255, 0.2);
+}
+
+.tabla-container th, .tabla-container td {
+    padding: 30px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    text-align: center;
+    color: #333;
+}
+
+.tabla-container th {
+    background-color: rgba(76, 175, 80, 0.9);
+    color: white;
+    font-weight: bold;
+}
+
+.tabla-container tr:nth-child(even) {
+    background-color: rgba(240, 240, 240, 0.9);
+}
+
+.tabla-container tr:hover {
+    background-color: rgba(200, 230, 201, 0.6);
+}
+
+/* Botones como enlaces */
+.tabla-container .btn-editar,
+.tabla-container .btn-eliminar {
+    display: inline-block;
+    padding: 6px 12px;
+    margin: 2px;
+    border-radius: 4px;
+    font-weight: bold;
+    color: white;
+    text-decoration: none;
+    transition: background-color 0.3s ease;
+}
+
+.tabla-container .btn-editar {
+    background-color: #4CAF50;
+}
+
+.tabla-container .btn-editar:hover {
+    background-color: #43A047;
+}
+
+.tabla-container .btn-eliminar {
+    background-color: #F44336;
+}
+
+.tabla-container .btn-eliminar:hover {
+    background-color: #D32F2F;
+}
+
+
+/* Diseño responsive para dispositivos móviles */
+@media screen and (max-width: 768px) {
+    body {
+        padding: 10px;
+    }
+
+    form input[type="text"],
+    form select {
+        width: 100%;
+    }
+
+    table th, table td {
+        padding: 8px;
+    }
+}

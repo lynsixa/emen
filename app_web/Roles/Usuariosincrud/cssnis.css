@@ -1,0 +1,107 @@
+/* Body */
+body {
+    background-color: #000;
+    background-size: cover;
+    background-position: center;
+    color: #fff;
+    font-family: 'Arial', sans-serif;
+    height: 100vh;  /* Altura total de la pantalla */
+    display: flex;
+    justify-content: center;  /* Centra horizontalmente */
+    align-items: center;      /* Centra verticalmente */
+    margin: 0;
+    transition: background-image 1.2s ease-in-out, opacity 1.2s ease-in-out;
+    opacity: 1;
+}
+
+/* Contenedor */
+.container {
+    max-width: 300px;          /* Ancho máximo reducido */
+    background-color: rgba(0, 0, 0, 0.7);
+    padding: 40px;
+    border-radius: 15px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    width: 100%;               /* Se adapta al contenedor, pero respetando el max-width */
+    display: flex;             /* Asegura que los elementos dentro de container estén centrados */
+    flex-direction: column;    /* Alinea los elementos verticalmente */
+    align-items: center;       /* Centra el contenido en el eje horizontal */
+}
+
+/* Título */
+h1 {
+    font-size: 28px;
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+/* Input de texto */
+input[type="text"] {
+    width: 100%;
+    max-width: 450px; /* Evita que el input se haga demasiado grande */
+    padding: 10px;
+    margin-bottom: 15px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    font-size: 16px;
+    background-position: center;
+}
+
+/* Botón de submit */
+input[type="submit"] {
+    width: 100%;
+    max-width: 450px; /* Evita que el botón se haga demasiado grande */
+    padding: 10px;
+    background-color: rgb(200, 153, 45);
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    background-position: center;
+}
+
+input[type="submit"]:hover {
+    background-color: rgb(62, 61, 63);
+    background-position: center;
+}
+
+/* Mensajes */
+p {
+    color: red;
+    text-align: center;
+}
+
+/* Estilo para el enlace de cerrar sesión */
+.ya {
+    color: #ffffff;
+    text-decoration: none;
+    cursor: pointer;
+    transition: color 0.3s ease;
+    margin-top: 20px;
+    display: block;
+    text-align: center;
+}
+
+/* Responsividad */
+@media (max-width: 576px) {
+    .container {
+        padding: 20px;
+        max-width: 100%;
+        margin: 10px;
+    }
+    h1 {
+        font-size: 24px;
+    }
+    input[type="submit"], input[type="text"] {
+        font-size: 14px;
+        padding: 12px;
+    }
+}
+
+/* Formulario */
+.formu {
+    display: flex;
+    justify-content: center;   /* Centra el formulario horizontalmente */
+    align-items: center;       /* Centra el formulario verticalmente */
+    width: 100%;               /* Asegura que el formulario ocupe el 100% del contenedor */
+}

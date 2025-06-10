@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Generar Informe</title>
+</head>
+<body>
+    <h1>Generar Informes</h1>
+
+    <!-- Formulario para Descargar Informe de Usuarios -->
+    <form method="POST" action="descargar_informe.php">
+        <button type="submit" name="descargar_usuarios">Descargar Informe de Usuarios</button>
+    </form>
+
+    <br>
+
+    <!-- Formulario para Descargar Informe de Órdenes (viejo) -->
+    <form method="POST" action="descargar_informe.php">
+        <button type="submit" name="descargar_ordenes">Descargar Informe de Órdenes</button>
+    </form>
+
+    <br>
+
+    <!-- ✅ Botón para descargar Excel de Órdenes directamente -->
+    <form method="POST" action="informeorden.php">
+        <button type="submit" name="descargar_excel_ordenes">📥 Descargar Excel de Órdenes</button>
+    </form>
+
+    <br>
+
+    <!-- ✅ Nuevo botón para descargar todos los informes en ZIP -->
+    <form method="POST" action="descargar_todos_los_informes.php">
+        <button type="submit" name="descargar_todos">📦 Descargar Todos los Informes</button>
+    </form>
+</body>
+</html>
